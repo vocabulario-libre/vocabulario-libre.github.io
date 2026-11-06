@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://www.vocabulario-libre.workers.dev/">
+<title>Vocabulario</title>
+<id>urn:sha256:be3b5397b0693f086db14d15049b7955b7ba7730b86d1a46034a25b051d7e4c3</id>
+<updated>2026-11-03T00:00:00Z</updated>
+<author><name>Vocabulario</name></author>
+<link rel="self" href="releases.xml"/>
+<link rel="alternate" href="index.html"/>
+<entry>
+<title>Vocabulario — Primera distribución · First distribution (2026-11-02)</title>
+<id>urn:sha256:release-2026-11-02</id>
+<updated>2026-11-02T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Primera distribución · First distribution</summary>
+</entry>
+<entry>
+<title>Vocabulario — Segunda distribución: encabezado «Texto de lectura» en las quince ediciones · Second distribution: the heading «Texto de lectura» in all fifteen editions (2026-11-03)</title>
+<id>urn:sha256:be3b5397b0693f086db14d15049b7955b7ba7730b86d1a46034a25b051d7e4c3</id>
+<updated>2026-11-03T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Corpus cerrado y publicado (2 de noviembre de 2026). Versiones · versions: 01 2.4 · 02 1.5 · 03 2.5 · 04 1.7 · 05 1.6 · 06 1.9 · 07 1.7 · 08 1.5 · 09 1.6 · 10 1.8 · 11 1.5 · 12 1.2 · 13 1.5 · 14 1.7 · 15 1.8.</summary>
+</entry>
+</feed>
