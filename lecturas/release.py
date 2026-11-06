@@ -114,7 +114,7 @@ def blockers(m: dict, subset: list[str] | None = None) -> list[str]:
 
 def checks_pass() -> list[str]:
     out = []
-    for cmd in (["compliance.py"], ["drift.py"], ["verify.py"], ["ortografia.py"], ["dist.py", "--check"]):
+    for cmd in (["compliance.py"], ["drift.py"], ["verify.py"], ["ortografia.py"], ["dist.py", "--check"], ["trainer_check.py"]):   # 7.3 (2026-11-06): the trainer's four guards
         r = subprocess.run([sys.executable] + cmd, capture_output=True, text=True, cwd=ROOT)
         if r.returncode != 0:
             out.append(f"{' '.join(cmd)} failed")
