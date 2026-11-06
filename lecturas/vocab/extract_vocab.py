@@ -132,7 +132,7 @@ def load_editorial(md: str) -> list[str]:
 
 def split_sentences(text: str) -> list[str]:
     parts = re.split(r"(?<=[.!?])\s+(?=[¿¡«A-ZÁÉÍÓÚÑ])", text)
-    return [p.strip() for p in parts if len(p.strip()) > 12]
+    return [p.strip() for p in parts if p.strip()]
 
 
 def family_key(word: str) -> str:
@@ -166,6 +166,8 @@ def harvest(paras_or_blocks, sentences, sent_para, sent_text, tid, para_numbers=
             sentences.append(sent)
             sent_para.append(pnum)
             sent_text.append(tid)
+            if len(sent) <= 12:
+                continue   # a fragment (a dateline, «Vale.», «¡Peruanos!») is shown in the pane but not harvested (7.2, 2026-11-06)
             seen_here = set()
             for m in WORD_RE.finditer(sent):
                 w = m.group(0).lower()

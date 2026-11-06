@@ -3,19 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Léxico · Lecturas de los libertadores</title>
+<title>Léxico · Vocabulario Libre</title>
 <style>
 :root{
-  --ink:#16262E;          /* iron-gall, faded cool */
-  --ink-2:#41565F;
-  --ink-3:#7B8C93;
-  --board:#DCE1E0;        /* archival board */
-  --board-2:#CBD3D2;
-  --leaf:#F7F7F5;         /* card face */
-  --verdigris:#2F6F60;    /* oxidised copper: the one accent */
-  --verdigris-soft:#E2EDE9;
-  --ochre:#9A742F;        /* due / caution */
-  --rule:#B9C3C2;
+  --ink:#16262E; --ink-2:#41565F; --ink-3:#7B8C93;
+  --board:#DCE1E0; --board-2:#CBD3D2; --leaf:#F7F7F5;
+  --verdigris:#2F6F60; --verdigris-soft:#E2EDE9; --ochre:#9A742F; --rule:#B9C3C2;
   --shadow:0 1px 0 rgba(22,38,46,.06), 0 6px 22px -14px rgba(22,38,46,.5);
   --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
@@ -27,510 +20,829 @@
         --rule:#2C3D45;--shadow:0 6px 22px -14px #000;}
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
+html,body{margin:0;padding:0;height:100%}
 body{background:var(--board);color:var(--ink);font-family:var(--serif);
-     -webkit-font-smoothing:antialiased;line-height:1.5}
+     -webkit-font-smoothing:antialiased;line-height:1.5;display:flex;flex-direction:column}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--verdigris);outline-offset:2px;border-radius:2px}
 
 /* ---------- frame ---------- */
-.wrap{max-width:780px;margin:0 auto;padding:20px 18px 90px}
 header.masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
-  padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:20px}
-.masthead h1{font-size:19px;font-weight:600;margin:0;letter-spacing:.01em}
-.masthead .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--ink-3)}
+  padding:12px 18px;border-bottom:1px solid var(--rule);background:var(--board)}
+.masthead h1{font-size:17px;font-weight:600;margin:0;letter-spacing:.01em}
+.masthead .brand{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .masthead .spacer{flex:1}
+.masthead select{max-width:46vw}
+.panes{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);min-height:0}
+.panes.text-left{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.panes.text-left .textpane{order:0}
+.panes.text-left .deckpane{order:1}
+.textpane{order:1;overflow:auto;padding:18px 22px 60px;border-left:1px solid var(--rule)}
+.panes.text-left .textpane{border-left:0;border-right:1px solid var(--rule)}
+.deckpane{order:0;overflow:auto;padding:18px 18px 60px}
 
 /* ---------- controls ---------- */
-.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
 .seg{display:inline-flex;border:1px solid var(--rule);border-radius:3px;overflow:hidden}
-.seg button{background:transparent;border:0;padding:6px 11px;font-family:var(--sans);
+.seg button{background:transparent;border:0;padding:6px 10px;font-family:var(--sans);
   font-size:12.5px;color:var(--ink-2);border-right:1px solid var(--rule)}
 .seg button:last-child{border-right:0}
 .seg button[aria-pressed=true]{background:var(--verdigris);color:#fff}
-.sources{display:inline-flex;gap:0;border:1px solid var(--rule);border-radius:3px;overflow:hidden}
-.sources label{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;
-  font-family:var(--sans);font-size:12.5px;color:var(--ink-2);cursor:pointer;
-  border-right:1px solid var(--rule);background:transparent;transition:background .12s}
-.sources label:last-child{border-right:0}
-.sources label:has(input:checked){background:var(--verdigris-soft);color:var(--ink)}
-.sources input{accent-color:var(--verdigris);margin:0;width:13px;height:13px}
-.sources .tally{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
-.srcbadge{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;
-  border:1px solid var(--rule);border-radius:2px;padding:1px 5px;color:var(--ink-3)}
-select,input[type=search]{background:var(--leaf);border:1px solid var(--rule);
-  border-radius:3px;padding:6px 9px;font-family:var(--sans);font-size:12.5px}
-input[type=search]{min-width:170px}
+.btn{background:transparent;border:1px solid var(--rule);border-radius:3px;padding:5px 10px;
+  font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+.btn:hover{border-color:var(--verdigris)}
+.btn[aria-pressed=true]{background:var(--verdigris-soft);border-color:var(--verdigris)}
+select,input[type=search],input[type=text]{background:var(--leaf);border:1px solid var(--rule);
+  border-radius:3px;padding:5px 8px;font-family:var(--sans);font-size:12.5px}
+label.chk{display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+label.chk input{accent-color:var(--verdigris);margin:0}
+.hint{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);margin:0 0 10px}
+.note{background:var(--verdigris-soft);border-left:2px solid var(--verdigris);
+  padding:8px 11px;font-family:var(--sans);font-size:12px;color:var(--ink-2);margin-bottom:12px;border-radius:0 3px 3px 0}
+.note button{float:right;background:none;border:0;color:var(--ink-3);font-size:14px;line-height:1;padding:0 2px}
+
+/* ---------- text pane ---------- */
+.para{position:relative;margin:0 0 12px;padding:6px 8px 6px 46px;border-radius:3px;cursor:pointer;
+  font-size:16px;line-height:1.62;border:1px solid transparent}
+.para:hover{background:var(--leaf)}
+.para.sel{background:var(--leaf);border-color:var(--rule);box-shadow:var(--shadow)}
+.para .pn{position:absolute;left:8px;top:7px;font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.05em}
+.para.sel .pn{color:var(--verdigris)}
+.para .pn::before{content:"§ "}
+.w{cursor:help}
+.w.u{text-decoration:underline dotted var(--ink-3);text-underline-offset:3px}
+.w.k{color:var(--ink-3)}            /* only when «marcar lo asentado» is on */
+.w.cur{background:var(--verdigris-soft);border-radius:2px;outline:1px solid var(--verdigris)}
+.tip{position:absolute;z-index:5;max-width:280px;background:var(--leaf);border:1px solid var(--rule);
+  box-shadow:var(--shadow);border-radius:3px;padding:7px 10px;font-family:var(--sans);font-size:12.5px;color:var(--ink)}
+.tip .t{font-family:var(--mono);font-size:10px;color:var(--ink-3);display:block;margin-bottom:3px}
+.tip .def{font-size:12px;color:var(--ink-2);margin:4px 0 0}
+.tip .go{display:block;margin-top:6px;font-size:11px;color:var(--verdigris)}
+
+/* ---------- index ---------- */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-align:left;
+  color:var(--ink-3);border-bottom:1px solid var(--rule);padding:6px 6px}
+td{border-bottom:1px solid var(--rule);padding:6px;vertical-align:top}
+td.n{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-align:right;white-space:nowrap}
+td.w{font-weight:600;width:24%;cursor:pointer}
+td.d{color:var(--ink-2);font-size:13px}
+tr.und td.d{color:var(--ink-3);font-style:italic}
+tr.k td.w{color:var(--ink-3);font-weight:400}
+.lects{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0 0 10px}
+.occ{margin:10px 0 14px;padding:8px 10px;background:var(--leaf);border:1px solid var(--rule);border-radius:3px;font-size:14px}
+.occ p{margin:0 0 6px;color:var(--ink-2)}
+.occ b{color:var(--ink);background:var(--verdigris-soft);padding:0 2px;border-radius:2px}
+.occ .ref{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-left:6px;white-space:nowrap}
 
 /* ---------- card ---------- */
-.card{background:var(--leaf);border:1px solid var(--rule);border-radius:4px;
-  box-shadow:var(--shadow);padding:26px 26px 22px;min-height:330px;
-  display:flex;flex-direction:column}
-.locator{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
-  color:var(--ink-3);text-transform:uppercase;display:flex;gap:10px;flex-wrap:wrap;
-  padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:20px}
+.card{background:var(--leaf);border:1px solid var(--rule);border-radius:4px;box-shadow:var(--shadow);
+  padding:22px 22px 18px;min-height:300px;display:flex;flex-direction:column}
+.locator{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;color:var(--ink-3);text-transform:uppercase;
+  display:flex;gap:10px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:16px}
 .locator .mark{color:var(--verdigris)}
-.headword{font-size:38px;line-height:1.15;font-weight:500;letter-spacing:-.01em;
-  margin:0 0 4px;word-break:break-word}
-.lemma{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-bottom:14px}
+.locator .go{cursor:pointer;color:var(--verdigris)}
+.headword{font-size:34px;line-height:1.15;font-weight:500;letter-spacing:-.01em;margin:0 0 6px;word-break:break-word}
 .prompt{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-bottom:6px}
-.answer{border-top:1px dashed var(--rule);margin-top:16px;padding-top:16px}
+.answer{border-top:1px dashed var(--rule);margin-top:14px;padding-top:14px}
 .answer.hidden{visibility:hidden}
-.en{font-size:21px;line-height:1.4;margin:0 0 8px;color:var(--ink)}
-.def{font-size:15.5px;line-height:1.55;margin:0 0 4px;color:var(--ink-2)}
-.def-none{font-size:15px;color:var(--ink-3);font-style:italic}
-.srcmark{font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.06em}
-
-/* context sentence: target word in ink, rest receded */
-.ctx{font-size:15.5px;line-height:1.62;color:var(--ink-3);margin:14px 0 0}
-.ctx b{color:var(--ink);font-weight:600;background:var(--verdigris-soft);
-  padding:0 2px;border-radius:2px}
-.ctx .ref{font-family:var(--mono);font-size:10px;letter-spacing:.06em;
-  color:var(--ink-3);margin-left:6px;white-space:nowrap}
-.cloze b{background:var(--verdigris-soft);color:transparent;border-bottom:2px solid var(--verdigris);
-  border-radius:0}
+.en{font-size:20px;line-height:1.4;margin:0 0 8px;color:var(--ink)}
+.def{font-size:15px;line-height:1.55;margin:0 0 4px;color:var(--ink-2)}
+.ctx{font-size:15px;line-height:1.62;color:var(--ink-3);margin:12px 0 0}
+.ctx b{color:var(--ink);font-weight:600;background:var(--verdigris-soft);padding:0 2px;border-radius:2px}
+.ctx .ref{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3);margin-left:6px;white-space:nowrap}
+.cloze b{background:var(--verdigris-soft);color:transparent;border-bottom:2px solid var(--verdigris);border-radius:0}
 .cloze.revealed b{color:var(--ink)}
-.fam{margin-top:14px;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
-  letter-spacing:.03em}
-.fam span{margin-right:9px;white-space:nowrap}
+.recur{margin-top:12px;font-family:var(--sans);font-size:12px;color:var(--ink-3)}
+.recur .go{color:var(--verdigris);cursor:pointer}
 .grow{flex:1}
-
-/* ---------- grading ---------- */
-.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
-.grade button{background:var(--leaf);border:1px solid var(--rule);border-radius:3px;
-  padding:11px 6px;font-family:var(--sans);font-size:12.5px;color:var(--ink-2);
-  display:flex;flex-direction:column;gap:3px;align-items:center;transition:border-color .12s}
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.grade button{background:var(--leaf);border:1px solid var(--rule);border-radius:3px;padding:10px 6px;
+  font-family:var(--sans);font-size:12.5px;color:var(--ink-2);display:flex;flex-direction:column;gap:3px;align-items:center}
 .grade button:hover{border-color:var(--verdigris)}
-.grade button kbd{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);
-  border:1px solid var(--rule);border-radius:2px;padding:0 4px}
-.reveal{width:100%;margin-top:16px;background:var(--verdigris);color:#fff;border:0;
-  border-radius:3px;padding:13px;font-family:var(--sans);font-size:13.5px;letter-spacing:.01em}
-
-/* ---------- meters ---------- */
-.meter{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-top:14px}
+.grade button kbd{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);border:1px solid var(--rule);border-radius:2px;padding:0 4px}
+.reveal{width:100%;margin-top:14px;background:var(--verdigris);color:#fff;border:0;border-radius:3px;padding:12px;
+  font-family:var(--sans);font-size:13.5px}
+.meter{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);margin-top:12px}
 .meter b{color:var(--ink);font-weight:600}
-.track{height:2px;background:var(--board-2);border-radius:2px;overflow:hidden;margin-top:12px}
-.track i{display:block;height:100%;background:var(--verdigris);width:0;transition:width .2s}
-
-/* ---------- browse ---------- */
-table{width:100%;border-collapse:collapse;font-size:14px}
-th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-  text-align:left;color:var(--ink-3);border-bottom:1px solid var(--rule);padding:7px 8px}
-td{border-bottom:1px solid var(--rule);padding:8px;vertical-align:top}
-td.n{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);text-align:right;width:44px}
-td.w{font-weight:600;width:26%}
-td.d{color:var(--ink-2);font-size:13.5px}
-tr.und td.d{color:var(--ink-3);font-style:italic}
-.empty{padding:44px 10px;text-align:center;color:var(--ink-3);font-size:14px}
+.track{height:2px;background:var(--board-2);border-radius:2px;overflow:hidden;margin-top:10px}
+.track i{display:block;height:100%;background:var(--verdigris);width:0}
+.empty{padding:40px 10px;text-align:center;color:var(--ink-3);font-size:14px}
 .empty p{margin:0 0 10px}
 
-/* ---------- footer / rights ---------- */
-footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--rule);
-  font-family:var(--sans);font-size:11.5px;color:var(--ink-3);line-height:1.65}
+/* ---------- footer ---------- */
+footer{padding:12px 18px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:11.5px;
+  color:var(--ink-3);line-height:1.6;background:var(--board)}
 footer b{color:var(--ink-2);font-weight:600}
-.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.tools button{background:transparent;border:1px solid var(--rule);border-radius:3px;
-  padding:5px 10px;font-family:var(--sans);font-size:11.5px;color:var(--ink-2)}
-.note{background:var(--verdigris-soft);border-left:2px solid var(--verdigris);
-  padding:9px 12px;font-family:var(--sans);font-size:12px;color:var(--ink-2);
-  margin-bottom:14px;border-radius:0 3px 3px 0}
-@media (max-width:520px){
-  .headword{font-size:30px}
-  .card{padding:20px 18px}
+.tools{display:inline-flex;gap:6px;flex-wrap:wrap;margin-left:8px;vertical-align:middle}
+.tools button{background:transparent;border:1px solid var(--rule);border-radius:3px;padding:3px 8px;
+  font-family:var(--sans);font-size:11px;color:var(--ink-2)}
+
+/* ---------- narrow: the deck is a drawer ---------- */
+.handle{display:none}
+@media (max-width:720px){
+  .panes,.panes.text-left{display:block;overflow:visible}
+  .textpane,.panes.text-left .textpane{border:0;padding:14px 14px 140px;overflow:visible}
+  .deckpane{position:fixed;left:0;right:0;bottom:0;max-height:78vh;overflow:auto;background:var(--board);
+    border-top:1px solid var(--rule);box-shadow:0 -8px 24px -16px rgba(0,0,0,.6);transform:translateY(calc(100% - 44px));
+    transition:transform .18s;padding:0 14px 30px;z-index:4}
+  .deckpane.open{transform:none}
+  .handle{display:flex;justify-content:space-between;align-items:center;height:44px;cursor:pointer;
+    font-family:var(--sans);font-size:13px;color:var(--ink-2);border-bottom:1px solid var(--rule);margin-bottom:12px}
+  .handle b{color:var(--ink)}
+  .headword{font-size:28px}
   .grade{grid-template-columns:repeat(2,1fr)}
+  .masthead select{max-width:60vw}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
 
 <header class="masthead">
-  <h1>Léxico</h1>
-  <span class="sub" id="subtitle"></span>
+  <span class="brand">Vocabulario Libre</span>
+  <h1 data-t="lexicon">Léxico</h1>
+  <select id="text" aria-label="Texto"></select>
   <span class="spacer"></span>
-  <span class="sub" id="deckcount"></span>
+  <span class="seg" id="langseg" aria-label="Idioma · Language · 言語"><button data-lang="es" aria-pressed="true">ES</button><button data-lang="en" aria-pressed="false">EN</button><button data-lang="ja" aria-pressed="false">JA</button></span>
+  <button class="btn" id="sideswitch" data-t="side">⇄ lado</button>
 </header>
 
-<div class="bar">
-  <div class="seg" role="group" aria-label="Modo">
-    <button data-mode="recog" aria-pressed="true">Reconocer</button>
-    <button data-mode="cloze" aria-pressed="false">Hueco</button>
-    <button data-mode="prod" aria-pressed="false">Producir</button>
-    <button data-mode="browse" aria-pressed="false">Índice</button>
-  </div>
-  <select id="text" aria-label="Texto"></select>
-  <span class="sources" role="group" aria-label="Corpus">
-    <label><input type="checkbox" id="src-text" checked>
-      Texto <span class="tally" id="tally-text"></span></label>
-    <label><input type="checkbox" id="src-editorial">
-      Aparato <span class="tally" id="tally-editorial"></span></label>
-  </span>
-  <select id="deck" aria-label="Mazo">
-    <option value="defined">Todo el léxico</option>
-    <option value="glossary">Del glosario de la edición</option>
-    <option value="freq">Tres apariciones o más</option>
-    <option value="rare">Solo una aparición</option>
-    <option value="all">Incluir palabras gramaticales</option>
-    <option value="deep">Solo con definición ampliada</option>
-  </select>
-  <select id="range" aria-label="Párrafos"></select>
-  <input type="search" id="q" placeholder="Buscar palabra…" aria-label="Buscar">
-</div>
+<div class="panes" id="panes">
 
-<main id="stage"></main>
+  <section class="deckpane" id="deckpane" aria-label="Fichas">
+    <div class="handle" id="handle"><span><b id="hcount">0</b> <span data-t="cards_due">fichas · por repasar:</span> <span id="hdue">0</span></span><span>▲</span></div>
+    <div class="bar">
+      <div class="seg" role="group">
+        <button data-order="text" aria-pressed="true" data-t="o_text">Orden del texto</button>
+        <button data-order="shuffle" aria-pressed="false" data-t="o_shuffle">Barajadas</button>
+        <button data-order="review" aria-pressed="false" data-t="o_review">Por repasar</button>
+      </div>
+      <div class="seg" role="group">
+        <button data-dir="recog" aria-pressed="true" data-t="d_recog">Reconocer</button>
+        <button data-dir="cloze" aria-pressed="false" data-t="d_cloze">Producir</button>
+      </div>
+      <label class="chk"><input type="checkbox" id="fn"> <span data-t="fn">gramaticales</span></label>
+    </div>
+    <p class="hint" id="deckhint"></p>
+    <div id="note1" class="note" hidden><button id="note1x" aria-label="Cerrar">×</button><span data-t="note1">El progreso se guarda en este navegador. Exporte un archivo («Guardar progreso», abajo) para conservarlo o cambiar de aparato.</span></div>
+    <div id="fontnote" class="note" hidden></div>
+    <main id="stage"></main>
+  </section>
+
+  <section class="textpane" id="textpane" aria-label="Texto">
+    <div class="bar">
+      <div class="seg" role="group">
+        <button data-view="text" aria-pressed="true" data-t="v_text">Texto</button>
+        <button data-view="index" aria-pressed="false" data-t="v_index">Índice</button>
+      </div>
+      <span id="selbar">
+        <button class="btn" id="selall" aria-pressed="false" data-t="sel_all">Todo el texto</button>
+        <select id="saved" aria-label="Selecciones guardadas"></select>
+        <button class="btn" id="save" data-t="save_sel">Guardar selección</button>
+        <button class="btn" id="link" data-t="link_sel">Enlace a esta selección</button>
+        <label class="chk"><input type="checkbox" id="markknown"> <span data-t="markknown">marcar lo asentado</span></label>
+      </span>
+      <span id="idxbar" hidden>
+        <select id="sort" aria-label="Orden del índice">
+          <option value="freq" data-t="s_freq">Por frecuencia en la selección</option>
+          <option value="disp" data-t="s_disp">Por dispersión (textos · autores)</option>
+        </select>
+        <select id="unit" aria-label="Unidad de cien"></select>
+        <label class="chk"><input type="checkbox" id="src-text" checked> <span data-t="src_text">texto</span></label>
+        <label class="chk"><input type="checkbox" id="src-ed"> <span data-t="src_ed">aparato</span></label>
+        <input type="search" id="q" data-t-ph="search" placeholder="Buscar…" aria-label="Buscar">
+      </span>
+    </div>
+    <div id="lects" class="lects" hidden></div>
+    <p class="hint" id="texthint"></p>
+    <div id="reader"></div>
+  </section>
+
+</div>
 
 <footer>
   <span id="textrights"></span>
-  <b>Aparato</b>: prosa editorial de cada edición, castellano moderno, corpus aparte.
-  <b>Equivalencias y definiciones</b> escritas para este proyecto; ninguna procede de un diccionario.
-  Programa y datos bajo CC0 1.0.
+  <span data-t="footer"><b>Equivalencias y definiciones</b> escritas para este proyecto; ninguna procede de un diccionario. Programa y datos bajo CC0 1.0.</span>
   <span id="rights"></span>
-  <div class="tools">
-    <button id="export">Guardar progreso</button>
-    <button id="import">Cargar progreso</button>
-    <button id="reset">Empezar de nuevo</button>
+  <span class="tools">
+    <button id="export" data-t="export">Guardar progreso</button>
+    <button id="import" data-t="import">Cargar progreso</button>
+    <button id="reset" data-t="reset">Empezar de nuevo</button>
     <input type="file" id="file" accept="application/json" hidden>
-  </div>
+  </span>
 </footer>
-
-</div>
 
 <script>
 const DATA = /*__VOCAB_DATA__*/null;
 
-/* ---------- storage: localStorage where allowed, memory otherwise ---------- */
-const Store = (() => {
-  const KEY = "lecturas-lexico-v2", OLD_KEY = "carta-lexico-v1";
-  let mem = {}, ok = false;
-  try { localStorage.setItem("__t","1"); localStorage.removeItem("__t"); ok = true; } catch(e) { ok = false; }
-  // Progress is keyed "NN/word". Keys without a text prefix come from the
-  // single-text app (v1), whose only text was lectura 03, and are migrated.
-  const migrate = (o) => {
-    const out = {};
-    for (const k in o) out[k.includes("/") ? k : "02/" + k] = o[k];
+/* =====================================================================
+   STRINGS — the chrome in Spanish, English and Japanese (the content is what it is)
+   ===================================================================== */
+const STRINGS = {
+  es: {
+    lexicon: "Léxico", side: "⇄ lado", cards_due: "fichas · por repasar:", o_text: "Orden del texto", o_shuffle: "Barajadas",
+    o_review: "Por repasar", d_recog: "Reconocer", d_cloze: "Producir", fn: "gramaticales",
+    note1: "El progreso se guarda en este navegador. Exporte un archivo («Guardar progreso», abajo) para conservarlo o cambiar de aparato.",
+    v_text: "Texto", v_index: "Índice", sel_all: "Todo el texto", sel_none: "Quitar todo", save_sel: "Guardar selección",
+    link_sel: "Enlace a esta selección", markknown: "marcar lo asentado", s_freq: "Por frecuencia en la selección",
+    s_disp: "Por dispersión (textos · autores)", src_text: "texto", src_ed: "aparato", search: "Buscar…",
+    footer: "<b>Equivalencias y definiciones</b> escritas para este proyecto; ninguna procede de un diccionario. Programa y datos bajo CC0 1.0.",
+    export: "Guardar progreso", import: "Cargar progreso", reset: "Empezar de nuevo",
+    saved_ph: "Selecciones guardadas…", saved_del: "— borrar una guardada", unit_idx: "Unidad {n} del índice · ",
+    paras: "{n} párrafo{s} · ", nosel: "Sin selección · ", cards: "{n} fichas · {d} por repasar",
+    empty_unit: "Nada en esta unidad.", empty_sel: "Elige uno o varios párrafos del texto (clic; mayúsculas-clic para un tramo) y se forman las fichas.",
+    of: "de", cloze_prompt: "Completa la palabra que falta", g0: "Otra vez", g1: "Difícil", g2: "Bien", g3: "Fácil",
+    reveal: "Ver respuesta", space: "espacio", m_seen: "vistas", m_known: "asentadas", m_deck: "del mazo", m_left: "quedan",
+    aparato: "aparato", defined: "definida", glossed: "con equivalencia", rep: "rep", once: "vez", times: "veces",
+    in_sel: "en esta selección", in_marked: "en los textos marcados", in_: "en", text1: "texto", textN: "textos", by: "de",
+    author1: "autor", authorN: "autores", other_occ: "otras apariciones",
+    texthint: "{author} · {date} · {n} párrafos. Clic en un párrafo para estudiarlo; mayúsculas-clic para un tramo; clic en una palabra: su equivalencia.",
+    idxhint: "{n} formas en {t} texto{s} · unidades de cien · clic en una palabra: sus apariciones · «Estudiar esta unidad» forma el mazo.",
+    study_unit: "Estudiar esta unidad", h_word: "Palabra", h_n: "Veces", h_disp: "Textos · autores", h_gloss: "Equivalencia",
+    no_gloss: "aún sin equivalencia", tip_go: "otro clic: la ficha", name_sel: "Nombre de la selección:", which_del: "¿Cuál borrar?",
+    link_copied: "Enlace copiado:", link: "Enlace:", bad_file: "Ese archivo no contiene un progreso legible.",
+    confirm_reset: "Se borrará todo el progreso de este dispositivo. ¿Continuar?",
+    no_store: " El navegador no guarda datos desde este origen: usa «Guardar progreso» antes de cerrar.",
+    text_of: "<b>Texto</b> de ", pd: ", dominio público.", fonts: "Para ver todos los alfabetos instale: ", lang_btn: "EN"
+  },
+  en: {
+    lexicon: "Lexicon", side: "⇄ side", cards_due: "cards · to review:", o_text: "Text order", o_shuffle: "Shuffled",
+    o_review: "To review", d_recog: "Recognise", d_cloze: "Produce", fn: "grammatical words",
+    note1: "Progress is kept in this browser. Export a file (“Save progress”, below) to keep it or to change device.",
+    v_text: "Text", v_index: "Index", sel_all: "Whole text", sel_none: "Clear all", save_sel: "Save selection",
+    link_sel: "Link to this selection", markknown: "mark what is known", s_freq: "By frequency in the selection",
+    s_disp: "By spread (texts · authors)", src_text: "text", src_ed: "apparatus", search: "Search…",
+    footer: "<b>Glosses and definitions</b> written for this project; none comes from a dictionary. Program and data under CC0 1.0.",
+    export: "Save progress", import: "Load progress", reset: "Start over",
+    saved_ph: "Saved selections…", saved_del: "— delete a saved one", unit_idx: "Index unit {n} · ",
+    paras: "{n} paragraph{s} · ", nosel: "No selection · ", cards: "{n} cards · {d} to review",
+    empty_unit: "Nothing in this unit.", empty_sel: "Choose one or more paragraphs of the text (click; shift-click for a stretch) and the cards form.",
+    of: "from", cloze_prompt: "Supply the missing word", g0: "Again", g1: "Hard", g2: "Good", g3: "Easy",
+    reveal: "Show answer", space: "space", m_seen: "seen", m_known: "known", m_deck: "of deck", m_left: "left",
+    aparato: "apparatus", defined: "defined", glossed: "glossed", rep: "rep", once: "time", times: "times",
+    in_sel: "in this selection", in_marked: "in the checked texts", in_: "in", text1: "text", textN: "texts", by: "by",
+    author1: "author", authorN: "authors", other_occ: "other occurrences",
+    texthint: "{author} · {date} · {n} paragraphs. Click a paragraph to study it; shift-click for a stretch; click a word for its gloss.",
+    idxhint: "{n} forms in {t} text{s} · units of a hundred · click a word for its occurrences · “Study this unit” forms the deck.",
+    study_unit: "Study this unit", h_word: "Word", h_n: "Count", h_disp: "Texts · authors", h_gloss: "Gloss",
+    no_gloss: "no gloss yet", tip_go: "click again: the card", name_sel: "Name of the selection:", which_del: "Which one to delete?",
+    link_copied: "Link copied:", link: "Link:", bad_file: "That file does not contain readable progress.",
+    confirm_reset: "All progress on this device will be erased. Continue?",
+    no_store: " The browser keeps no data from this origin: use “Save progress” before closing.",
+    text_of: "<b>Text</b> by ", pd: ", public domain.", fonts: "To see every alphabet install: ", lang_btn: "ES"
+  },
+  ja: {
+    lexicon: "語彙", side: "⇄ 左右", cards_due: "枚 · 復習待ち:", o_text: "本文順", o_shuffle: "シャッフル",
+    o_review: "復習待ち", d_recog: "認識", d_cloze: "穴埋め", fn: "機能語",
+    note1: "学習の記録はこのブラウザに保存されます。残しておくには、または別の端末で続けるには、ファイルに書き出してください（下の「進捗を保存」）。",
+    v_text: "本文", v_index: "索引", sel_all: "全文を選択", sel_none: "選択を解除", save_sel: "選択を保存",
+    link_sel: "この選択へのリンク", markknown: "習得済みに印", s_freq: "選択内の頻度順",
+    s_disp: "分布順（テキスト · 著者）", src_text: "本文", src_ed: "校訂注", search: "検索…",
+    footer: "<b>訳語と定義</b>はこのプロジェクトのために書かれたもので、辞書からの引用はありません。プログラムとデータは CC0 1.0。",
+    export: "進捗を保存", import: "進捗を読み込む", reset: "最初からやり直す",
+    saved_ph: "保存した選択…", saved_del: "— 保存した選択を削除", unit_idx: "索引ユニット {n} · ",
+    paras: "{n} 段落 · ", nosel: "選択なし · ", cards: "{n} 枚 · 復習待ち {d} 枚",
+    empty_unit: "このユニットには何もありません。", empty_sel: "本文の段落を一つ以上選んでください（クリック、Shift＋クリックで範囲指定）。カードができます。",
+    of: "見出し語:", cloze_prompt: "欠けている語を入れてください", g0: "もう一度", g1: "難しい", g2: "できた", g3: "簡単",
+    reveal: "答えを見る", space: "スペース", m_seen: "既読", m_known: "習得", m_deck: "デッキ", m_left: "残り",
+    aparato: "校訂注", defined: "定義あり", glossed: "訳語あり", rep: "復習", once: "回", times: "回",
+    in_sel: "この選択内", in_marked: "選択したテキスト内", in_: "／", text1: "テキスト中", textN: "テキスト中", by: "・著者",
+    author1: "名", authorN: "名", other_occ: "他の出現箇所",
+    texthint: "{author} · {date} · {n} 段落。段落をクリックして学習、Shift＋クリックで範囲指定、語をクリックすると訳語。",
+    idxhint: "{n} 語形 · {t} テキスト · 百語ずつ · 語をクリックすると出現箇所 ·「このユニットを学習」でデッキを作る。",
+    study_unit: "このユニットを学習", h_word: "語", h_n: "回数", h_disp: "テキスト · 著者", h_gloss: "訳語",
+    no_gloss: "訳語はまだありません", tip_go: "もう一度クリックでカード", name_sel: "選択の名前:", which_del: "どれを削除しますか？",
+    link_copied: "リンクをコピーしました:", link: "リンク:", bad_file: "このファイルには読み取れる進捗がありません。",
+    confirm_reset: "この端末の進捗をすべて消去します。続けますか？",
+    no_store: " このブラウザはこのページのデータを保存しません。閉じる前に「進捗を保存」を使ってください。",
+    text_of: "<b>本文</b>：", pd: "、パブリックドメイン。", fonts: "すべての文字を表示するには次のフォントを入れてください: ", lang_btn: "JA"
+  }
+};
+
+/* =====================================================================
+   MODEL — no document access; testable in node (work/test_trainer_model.js)
+   ===================================================================== */
+const DAY = 86400000;
+const WORD_RE = /[\p{L}\p{M}][\p{L}\p{M}'’-]*/gu;
+const FONTS = {};   // script → {font, probe}; filled as Phases 9–12 add scripts (Spanish needs none)
+
+const Model = (() => {
+  const E = DATA.entries, TEXTS = DATA.texts;
+  const textById = Object.fromEntries(TEXTS.map(t => [t.id, t]));
+  const byText = {};
+  for (const e of E) {
+    const k = e.src_deck === "editorial" ? "ed" : "tx";
+    (byText[e.t] ||= { tx: {}, ed: {} })[k][e.w] = e;
+  }
+  const byForm = {};
+  for (const e of E) if (e.src_deck !== "editorial") (byForm[e.w] ||= []).push(e);
+  const dispersion = (w) => {
+    const es = byForm[w] || [];
+    return { texts: new Set(es.map(e => e.t)).size, authors: new Set(es.map(e => textById[e.t].author)).size };
+  };
+  const parasOf = (tid) => {
+    const out = []; let cur = null;
+    DATA.sentText.forEach((t, si) => {
+      if (t !== tid || !DATA.sentPara[si]) return;
+      const p = DATA.sentPara[si];
+      if (!cur || cur.n !== p) { cur = { n: p, sents: [] }; out.push(cur); }
+      cur.sents.push(si);
+    });
     return out;
   };
-  const read = () => {
-    if (!ok) return mem;
-    try {
-      const cur = localStorage.getItem(KEY);
-      if (cur) return migrate(JSON.parse(cur));
-      const old = localStorage.getItem(OLD_KEY);
-      return old ? migrate(JSON.parse(old)) : {};
-    } catch(e) { return {}; }
+  const tokens = (s) => { const out = []; for (const m of s.matchAll(WORD_RE)) out.push([m[0].toLowerCase(), m.index, m.index + m[0].length]); return out; };
+  const glossed = (e) => !!(e && (e.en || e.d));
+  const migrate = (o) => {
+    const out = {};
+    for (const k in o) {
+      const w = k.includes("/") ? k.slice(k.indexOf("/") + 1) : k;
+      const p = o[k], q = out[w];
+      if (!q || (p.reps || 0) > (q.reps || 0) || ((p.reps || 0) === (q.reps || 0) && (p.seen || 0) > (q.seen || 0))) out[w] = p;
+    }
+    return out;
   };
-  const write = (o) => {
-    mem = o;
-    if (ok) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {} }
+  const schedule = (progress, w, grade, now) => {
+    const p = progress[w] || { ease: 2.5, reps: 0, iv: 0 };
+    if (grade === 0) { p.reps = 0; p.iv = 0; p.ease = Math.max(1.3, p.ease - 0.2); }
+    else {
+      p.ease = Math.max(1.3, p.ease + (0.1 - (3 - grade) * (0.08 + (3 - grade) * 0.02)));
+      p.reps += 1;
+      p.iv = p.reps === 1 ? 1 : p.reps === 2 ? 4 : Math.round(p.iv * p.ease);
+    }
+    p.due = now + Math.max(p.iv, grade === 0 ? 0 : 1) * DAY;
+    if (grade === 0) p.due = now + 60000;
+    p.seen = now;
+    progress[w] = p;
+    return p;
   };
-  return { read, write, persistent: () => ok };
+  const known = (progress, w) => (progress[w] || {}).reps >= 2;
+  const due = (progress, w, now) => !progress[w] || (progress[w].due || 0) <= now;
+  const deckOf = (selection, includeFn) => {
+    const seen = new Map(), paras = {};
+    for (const [tid, n] of selection) (paras[tid] ||= new Set()).add(n);
+    for (const tid of Object.keys(paras).sort()) {
+      const want = paras[tid], bt = byText[tid];
+      if (!bt) continue;
+      for (const P of parasOf(tid)) {
+        if (!want.has(P.n)) continue;
+        for (const si of P.sents) for (const [w, a, b] of tokens(DATA.sentences[si])) {
+          const e = bt.tx[w];
+          if (!glossed(e) || (e.fn && !includeFn)) continue;
+          if (!seen.has(w)) seen.set(w, { w, e, si, a, b, count: 0 });
+          seen.get(w).count++;
+        }
+      }
+    }
+    return [...seen.values()];
+  };
+  const order = (cards, mode, progress, now, rnd) => {
+    const c = cards.slice();
+    if (mode === "shuffle") { for (let i = c.length - 1; i > 0; i--) { const j = Math.floor((rnd || Math.random)() * (i + 1)); [c[i], c[j]] = [c[j], c[i]]; } return c; }
+    if (mode === "review") {
+      const rank = (x) => !progress[x.w] ? 0 : due(progress, x.w, now) ? 1 : 2;
+      return c.map((x, i) => [rank(x), i, x]).sort((p, q) => p[0] - q[0] || p[1] - q[1]).map(x => x[2]);
+    }
+    return c;
+  };
+  const index = (lects, src, sort, query) => {
+    const agg = {};
+    for (const tid of lects) {
+      const bt = byText[tid]; if (!bt) continue;
+      for (const k of ["tx", "ed"]) {
+        if (!src[k]) continue;
+        for (const w in bt[k]) {
+          const e = bt[k][w]; if (e.fn || e.name) continue;
+          const a = (agg[w] ||= { w, n: 0, e });
+          a.n += e.n; if (glossed(e) && !glossed(a.e)) a.e = e;
+        }
+      }
+    }
+    let rows = Object.values(agg).map(a => Object.assign(a, dispersion(a.w)));
+    if (query) { const q = query.toLowerCase(); rows = rows.filter(r => r.w.includes(q) || (r.e.en || "").toLowerCase().includes(q) || (r.e.d || "").toLowerCase().includes(q)); }
+    rows.sort(sort === "disp" ? (p, q) => q.texts - p.texts || q.authors - p.authors || q.n - p.n || (p.w < q.w ? -1 : 1)
+                                : (p, q) => q.n - p.n || q.texts - p.texts || (p.w < q.w ? -1 : 1));
+    return rows;
+  };
+  const unitCards = (rows, unit) => rows.slice((unit - 1) * 100, unit * 100).map(r => {
+    const c = (r.e.ctx && r.e.ctx[0]) || null;
+    return { w: r.w, e: r.e, si: c ? c[0] : -1, a: c ? c[1] : 0, b: c ? c[2] : 0, count: r.n };
+  });
+  /* deep links: an optional language prefix (es/, en/ or ja/, or #en alone), then #NN · #NN/§P · #índice · a selection */
+  const splitLang = (h) => {
+    const s = decodeURIComponent((h || "").replace(/^#/, "")).trim();
+    const m = s.match(/^(es|en|ja)(?:\/(.*))?$/i);
+    return m ? { lang: m[1].toLowerCase(), rest: m[2] || "" } : { lang: null, rest: s };
+  };
+  const parseHash = (h) => {
+    const s = splitLang(h).rest;
+    if (!s) return null;
+    if (/^(índice|indice|index)$/i.test(s)) return { view: "index" };
+    const m = s.match(/^(\d{2})(?:\/§?\s*(\d+))?$/);
+    return m ? { view: "text", text: m[1], para: m[2] ? +m[2] : null } : null;
+  };
+  const hashFor = (selection) => {
+    const by = {};
+    for (const [t, n] of selection) (by[t] ||= []).push(n);
+    return "#" + Object.keys(by).sort().map(t => t + "/" + by[t].sort((a, b) => a - b).join(",")).join(";");
+  };
+  const parseSelection = (h) => {
+    const s = splitLang(h).rest, out = [];
+    for (const part of s.split(";")) {
+      const m = part.match(/^(\d{2})\/§?\s*([\d,]+)$/); if (!m) continue;
+      for (const n of m[2].split(",")) if (n) out.push([m[1], +n]);
+    }
+    return out;
+  };
+  return { E, TEXTS, textById, byText, byForm, dispersion, parasOf, tokens, glossed, migrate, schedule, known, due,
+           deckOf, order, index, unitCards, splitLang, parseHash, hashFor, parseSelection };
 })();
+if (typeof module !== "undefined") module.exports = Model;
 
+/* =====================================================================
+   VIEW
+   ===================================================================== */
+if (typeof document !== "undefined") (function () {
+const M = Model;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+/* ---------- storage ---------- */
+const Store = (() => {
+  const KEY = "vocabulario-lexico-v3", OLD = ["lecturas-lexico-v2", "carta-lexico-v1"];
+  let ok = false;
+  try { localStorage.setItem("__t", "1"); localStorage.removeItem("__t"); ok = true; } catch (e) {}
+  const get = (k) => { try { return ok ? localStorage.getItem(k) : null; } catch (e) { return null; } };
+  const set = (k, v) => { if (ok) try { localStorage.setItem(k, v); } catch (e) {} };
+  const read = () => {
+    const cur = get(KEY); if (cur) try { return JSON.parse(cur); } catch (e) {}
+    for (const k of OLD) { const o = get(k); if (o) try { return M.migrate(JSON.parse(o)); } catch (e) {} }
+    return {};
+  };
+  return { read, write: (o) => set(KEY, JSON.stringify(o)),
+           pref: (k, v) => v === undefined ? get("vl-" + k) : set("vl-" + k, v), persistent: () => ok };
+})();
 let progress = Store.read();
+const now = () => Date.now();
 
-/* ---------- SM-2, lightly ---------- */
-const DAY = 86400000;
-const pkey = (e) => e.t + "/" + e.w;
-function schedule(e, grade) {
-  const word = pkey(e);
-  const now = Date.now();
-  const p = progress[word] || { ease: 2.5, reps: 0, iv: 0 };
-  if (grade === 0) { p.reps = 0; p.iv = 0; p.ease = Math.max(1.3, p.ease - 0.2); }
-  else {
-    p.ease = Math.max(1.3, p.ease + (0.1 - (3 - grade) * (0.08 + (3 - grade) * 0.02)));
-    p.reps += 1;
-    p.iv = p.reps === 1 ? 1 : p.reps === 2 ? 4 : Math.round(p.iv * p.ease);
-  }
-  p.due = now + Math.max(p.iv, grade === 0 ? 0 : 1) * DAY;
-  if (grade === 0) p.due = now + 60000;
-  p.seen = now;
-  progress[word] = p;
-  Store.write(progress);
+/* ---------- language ---------- */
+let lang = "es";
+const t = (k, vars) => { let s = (STRINGS[lang] && STRINGS[lang][k]) ?? STRINGS.es[k] ?? k;
+  if (vars) for (const v in vars) s = s.split("{" + v + "}").join(vars[v]); return s; };
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el => { const k = el.dataset.t; if (k === "footer") el.innerHTML = t(k); else if (k === "sel_all") el.textContent = t(allSelected() ? "sel_none" : "sel_all"); else el.textContent = t(k); });
+  document.querySelectorAll("[data-t-ph]").forEach(el => el.placeholder = t(el.dataset.tPh));
+  document.querySelectorAll("#langseg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
+  document.title = t("lexicon") + " · Vocabulario Libre";
 }
-const isDue = (e) => !progress[pkey(e)] || (progress[pkey(e)].due || 0) <= Date.now();
+function setLang(l) { lang = STRINGS[l] ? l : "es"; Store.pref("lang", lang); applyLang(); savedOptions(); render(); }
 
-/* ---------- decks ---------- */
-const E = DATA.entries;
-const TEXTS = DATA.texts;
-const textById = Object.fromEntries(TEXTS.map(t => [t.id, t]));
-let mode = "recog", deckName = "defined", range = 0, query = "";
-let sources = { text: true, editorial: false };
-let textId = TEXTS.length === 1 ? TEXTS[0].id : "all";   // "all" or a lectura number
+/* ---------- state ---------- */
+let textId = M.TEXTS[0].id;
+let selection = [];                       // [[tid, n], …]
+let deckSource = "selection";             // "selection" | "index"
+let view = "text";                        // the reading side: "text" | "index"
+let orderMode = "text", dir = "recog", includeFn = false;
+let lects = new Set(M.TEXTS.map(t => t.id)), src = { tx: true, ed: false }, sort = "freq", unit = 1, query = "";
+let cards = [], queue = [], current = null, revealed = false, answered = false;
+let occForm = null, markKnown = false, lastClicked = null;
 
-function paraOf(e) { return e.ctx.length ? DATA.sentPara[e.ctx[0][0]] : 0; }
-const inText = (e) => textId === "all" || e.t === textId;
-
-function deck() {
-  let list = deckName === "all" ? E.slice() : E.filter(e => !e.fn);
-  list = list.filter(e => inText(e) && sources[e.src_deck]);
-  if (deckName === "defined")      list = list.filter(e => e.en || e.d);
-  else if (deckName === "glossary")list = list.filter(e => e.src === "glosario");
-  else if (deckName === "freq")    list = list.filter(e => e.n >= 3);
-  else if (deckName === "rare")    list = list.filter(e => e.n === 1 && (e.en || e.d));
-  else if (deckName === "deep")    list = list.filter(e => e.d);
-  if (range && textId !== "all") {
-    const lo = (range - 1) * 15 + 1, hi = range * 15;
-    list = list.filter(e => { const p = paraOf(e); return p >= lo && p <= hi; });
-  }
-  if (query) {
-    const q = query.toLowerCase();
-    list = list.filter(e => e.w.includes(q) ||
-      (e.d || "").toLowerCase().includes(q) || (e.en || "").toLowerCase().includes(q));
-  }
-  if (mode === "cloze") list = list.filter(e => e.ctx.length);
-  if (mode === "prod")  list = list.filter(e => e.en || e.d);
-  return list;
-}
-
-let queue = [], current = null, revealed = false;
-
+/* ---------- deck ---------- */
+const selHas = (tid, n) => selection.some(([a, b]) => a === tid && b === n);
+const allSelected = () => { const ps = M.parasOf(textId); return ps.length > 0 && ps.every(P => selHas(textId, P.n)); };
 function refill() {
-  const all = deck();
-  const due = all.filter(e => isDue(e));
-  queue = (due.length ? due : all).slice();
-  for (let i = queue.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [queue[i], queue[j]] = [queue[j], queue[i]];
-  }
-  document.getElementById("deckcount").textContent =
-    all.length + " fichas · " + due.length + " por repasar";
-  const tally = (k) => E.filter(e => inText(e) && e.src_deck === k && !e.fn).length;
-  document.getElementById("tally-text").textContent = tally("text").toLocaleString("es");
-  document.getElementById("tally-editorial").textContent = tally("editorial").toLocaleString("es");
+  cards = deckSource === "index" ? M.unitCards(M.index([...lects].sort(), src, sort, query), unit) : M.deckOf(selection, includeFn);
+  const ord = (!answered && orderMode === "review") ? "text" : orderMode;
+  queue = M.order(cards, ord, progress, now()).reverse();
+  const dueN = cards.filter(c => M.due(progress, c.w, now())).length;
+  $("hcount").textContent = cards.length; $("hdue").textContent = dueN;
+  $("deckhint").textContent = (deckSource === "index" ? t("unit_idx", { n: unit })
+    : selection.length ? t("paras", { n: selection.length, s: selection.length > 1 ? "s" : "" }) : t("nosel")) + t("cards", { n: cards.length, d: dueN });
+}
+function next() { revealed = false; if (!queue.length) refill(); current = queue.pop() || null; drawCard(); markCurrent(); }
+function graded(g) {
+  M.schedule(progress, current.w, g, now()); Store.write(progress);
+  if (!answered) { answered = true; if (orderMode === "review") refill(); }
+  refreshMarks(); next();
 }
 
-/* ---------- rendering ---------- */
-const stage = document.getElementById("stage");
-const esc = (s) => s.replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
-
-function ctxHTML(e, i, cloze) {
-  if (!e.ctx.length) return "";
-  const [si, a, b] = e.ctx[i % e.ctx.length];
-  const s = DATA.sentences[si], p = DATA.sentPara[si];
-  const ref = (textId === "all" ? DATA.sentText[si] + " " : "") + (p ? "§ " + p : "aparato");
-  return '<p class="ctx' + (cloze ? " cloze" : "") + '" id="ctx">' +
-    esc(s.slice(0, a)) + "<b>" + esc(s.slice(a, b)) + "</b>" + esc(s.slice(b)) +
-    '<span class="ref">' + ref + "</span></p>";
+/* ---------- the card ---------- */
+function ctxHTML(c, cloze) {
+  if (c.si < 0) return "";
+  const s = DATA.sentences[c.si], p = DATA.sentPara[c.si], tx = DATA.sentText[c.si];
+  return '<p class="ctx' + (cloze ? " cloze" : "") + '" id="ctx">' + esc(s.slice(0, c.a)) + "<b>" + esc(s.slice(c.a, c.b)) + "</b>" +
+         esc(s.slice(c.b)) + '<span class="ref">' + tx + " · " + (p ? "§ " + p : t("aparato")) + "</span></p>";
 }
-
-function locator(e) {
-  const p = paraOf(e);
-  const st = progress[pkey(e)];
-  const where = e.src_deck === "editorial" ? "aparato" : "§ " + p;
-  const bits = [
-    "<span>" + (textId === "all" ? e.t + " · " : "") + where + "</span>",
-    "<span>×" + e.n + "</span>",
-    (e.en || e.d) ? '<span class="mark">' + (e.d ? "definida" : "con equivalencia") + "</span>"
-                  : "<span>sin equivalencia</span>"
-  ];
-  if (st && st.reps) bits.push("<span>rep " + st.reps + "</span>");
+function recurHTML(c) {
+  const d = M.dispersion(c.w), total = (M.byForm[c.w] || []).reduce((n, e) => n + e.n, 0);
+  const vez = (n) => n + " " + (n === 1 ? t("once") : t("times"));
+  return '<div class="recur">' + vez(c.count) + " " + (deckSource === "index" ? t("in_marked") : t("in_sel")) + "; " +
+         vez(total) + " " + t("in_") + " " + d.texts + " " + (d.texts === 1 ? t("text1") : t("textN")) + " " + t("by") + " " + d.authors + " " +
+         (d.authors === 1 ? t("author1") : t("authorN")) + ' · <span class="go" data-occ="' + esc(c.w) + '">' + t("other_occ") + "</span></div>";
+}
+function locatorHTML(c) {
+  const st = progress[c.w], bits = [];
+  if (c.si >= 0) bits.push('<span class="go" data-goto="' + DATA.sentText[c.si] + "/" + DATA.sentPara[c.si] + '">' + DATA.sentText[c.si] + " · § " + DATA.sentPara[c.si] + "</span>");
+  bits.push("<span>×" + c.e.n + "</span>", '<span class="mark">' + (c.e.d ? t("defined") : t("glossed")) + "</span>");
+  if (st && st.reps) bits.push("<span>" + t("rep") + " " + st.reps + "</span>");
   return '<div class="locator">' + bits.join("<span>‖</span>") + "</div>";
 }
-
 function drawCard() {
-  if (!current) {
-    stage.innerHTML = '<div class="card"><div class="empty"><p>No hay fichas con estos filtros.</p>' +
-      "<p>Prueba otro mazo o borra la búsqueda.</p></div></div>";
-    return;
-  }
-  const e = current;
+  const stage = $("stage");
+  if (!current) { stage.innerHTML = '<div class="card"><div class="empty"><p>' + t(deckSource === "index" ? "empty_unit" : "empty_sel") + "</p></div></div>"; return; }
+  const c = current, e = c.e;
+  const gloss = (e.en ? '<p class="en">' + esc(e.en) + "</p>" : "") + (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "");
   let front, back;
-  if (mode === "recog") {
-    front = '<h2 class="headword">' + esc(e.w) + "</h2>" +
-            (e.lem ? '<div class="lemma">de ' + esc(e.lem) + "</div>" : "");
-    back = (e.en ? '<p class="en">' + esc(e.en) + "</p>" : "") +
-           (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "") +
-           (!e.en && !e.d
-              ? '<p class="def-none">Sin equivalencia todavía. Estúdiala por el contexto.</p>' : "") +
-           ctxHTML(e, 0, false);
-  } else if (mode === "cloze") {
-    front = '<p class="prompt">Completa la palabra que falta</p>' + ctxHTML(e, 0, true);
-    back = '<h2 class="headword">' + esc(e.w) + "</h2>" +
-           (e.en ? '<p class="en">' + esc(e.en) + "</p>" : "") +
-           (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "");
+  if (dir === "recog") {
+    front = '<h2 class="headword">' + esc(c.w) + "</h2>" + (e.lem ? '<div class="prompt">' + t("of") + " " + esc(e.lem) + "</div>" : "");
+    back = gloss + ctxHTML(c, false);
   } else {
-    front = '<p class="prompt">¿Qué palabra del texto significa esto?</p>' +
-            '<p class="en">' + esc(e.en || "") + "</p>" +
-            (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "");
-    back = '<h2 class="headword">' + esc(e.w) + "</h2>" + ctxHTML(e, 0, false);
+    front = '<p class="prompt">' + t("cloze_prompt") + "</p>" + (c.si >= 0 ? ctxHTML(c, true) : gloss);
+    back = '<h2 class="headword">' + esc(c.w) + "</h2>" + gloss;
   }
-  const fam = e.fam.length > 1
-    ? '<div class="fam">familia: ' + e.fam.slice(0, 8).map(w =>
-        "<span>" + esc(w) + "</span>").join("") + "</div>"
-    : "";
-  stage.innerHTML =
-    '<div class="card">' + locator(e) + front +
-      '<div class="answer' + (revealed ? "" : " hidden") + '" id="ans">' + back + fam + "</div>" +
-      '<div class="grow"></div>' +
-      (revealed
-        ? '<div class="grade">' +
-            [["Otra vez", 0, "1"], ["Difícil", 1, "2"], ["Bien", 2, "3"], ["Fácil", 3, "4"]]
-              .map(([l, g, k]) => '<button data-grade="' + g + '">' + l +
-                   "<kbd>" + k + "</kbd></button>").join("") +
-          "</div>"
-        : '<button class="reveal" id="rev">Ver respuesta <kbd style="opacity:.7">espacio</kbd></button>') +
-    "</div>" + meterHTML();
-  if (revealed && mode === "cloze") {
-    const c = document.getElementById("ctx"); if (c) c.classList.add("revealed");
-  }
+  stage.innerHTML = '<div class="card">' + locatorHTML(c) + front +
+    '<div class="answer' + (revealed ? "" : " hidden") + '">' + back + recurHTML(c) + '</div><div class="grow"></div>' +
+    (revealed ? '<div class="grade">' + [["g0", 0, "1"], ["g1", 1, "2"], ["g2", 2, "3"], ["g3", 3, "4"]]
+        .map(([l, g, k]) => '<button data-grade="' + g + '">' + t(l) + "<kbd>" + k + "</kbd></button>").join("") + "</div>"
+      : '<button class="reveal" id="rev">' + t("reveal") + ' <kbd style="opacity:.7">' + t("space") + "</kbd></button>") + "</div>" + meterHTML();
+  if (revealed && dir === "cloze") { const x = $("ctx"); if (x) x.classList.add("revealed"); }
 }
-
 function meterHTML() {
-  const all = deck();
-  const known = all.filter(e => (progress[pkey(e)] || {}).reps >= 2).length;
-  const seen = all.filter(e => progress[pkey(e)]).length;
-  const pct = all.length ? Math.round(known / all.length * 100) : 0;
-  return '<div class="meter"><span>vistas <b>' + seen + "</b></span>" +
-    "<span>asentadas <b>" + known + "</b></span>" +
-    "<span>del mazo <b>" + pct + "%</b></span>" +
-    "<span>quedan <b>" + queue.length + "</b></span></div>" +
-    '<div class="track"><i style="width:' + pct + '%"></i></div>';
+  const kn = cards.filter(c => M.known(progress, c.w)).length, seen = cards.filter(c => progress[c.w]).length;
+  const pct = cards.length ? Math.round(kn / cards.length * 100) : 0;
+  return '<div class="meter"><span>' + t("m_seen") + " <b>" + seen + "</b></span><span>" + t("m_known") + " <b>" + kn + "</b></span><span>" +
+         t("m_deck") + " <b>" + pct + "%</b></span><span>" + t("m_left") + " <b>" + queue.length + '</b></span></div><div class="track"><i style="width:' + pct + '%"></i></div>';
 }
 
-function drawBrowse() {
-  const list = deck().slice(0, 400);
-  if (!list.length) {
-    stage.innerHTML = '<div class="card"><div class="empty"><p>Nada coincide.</p></div></div>';
-    return;
+/* ---------- the reading side: text ---------- */
+function wordHTML(tid, s) {
+  const bt = M.byText[tid] ? M.byText[tid].tx : {};
+  let out = "", last = 0;
+  for (const [w, a, b] of M.tokens(s)) {
+    const e = bt[w];
+    out += esc(s.slice(last, a));
+    if (M.glossed(e)) {   // every glossed form can be hovered; function words are marked only when «gramaticales» is on
+      const k = M.known(progress, w), mark = !e.fn || includeFn;
+      out += '<span class="w' + (mark ? (k ? (markKnown ? " k" : "") : " u") : "") + '" data-w="' + esc(w) + '">' + esc(s.slice(a, b)) + "</span>";
+    } else out += esc(s.slice(a, b));
+    last = b;
   }
-  const all = textId === "all";
-  stage.innerHTML = '<div class="note">' + list.length +
-    " formas. Ordenadas por frecuencia en el texto. Las cursivas aún no tienen equivalencia.</div>" +
-    "<table><thead><tr><th>Palabra</th><th>" + (all ? "Texto §" : "§") +
-    "</th><th>Veces</th><th>Equivalencia</th></tr></thead><tbody>" +
-    list.map(e => '<tr class="' + (e.en || e.d ? "" : "und") + '"><td class="w">' + esc(e.w) +
-      '</td><td class="n">' + (all ? e.t + " " : "") + (e.src_deck === "editorial" ? "—" : paraOf(e)) +
-      '</td><td class="n">' + e.n + '</td><td class="d">' +
-      esc(e.en || "") + (e.en && e.d ? " · " : "") + esc(e.d || "") +
-      (!e.en && !e.d ? "aún sin equivalencia — véase el contexto" : "") + "</td></tr>").join("") +
+  return out + esc(s.slice(last));
+}
+function drawText() {
+  const tx = M.textById[textId], paras = M.parasOf(textId);
+  $("texthint").textContent = t("texthint", { author: tx.author, date: tx.date, n: paras.length });
+  $("reader").innerHTML = paras.map(P =>
+    '<p class="para' + (selHas(textId, P.n) ? " sel" : "") + '" data-n="' + P.n + '"><span class="pn">' + P.n + "</span>" +
+    P.sents.map(si => wordHTML(textId, DATA.sentences[si])).join(" ") + "</p>").join("");
+  const all = allSelected(); $("selall").setAttribute("aria-pressed", String(all)); $("selall").textContent = t(all ? "sel_none" : "sel_all");
+}
+function markCurrent() {
+  document.querySelectorAll(".w.cur").forEach(x => x.classList.remove("cur"));
+  if (!current || view !== "text") return;
+  const els = document.querySelectorAll('.w[data-w="' + CSS.escape(current.w) + '"]');
+  els.forEach(x => x.classList.add("cur"));
+  const p = current.si >= 0 && DATA.sentText[current.si] === textId ? DATA.sentPara[current.si] : null;
+  const target = p ? document.querySelector('.para[data-n="' + p + '"]') : els[0];
+  if (target && target.scrollIntoView) target.scrollIntoView({ block: "nearest" });
+}
+function refreshMarks() {
+  document.querySelectorAll(".w").forEach(x => {
+    const e = M.byText[textId] && M.byText[textId].tx[x.dataset.w], mark = e && (!e.fn || includeFn), k = M.known(progress, x.dataset.w);
+    x.classList.toggle("u", !!mark && !k); x.classList.toggle("k", !!mark && k && markKnown);
+  });
+}
+
+/* ---------- the reading side: index ---------- */
+function drawIndex() {
+  const rows = M.index([...lects].sort(), src, sort, query);
+  const units = Math.max(1, Math.ceil(rows.length / 100));
+  const us = $("unit");
+  us.innerHTML = Array.from({ length: units }, (_, i) => '<option value="' + (i + 1) + '">' + (i * 100 + 1) + "–" + Math.min((i + 1) * 100, rows.length) + "</option>").join("");
+  if (unit > units) unit = units; us.value = String(unit);
+  $("texthint").textContent = t("idxhint", { n: rows.length.toLocaleString(lang), t: lects.size, s: lects.size === 1 ? "" : "s" });
+  const page = rows.slice((unit - 1) * 100, unit * 100);
+  let occ = "";
+  if (occForm) {
+    const es = (M.byForm[occForm] || []).filter(e => lects.has(e.t));
+    occ = '<div class="occ"><p><b>' + esc(occForm) + "</b> · " + es.length + " " + (es.length === 1 ? t("text1") : t("textN")) + "</p>" +
+      es.flatMap(e => e.ctx.slice(0, 2).map(([si, a, b]) => { const s = DATA.sentences[si];
+        return "<p>" + esc(s.slice(0, a)) + "<b>" + esc(s.slice(a, b)) + "</b>" + esc(s.slice(b)) +
+          '<span class="ref">' + e.t + " · " + (DATA.sentPara[si] ? "§ " + DATA.sentPara[si] : t("aparato")) + "</span></p>"; })).join("") + "</div>";
+  }
+  $("reader").innerHTML = '<p class="hint"><button class="btn" id="studyunit">' + t("study_unit") + "</button></p>" + occ +
+    "<table><thead><tr><th>" + t("h_word") + "</th><th>" + t("h_n") + "</th><th>" + t("h_disp") + "</th><th>" + t("h_gloss") + "</th></tr></thead><tbody>" +
+    page.map(r => '<tr class="' + (M.glossed(r.e) ? "" : "und") + (M.known(progress, r.w) ? " k" : "") + '"><td class="w" data-occ="' + esc(r.w) + '">' + esc(r.w) +
+      '</td><td class="n">' + r.n + '</td><td class="n">' + r.texts + " · " + r.authors + '</td><td class="d">' +
+      esc(r.e.en || "") + (r.e.en && r.e.d ? " · " : "") + esc(r.e.d || "") + (M.glossed(r.e) ? "" : t("no_gloss")) + "</td></tr>").join("") +
     "</tbody></table>";
 }
+function drawLects() {
+  $("lects").innerHTML = M.TEXTS.map(tx => '<label class="chk"><input type="checkbox" data-lect="' + tx.id + '"' +
+    (lects.has(tx.id) ? " checked" : "") + "> " + tx.id + " " + esc(tx.title) + "</label>").join("");
+}
 
-function rangeOptions() {
-  const sel = document.getElementById("range");
-  const t = textById[textId];
-  let html = '<option value="0">Todo el texto</option>';
-  if (t) {
-    const bands = Math.ceil(t.paragraphs / 15);
-    if (bands > 1) for (let b = 1; b <= bands; b++) {
-      const lo = (b - 1) * 15 + 1, hi = Math.min(b * 15, t.paragraphs);
-      html += '<option value="' + b + '">§ ' + lo + "–" + hi + "</option>";
-    }
-  }
-  sel.innerHTML = html;
-  sel.value = String(range);
-  if (sel.value !== String(range)) { range = 0; sel.value = "0"; }
-}
-function textOptions() {
-  const sel = document.getElementById("text");
-  let html = TEXTS.length > 1 ? '<option value="all">Todos los textos</option>' : "";
-  html += TEXTS.map(t => '<option value="' + t.id + '">' + t.id + " · " + esc(t.title) +
-                         " · " + t.year + "</option>").join("");
-  sel.innerHTML = html; sel.value = textId;
-}
-function subtitle() {
-  const t = textById[textId];
-  document.getElementById("subtitle").textContent = t
-    ? t.title + " · " + t.author + " · " + t.year
-    : DATA.project + " · " + TEXTS.length + " textos";
-  document.getElementById("textrights").innerHTML = TEXTS
-    .filter(x => textId === "all" || x.id === textId)
-    .map(x => "<b>Texto</b> de " + esc(x.author) + (x.authorDates ? " (" + x.authorDates + ")" : "") +
-              ", dominio público.").join(" ");
-}
+/* ---------- render ---------- */
 function render() {
-  const onlyEd = sources.editorial && !sources.text;
-  const rangeSel = document.getElementById("range");
-  rangeOptions(); subtitle();
-  rangeSel.disabled = onlyEd || textId === "all";
-  if (rangeSel.disabled) { rangeSel.value = "0"; range = 0; }
-  if (mode === "browse") { drawBrowse(); return; }
-  if (!current) next();
-  else drawCard();
+  const isText = view === "text";
+  document.querySelectorAll("[data-view]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === view)));
+  $("selbar").hidden = !isText; $("idxbar").hidden = isText; $("lects").hidden = isText;
+  if (isText) drawText(); else { drawLects(); drawIndex(); }
+  $("textrights").innerHTML = (isText ? [M.textById[textId]] : M.TEXTS.filter(tx => lects.has(tx.id)))
+    .map(x => t("text_of") + esc(x.author) + (x.authorDates ? " (" + x.authorDates + ")" : "") + t("pd")).join(" ");
+  drawCard(); markCurrent();
 }
-function next() {
-  revealed = false;
-  if (!queue.length) refill();
-  current = queue.pop() || null;
-  drawCard();
+function setSelection(sel, from) {
+  selection = sel; deckSource = "selection"; answered = false; current = null;
+  refill(); next(); if (view === "text") drawText(); markCurrent();
+  if (from !== "hash") Store.pref("lastsel", M.hashFor(selection));
+}
+function savedOptions() {
+  let saved = {}; try { saved = JSON.parse(Store.pref("saved") || "{}"); } catch (e) {}
+  $("saved").innerHTML = '<option value="">' + t("saved_ph") + "</option>" + Object.keys(saved).sort().map(k =>
+    '<option value="' + esc(saved[k]) + '">' + esc(k) + "</option>").join("") + (Object.keys(saved).length ? '<option value="__del">' + t("saved_del") + "</option>" : "");
+  return saved;
+}
+function openText(tid, p) {
+  if (view !== "text" || tid !== textId) { view = "text"; textId = tid; $("text").value = tid; render(); }
+  const el = p ? document.querySelector('.para[data-n="' + p + '"]') : null;
+  if (el && el.scrollIntoView) el.scrollIntoView({ block: "center" });
 }
 
-/* ---------- events ---------- */
-document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll(".seg button").forEach(x =>
-    x.setAttribute("aria-pressed", String(x === b)));
-  mode = b.dataset.mode; refill(); current = null; render();
+/* ---------- events: deck ---------- */
+document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("[data-order]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  orderMode = b.dataset.order; current = null; refill(); next();
 }));
-document.getElementById("text").addEventListener("change", e => {
-  textId = e.target.value; range = 0; refill(); current = null; render();
-});
-["text", "editorial"].forEach(k =>
-  document.getElementById("src-" + k).addEventListener("change", ev => {
-    sources[k] = ev.target.checked;
-    if (!sources.text && !sources.editorial) {   // never leave both off
-      sources[k] = true; ev.target.checked = true; return;
-    }
-    refill(); current = null; render();
-  }));
-document.getElementById("deck").addEventListener("change", e => {
-  deckName = e.target.value; refill(); current = null; render();
-});
-document.getElementById("range").addEventListener("change", e => {
-  range = +e.target.value; refill(); current = null; render();
-});
-document.getElementById("q").addEventListener("input", e => {
-  query = e.target.value.trim(); refill(); current = null; render();
-});
-stage.addEventListener("click", ev => {
+document.querySelectorAll("[data-dir]").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("[data-dir]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  dir = b.dataset.dir; revealed = false; drawCard();
+}));
+$("fn").addEventListener("change", e => { includeFn = e.target.checked; current = null; refill(); next(); refreshMarks(); });
+$("stage").addEventListener("click", ev => {
   if (ev.target.closest("#rev")) { revealed = true; drawCard(); return; }
   const g = ev.target.closest("[data-grade]");
-  if (g && current) { schedule(current, +g.dataset.grade); next(); }
+  if (g && current) { graded(+g.dataset.grade); return; }
+  const go = ev.target.closest("[data-goto]");
+  if (go) { const [tid, p] = go.dataset.goto.split("/"); openText(tid, p); return; }
+  const oc = ev.target.closest("[data-occ]");
+  if (oc) { occForm = oc.dataset.occ; view = "index"; render(); }
 });
 document.addEventListener("keydown", ev => {
-  if (mode === "browse" || ev.target.tagName === "INPUT") return;
-  if (ev.code === "Space") { ev.preventDefault(); if (!revealed) { revealed = true; drawCard(); } }
-  else if (revealed && "1234".includes(ev.key) && current) {
-    schedule(current, +ev.key - 1); next();
+  if (ev.target.tagName === "INPUT" || ev.target.tagName === "SELECT") return;
+  if (ev.code === "Space") { ev.preventDefault(); if (current && !revealed) { revealed = true; drawCard(); } }
+  else if (revealed && "1234".includes(ev.key) && current) graded(+ev.key - 1);
+});
+$("handle").addEventListener("click", () => $("deckpane").classList.toggle("open"));
+
+/* ---------- events: the reading side ---------- */
+document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => { view = b.dataset.view; render(); }));
+$("text").addEventListener("change", e => { textId = e.target.value; view = "text"; lastClicked = null; render(); });
+$("reader").addEventListener("click", ev => {
+  const w = ev.target.closest(".w");
+  if (w) { showTip(w, true); ev.stopPropagation(); return; }
+  const p = ev.target.closest(".para");
+  if (p) {
+    const n = +p.dataset.n;
+    let sel = selection.slice();
+    if (ev.shiftKey && lastClicked !== null) {
+      const lo = Math.min(lastClicked, n), hi = Math.max(lastClicked, n);
+      for (let i = lo; i <= hi; i++) if (!selHas(textId, i)) sel.push([textId, i]);
+    } else if (selHas(textId, n)) sel = sel.filter(([tid, m]) => !(tid === textId && m === n));
+    else sel.push([textId, n]);
+    lastClicked = n; setSelection(sel); return;
   }
+  const oc = ev.target.closest("[data-occ]");
+  if (oc) { occForm = occForm === oc.dataset.occ ? null : oc.dataset.occ; drawIndex(); return; }
+  if (ev.target.closest("#studyunit")) { deckSource = "index"; answered = false; current = null; refill(); next(); $("deckpane").classList.add("open"); }
+});
+$("selall").addEventListener("click", () => {   // a toggle: all of this text, or none of it
+  lastClicked = null;
+  const rest = selection.filter(([tid]) => tid !== textId);
+  setSelection(allSelected() ? rest : rest.concat(M.parasOf(textId).map(P => [textId, P.n])));
+});
+$("save").addEventListener("click", () => {
+  if (!selection.length) return;
+  const name = prompt(t("name_sel")); if (!name) return;
+  const saved = savedOptions(); saved[name.trim()] = M.hashFor(selection); Store.pref("saved", JSON.stringify(saved)); savedOptions();
+});
+$("saved").addEventListener("change", e => {
+  const v = e.target.value; e.target.value = "";
+  if (v === "__del") {
+    const saved = savedOptions(); const name = prompt(t("which_del") + "\n" + Object.keys(saved).join("\n"));
+    if (name && saved[name.trim()]) { delete saved[name.trim()]; Store.pref("saved", JSON.stringify(saved)); } savedOptions(); return;
+  }
+  if (v) { const sel = M.parseSelection(v); if (sel.length) { textId = sel[0][0]; $("text").value = textId; view = "text"; setSelection(sel); render(); } }
+});
+$("link").addEventListener("click", () => {
+  const url = location.href.replace(/#.*$/, "") + (selection.length ? M.hashFor(selection) : "#" + textId);
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(() => alert(t("link_copied") + "\n" + url), () => prompt(t("link"), url));
+  else prompt(t("link"), url);
+});
+$("markknown").addEventListener("change", e => { markKnown = e.target.checked; Store.pref("markknown", markKnown ? "1" : "0"); refreshMarks(); });
+["sort", "unit", "q"].forEach(id => $(id).addEventListener(id === "q" ? "input" : "change", e => {
+  if (id === "sort") sort = e.target.value; else if (id === "unit") unit = +e.target.value; else query = e.target.value.trim();
+  if (deckSource === "index") { current = null; refill(); next(); }
+  drawIndex();
+}));
+["src-text", "src-ed"].forEach(id => $(id).addEventListener("change", e => {
+  const k = id === "src-text" ? "tx" : "ed"; src[k] = e.target.checked;
+  if (!src.tx && !src.ed) { src[k] = true; e.target.checked = true; return; }
+  if (deckSource === "index") { current = null; refill(); next(); } drawIndex();
+}));
+$("lects").addEventListener("change", e => {
+  const id = e.target.dataset.lect; if (!id) return;
+  if (e.target.checked) lects.add(id); else lects.delete(id);
+  if (!lects.size) { lects.add(id); e.target.checked = true; return; }
+  if (deckSource === "index") { current = null; refill(); next(); } drawIndex();
 });
 
-/* ---------- progress in and out ---------- */
-document.getElementById("export").addEventListener("click", () => {
+/* ---------- hover glosses: the gloss only; the card is a second action ---------- */
+let tip = null;
+function hideTip() { if (tip) { tip.remove(); tip = null; } }
+function showTip(el, byClick) {
+  const w = el.dataset.w, e = M.byText[textId] && M.byText[textId].tx[w]; if (!e) return;
+  if (byClick && tip && tip.dataset.w === w) { toCard(w); hideTip(); return; }
+  if (tip && tip.dataset.w === w) return;
+  hideTip();
+  tip = document.createElement("div"); tip.className = "tip"; tip.dataset.w = w;
+  tip.innerHTML = '<span class="t">' + esc(w) + (progress[w] && progress[w].reps ? " · " + t("rep") + " " + progress[w].reps : "") + "</span>" +
+    esc(e.en || "") + (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "") + '<span class="go">' + t("tip_go") + "</span>";
+  document.body.appendChild(tip);
+  const r = el.getBoundingClientRect();
+  tip.style.left = Math.max(6, Math.min(window.innerWidth - tip.offsetWidth - 6, r.left + window.scrollX)) + "px";
+  tip.style.top = (r.bottom + window.scrollY + 4) + "px";
+}
+function toCard(w) {
+  const i = cards.findIndex(c => c.w === w);
+  if (i >= 0) current = cards[i];
+  else { const e = M.byText[textId].tx[w], c = (e.ctx && e.ctx[0]) || null;
+         current = { w, e, si: c ? c[0] : -1, a: c ? c[1] : 0, b: c ? c[2] : 0, count: 0 }; }
+  revealed = false; drawCard(); markCurrent(); $("deckpane").classList.add("open");
+}
+$("reader").addEventListener("mouseover", ev => { const w = ev.target.closest(".w"); if (w) showTip(w, false); });
+$("reader").addEventListener("mouseleave", hideTip);
+document.addEventListener("click", ev => { if (!ev.target.closest(".tip") && !ev.target.closest(".w")) hideTip(); });
+
+/* ---------- switches, notices, progress in and out ---------- */
+$("sideswitch").addEventListener("click", () => { $("panes").classList.toggle("text-left"); Store.pref("side", $("panes").classList.contains("text-left") ? "left" : "right"); });
+document.querySelectorAll("#langseg button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+if (Store.pref("side") === "left") $("panes").classList.add("text-left");
+if (Store.pref("markknown") === "1") { markKnown = true; $("markknown").checked = true; }
+if (!Store.pref("note1")) $("note1").hidden = false;
+$("note1x").addEventListener("click", () => { $("note1").hidden = true; Store.pref("note1", "1"); });
+(function fontCheck() {
+  const need = [];
+  for (const script in FONTS) {
+    try { const c = document.createElement("canvas").getContext("2d"); c.font = "32px serif";
+      if (Math.abs(c.measureText(FONTS[script].probe).width - c.measureText("\uFFFF").width) < 0.5) need.push(FONTS[script].font); } catch (e) {}
+  }
+  if (need.length) { $("fontnote").hidden = false; $("fontnote").textContent = t("fonts") + need.join(", ") + "."; }
+})();
+$("export").addEventListener("click", () => {
   const blob = new Blob([JSON.stringify(progress)], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "lexico-progreso.json";
-  a.click();
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "lexico-progreso.json"; a.click();
 });
-document.getElementById("import").addEventListener("click", () =>
-  document.getElementById("file").click());
-document.getElementById("file").addEventListener("change", ev => {
+$("import").addEventListener("click", () => $("file").click());
+$("file").addEventListener("change", ev => {
   const f = ev.target.files[0]; if (!f) return;
   const r = new FileReader();
-  r.onload = () => {
-    try {
-      const o = JSON.parse(r.result), out = {};
-      for (const k in o) out[k.includes("/") ? k : "02/" + k] = o[k];   // v1 exports
-      progress = out; Store.write(progress); refill(); current = null; render(); }
-    catch (e) { alert("Ese archivo no contiene un progreso legible."); }
-  };
+  r.onload = () => { try { progress = M.migrate(JSON.parse(r.result)); Store.write(progress); current = null; refill(); next(); render(); }
+                     catch (e) { alert(t("bad_file")); } };
   r.readAsText(f);
 });
-document.getElementById("reset").addEventListener("click", () => {
-  if (!confirm("Se borrará todo el progreso de este dispositivo. ¿Continuar?")) return;
-  progress = {}; Store.write(progress); refill(); current = null; render();
+$("reset").addEventListener("click", () => {
+  if (!confirm(t("confirm_reset"))) return;
+  progress = {}; Store.write(progress); current = null; refill(); next(); render();
 });
 
-document.getElementById("rights").textContent = Store.persistent()
-  ? "" : " El navegador no guarda datos desde este origen: usa «Guardar progreso» antes de cerrar.";
-
-textOptions();
-refill();
-render();
+/* ---------- start: the hash is an entrance, not state ---------- */
+$("text").innerHTML = M.TEXTS.map(tx => '<option value="' + tx.id + '">' + tx.id + " · " + esc(tx.title) + " · " + tx.year + "</option>").join("");
+function enter() {
+  const h = location.hash, L = M.splitLang(h);
+  lang = L.lang || Store.pref("lang") || "es"; if (!STRINGS[lang]) lang = "es"; Store.pref("lang", lang); applyLang();
+  $("rights").textContent = Store.persistent() ? "" : t("no_store");
+  const sel = M.parseSelection(h), p = M.parseHash(h);
+  if (sel.length && !(p && p.text)) { textId = sel[0][0]; view = "text"; $("text").value = textId; setSelection(sel, "hash"); render(); return; }
+  if (p && p.view === "index") { view = "index"; render(); return; }
+  if (p && p.text && M.textById[p.text]) {
+    textId = p.text; view = "text"; $("text").value = textId;
+    if (p.para) setSelection([[textId, p.para]], "hash"); else refill();
+    render(); if (p.para) openText(textId, p.para); return;
+  }
+  const last = Store.pref("lastsel"), ls = last ? M.parseSelection(last) : [];
+  if (ls.length) textId = ls[0][0];
+  $("text").value = textId;
+  if (ls.length) setSelection(ls, "hash"); else refill();
+  render();
+}
+window.addEventListener("hashchange", enter);
+savedOptions();
+enter();
+})();
 </script>
 </body>
 </html>
