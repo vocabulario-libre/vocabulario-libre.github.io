@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Léxico · Lecturas de los libertadores</title>
+<style>
+:root{
+  --ink:#16262E;          /* iron-gall, faded cool */
+  --ink-2:#41565F;
+  --ink-3:#7B8C93;
+  --board:#DCE1E0;        /* archival board */
+  --board-2:#CBD3D2;
+  --leaf:#F7F7F5;         /* card face */
+  --verdigris:#2F6F60;    /* oxidised copper: the one accent */
+  --verdigris-soft:#E2EDE9;
+  --ochre:#9A742F;        /* due / caution */
+  --rule:#B9C3C2;
+  --shadow:0 1px 0 rgba(22,38,46,.06), 0 6px 22px -14px rgba(22,38,46,.5);
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#DCE3E2;--ink-2:#A7B6BA;--ink-3:#75868C;--board:#111A1E;--board-2:#18242A;
+        --leaf:#1B282E;--verdigris:#6FBFA8;--verdigris-soft:#1D3B36;--ochre:#C79A4A;
+        --rule:#2C3D45;--shadow:0 6px 22px -14px #000;}
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--board);color:var(--ink);font-family:var(--serif);
+     -webkit-font-smoothing:antialiased;line-height:1.5}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--verdigris);outline-offset:2px;border-radius:2px}
+
+/* ---------- frame ---------- */
+.wrap{max-width:780px;margin:0 auto;padding:20px 18px 90px}
+header.masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:20px}
+.masthead h1{font-size:19px;font-weight:600;margin:0;letter-spacing:.01em}
+.masthead .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3)}
+.masthead .spacer{flex:1}
+
+/* ---------- controls ---------- */
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:6px 11px;font-family:var(--sans);
+  font-size:12.5px;color:var(--ink-2);border-right:1px solid var(--rule)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed=true]{background:var(--verdigris);color:#fff}
+.sources{display:inline-flex;gap:0;border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.sources label{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;
+  font-family:var(--sans);font-size:12.5px;color:var(--ink-2);cursor:pointer;
+  border-right:1px solid var(--rule);background:transparent;transition:background .12s}
+.sources label:last-child{border-right:0}
+.sources label:has(input:checked){background:var(--verdigris-soft);color:var(--ink)}
+.sources input{accent-color:var(--verdigris);margin:0;width:13px;height:13px}
+.sources .tally{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+.srcbadge{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;
+  border:1px solid var(--rule);border-radius:2px;padding:1px 5px;color:var(--ink-3)}
+select,input[type=search]{background:var(--leaf);border:1px solid var(--rule);
+  border-radius:3px;padding:6px 9px;font-family:var(--sans);font-size:12.5px}
+input[type=search]{min-width:170px}
+
+/* ---------- card ---------- */
+.card{background:var(--leaf);border:1px solid var(--rule);border-radius:4px;
+  box-shadow:var(--shadow);padding:26px 26px 22px;min-height:330px;
+  display:flex;flex-direction:column}
+.locator{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+  color:var(--ink-3);text-transform:uppercase;display:flex;gap:10px;flex-wrap:wrap;
+  padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:20px}
+.locator .mark{color:var(--verdigris)}
+.headword{font-size:38px;line-height:1.15;font-weight:500;letter-spacing:-.01em;
+  margin:0 0 4px;word-break:break-word}
+.lemma{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-bottom:14px}
+.prompt{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-bottom:6px}
+.answer{border-top:1px dashed var(--rule);margin-top:16px;padding-top:16px}
+.answer.hidden{visibility:hidden}
+.en{font-size:21px;line-height:1.4;margin:0 0 8px;color:var(--ink)}
+.def{font-size:15.5px;line-height:1.55;margin:0 0 4px;color:var(--ink-2)}
+.def-none{font-size:15px;color:var(--ink-3);font-style:italic}
+.srcmark{font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.06em}
+
+/* context sentence: target word in ink, rest receded */
+.ctx{font-size:15.5px;line-height:1.62;color:var(--ink-3);margin:14px 0 0}
+.ctx b{color:var(--ink);font-weight:600;background:var(--verdigris-soft);
+  padding:0 2px;border-radius:2px}
+.ctx .ref{font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+  color:var(--ink-3);margin-left:6px;white-space:nowrap}
+.cloze b{background:var(--verdigris-soft);color:transparent;border-bottom:2px solid var(--verdigris);
+  border-radius:0}
+.cloze.revealed b{color:var(--ink)}
+.fam{margin-top:14px;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
+  letter-spacing:.03em}
+.fam span{margin-right:9px;white-space:nowrap}
+.grow{flex:1}
+
+/* ---------- grading ---------- */
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.grade button{background:var(--leaf);border:1px solid var(--rule);border-radius:3px;
+  padding:11px 6px;font-family:var(--sans);font-size:12.5px;color:var(--ink-2);
+  display:flex;flex-direction:column;gap:3px;align-items:center;transition:border-color .12s}
+.grade button:hover{border-color:var(--verdigris)}
+.grade button kbd{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:0 4px}
+.reveal{width:100%;margin-top:16px;background:var(--verdigris);color:#fff;border:0;
+  border-radius:3px;padding:13px;font-family:var(--sans);font-size:13.5px;letter-spacing:.01em}
+
+/* ---------- meters ---------- */
+.meter{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-top:14px}
+.meter b{color:var(--ink);font-weight:600}
+.track{height:2px;background:var(--board-2);border-radius:2px;overflow:hidden;margin-top:12px}
+.track i{display:block;height:100%;background:var(--verdigris);width:0;transition:width .2s}
+
+/* ---------- browse ---------- */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  text-align:left;color:var(--ink-3);border-bottom:1px solid var(--rule);padding:7px 8px}
+td{border-bottom:1px solid var(--rule);padding:8px;vertical-align:top}
+td.n{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);text-align:right;width:44px}
+td.w{font-weight:600;width:26%}
+td.d{color:var(--ink-2);font-size:13.5px}
+tr.und td.d{color:var(--ink-3);font-style:italic}
+.empty{padding:44px 10px;text-align:center;color:var(--ink-3);font-size:14px}
+.empty p{margin:0 0 10px}
+
+/* ---------- footer / rights ---------- */
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:11.5px;color:var(--ink-3);line-height:1.65}
+footer b{color:var(--ink-2);font-weight:600}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tools button{background:transparent;border:1px solid var(--rule);border-radius:3px;
+  padding:5px 10px;font-family:var(--sans);font-size:11.5px;color:var(--ink-2)}
+.note{background:var(--verdigris-soft);border-left:2px solid var(--verdigris);
+  padding:9px 12px;font-family:var(--sans);font-size:12px;color:var(--ink-2);
+  margin-bottom:14px;border-radius:0 3px 3px 0}
+@media (max-width:520px){
+  .headword{font-size:30px}
+  .card{padding:20px 18px}
+  .grade{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <h1>Léxico</h1>
+  <span class="sub" id="subtitle"></span>
+  <span class="spacer"></span>
+  <span class="sub" id="deckcount"></span>
+</header>
+
+<div class="bar">
+  <div class="seg" role="group" aria-label="Modo">
+    <button data-mode="recog" aria-pressed="true">Reconocer</button>
+    <button data-mode="cloze" aria-pressed="false">Hueco</button>
+    <button data-mode="prod" aria-pressed="false">Producir</button>
+    <button data-mode="browse" aria-pressed="false">Índice</button>
+  </div>
+  <select id="text" aria-label="Texto"></select>
+  <span class="sources" role="group" aria-label="Corpus">
+    <label><input type="checkbox" id="src-text" checked>
+      Texto <span class="tally" id="tally-text"></span></label>
+    <label><input type="checkbox" id="src-editorial">
+      Aparato <span class="tally" id="tally-editorial"></span></label>
+  </span>
+  <select id="deck" aria-label="Mazo">
+    <option value="defined">Todo el léxico</option>
+    <option value="glossary">Del glosario de la edición</option>
+    <option value="freq">Tres apariciones o más</option>
+    <option value="rare">Solo una aparición</option>
+    <option value="all">Incluir palabras gramaticales</option>
+    <option value="deep">Solo con definición ampliada</option>
+  </select>
+  <select id="range" aria-label="Párrafos"></select>
+  <input type="search" id="q" placeholder="Buscar palabra…" aria-label="Buscar">
+</div>
+
+<main id="stage"></main>
+
+<footer>
+  <span id="textrights"></span>
+  <b>Aparato</b>: prosa editorial de cada edición, castellano moderno, corpus aparte.
+  <b>Equivalencias y definiciones</b> escritas para este proyecto; ninguna procede de un diccionario.
+  Programa y datos bajo CC0 1.0.
+  <span id="rights"></span>
+  <div class="tools">
+    <button id="export">Guardar progreso</button>
+    <button id="import">Cargar progreso</button>
+    <button id="reset">Empezar de nuevo</button>
+    <input type="file" id="file" accept="application/json" hidden>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const DATA = /*__VOCAB_DATA__*/null;
+
+/* ---------- storage: localStorage where allowed, memory otherwise ---------- */
+const Store = (() => {
+  const KEY = "lecturas-lexico-v2", OLD_KEY = "carta-lexico-v1";
+  let mem = {}, ok = false;
+  try { localStorage.setItem("__t","1"); localStorage.removeItem("__t"); ok = true; } catch(e) { ok = false; }
+  // Progress is keyed "NN/word". Keys without a text prefix come from the
+  // single-text app (v1), whose only text was lectura 03, and are migrated.
+  const migrate = (o) => {
+    const out = {};
+    for (const k in o) out[k.includes("/") ? k : "02/" + k] = o[k];
+    return out;
+  };
+  const read = () => {
+    if (!ok) return mem;
+    try {
+      const cur = localStorage.getItem(KEY);
+      if (cur) return migrate(JSON.parse(cur));
+      const old = localStorage.getItem(OLD_KEY);
+      return old ? migrate(JSON.parse(old)) : {};
+    } catch(e) { return {}; }
+  };
+  const write = (o) => {
+    mem = o;
+    if (ok) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {} }
+  };
+  return { read, write, persistent: () => ok };
+})();
+
+let progress = Store.read();
+
+/* ---------- SM-2, lightly ---------- */
+const DAY = 86400000;
+const pkey = (e) => e.t + "/" + e.w;
+function schedule(e, grade) {
+  const word = pkey(e);
+  const now = Date.now();
+  const p = progress[word] || { ease: 2.5, reps: 0, iv: 0 };
+  if (grade === 0) { p.reps = 0; p.iv = 0; p.ease = Math.max(1.3, p.ease - 0.2); }
+  else {
+    p.ease = Math.max(1.3, p.ease + (0.1 - (3 - grade) * (0.08 + (3 - grade) * 0.02)));
+    p.reps += 1;
+    p.iv = p.reps === 1 ? 1 : p.reps === 2 ? 4 : Math.round(p.iv * p.ease);
+  }
+  p.due = now + Math.max(p.iv, grade === 0 ? 0 : 1) * DAY;
+  if (grade === 0) p.due = now + 60000;
+  p.seen = now;
+  progress[word] = p;
+  Store.write(progress);
+}
+const isDue = (e) => !progress[pkey(e)] || (progress[pkey(e)].due || 0) <= Date.now();
+
+/* ---------- decks ---------- */
+const E = DATA.entries;
+const TEXTS = DATA.texts;
+const textById = Object.fromEntries(TEXTS.map(t => [t.id, t]));
+let mode = "recog", deckName = "defined", range = 0, query = "";
+let sources = { text: true, editorial: false };
+let textId = TEXTS.length === 1 ? TEXTS[0].id : "all";   // "all" or a lectura number
+
+function paraOf(e) { return e.ctx.length ? DATA.sentPara[e.ctx[0][0]] : 0; }
+const inText = (e) => textId === "all" || e.t === textId;
+
+function deck() {
+  let list = deckName === "all" ? E.slice() : E.filter(e => !e.fn);
+  list = list.filter(e => inText(e) && sources[e.src_deck]);
+  if (deckName === "defined")      list = list.filter(e => e.en || e.d);
+  else if (deckName === "glossary")list = list.filter(e => e.src === "glosario");
+  else if (deckName === "freq")    list = list.filter(e => e.n >= 3);
+  else if (deckName === "rare")    list = list.filter(e => e.n === 1 && (e.en || e.d));
+  else if (deckName === "deep")    list = list.filter(e => e.d);
+  if (range && textId !== "all") {
+    const lo = (range - 1) * 15 + 1, hi = range * 15;
+    list = list.filter(e => { const p = paraOf(e); return p >= lo && p <= hi; });
+  }
+  if (query) {
+    const q = query.toLowerCase();
+    list = list.filter(e => e.w.includes(q) ||
+      (e.d || "").toLowerCase().includes(q) || (e.en || "").toLowerCase().includes(q));
+  }
+  if (mode === "cloze") list = list.filter(e => e.ctx.length);
+  if (mode === "prod")  list = list.filter(e => e.en || e.d);
+  return list;
+}
+
+let queue = [], current = null, revealed = false;
+
+function refill() {
+  const all = deck();
+  const due = all.filter(e => isDue(e));
+  queue = (due.length ? due : all).slice();
+  for (let i = queue.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [queue[i], queue[j]] = [queue[j], queue[i]];
+  }
+  document.getElementById("deckcount").textContent =
+    all.length + " fichas · " + due.length + " por repasar";
+  const tally = (k) => E.filter(e => inText(e) && e.src_deck === k && !e.fn).length;
+  document.getElementById("tally-text").textContent = tally("text").toLocaleString("es");
+  document.getElementById("tally-editorial").textContent = tally("editorial").toLocaleString("es");
+}
+
+/* ---------- rendering ---------- */
+const stage = document.getElementById("stage");
+const esc = (s) => s.replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
+
+function ctxHTML(e, i, cloze) {
+  if (!e.ctx.length) return "";
+  const [si, a, b] = e.ctx[i % e.ctx.length];
+  const s = DATA.sentences[si], p = DATA.sentPara[si];
+  const ref = (textId === "all" ? DATA.sentText[si] + " " : "") + (p ? "§ " + p : "aparato");
+  return '<p class="ctx' + (cloze ? " cloze" : "") + '" id="ctx">' +
+    esc(s.slice(0, a)) + "<b>" + esc(s.slice(a, b)) + "</b>" + esc(s.slice(b)) +
+    '<span class="ref">' + ref + "</span></p>";
+}
+
+function locator(e) {
+  const p = paraOf(e);
+  const st = progress[pkey(e)];
+  const where = e.src_deck === "editorial" ? "aparato" : "§ " + p;
+  const bits = [
+    "<span>" + (textId === "all" ? e.t + " · " : "") + where + "</span>",
+    "<span>×" + e.n + "</span>",
+    (e.en || e.d) ? '<span class="mark">' + (e.d ? "definida" : "con equivalencia") + "</span>"
+                  : "<span>sin equivalencia</span>"
+  ];
+  if (st && st.reps) bits.push("<span>rep " + st.reps + "</span>");
+  return '<div class="locator">' + bits.join("<span>‖</span>") + "</div>";
+}
+
+function drawCard() {
+  if (!current) {
+    stage.innerHTML = '<div class="card"><div class="empty"><p>No hay fichas con estos filtros.</p>' +
+      "<p>Prueba otro mazo o borra la búsqueda.</p></div></div>";
+    return;
+  }
+  const e = current;
+  let front, back;
+  if (mode === "recog") {
+    front = '<h2 class="headword">' + esc(e.w) + "</h2>" +
+            (e.lem ? '<div class="lemma">de ' + esc(e.lem) + "</div>" : "");
+    back = (e.en ? '<p class="en">' + esc(e.en) + "</p>" : "") +
+           (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "") +
+           (!e.en && !e.d
+              ? '<p class="def-none">Sin equivalencia todavía. Estúdiala por el contexto.</p>' : "") +
+           ctxHTML(e, 0, false);
+  } else if (mode === "cloze") {
+    front = '<p class="prompt">Completa la palabra que falta</p>' + ctxHTML(e, 0, true);
+    back = '<h2 class="headword">' + esc(e.w) + "</h2>" +
+           (e.en ? '<p class="en">' + esc(e.en) + "</p>" : "") +
+           (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "");
+  } else {
+    front = '<p class="prompt">¿Qué palabra del texto significa esto?</p>' +
+            '<p class="en">' + esc(e.en || "") + "</p>" +
+            (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "");
+    back = '<h2 class="headword">' + esc(e.w) + "</h2>" + ctxHTML(e, 0, false);
+  }
+  const fam = e.fam.length > 1
+    ? '<div class="fam">familia: ' + e.fam.slice(0, 8).map(w =>
+        "<span>" + esc(w) + "</span>").join("") + "</div>"
+    : "";
+  stage.innerHTML =
+    '<div class="card">' + locator(e) + front +
+      '<div class="answer' + (revealed ? "" : " hidden") + '" id="ans">' + back + fam + "</div>" +
+      '<div class="grow"></div>' +
+      (revealed
+        ? '<div class="grade">' +
+            [["Otra vez", 0, "1"], ["Difícil", 1, "2"], ["Bien", 2, "3"], ["Fácil", 3, "4"]]
+              .map(([l, g, k]) => '<button data-grade="' + g + '">' + l +
+                   "<kbd>" + k + "</kbd></button>").join("") +
+          "</div>"
+        : '<button class="reveal" id="rev">Ver respuesta <kbd style="opacity:.7">espacio</kbd></button>') +
+    "</div>" + meterHTML();
+  if (revealed && mode === "cloze") {
+    const c = document.getElementById("ctx"); if (c) c.classList.add("revealed");
+  }
+}
+
+function meterHTML() {
+  const all = deck();
+  const known = all.filter(e => (progress[pkey(e)] || {}).reps >= 2).length;
+  const seen = all.filter(e => progress[pkey(e)]).length;
+  const pct = all.length ? Math.round(known / all.length * 100) : 0;
+  return '<div class="meter"><span>vistas <b>' + seen + "</b></span>" +
+    "<span>asentadas <b>" + known + "</b></span>" +
+    "<span>del mazo <b>" + pct + "%</b></span>" +
+    "<span>quedan <b>" + queue.length + "</b></span></div>" +
+    '<div class="track"><i style="width:' + pct + '%"></i></div>';
+}
+
+function drawBrowse() {
+  const list = deck().slice(0, 400);
+  if (!list.length) {
+    stage.innerHTML = '<div class="card"><div class="empty"><p>Nada coincide.</p></div></div>';
+    return;
+  }
+  const all = textId === "all";
+  stage.innerHTML = '<div class="note">' + list.length +
+    " formas. Ordenadas por frecuencia en el texto. Las cursivas aún no tienen equivalencia.</div>" +
+    "<table><thead><tr><th>Palabra</th><th>" + (all ? "Texto §" : "§") +
+    "</th><th>Veces</th><th>Equivalencia</th></tr></thead><tbody>" +
+    list.map(e => '<tr class="' + (e.en || e.d ? "" : "und") + '"><td class="w">' + esc(e.w) +
+      '</td><td class="n">' + (all ? e.t + " " : "") + (e.src_deck === "editorial" ? "—" : paraOf(e)) +
+      '</td><td class="n">' + e.n + '</td><td class="d">' +
+      esc(e.en || "") + (e.en && e.d ? " · " : "") + esc(e.d || "") +
+      (!e.en && !e.d ? "aún sin equivalencia — véase el contexto" : "") + "</td></tr>").join("") +
+    "</tbody></table>";
+}
+
+function rangeOptions() {
+  const sel = document.getElementById("range");
+  const t = textById[textId];
+  let html = '<option value="0">Todo el texto</option>';
+  if (t) {
+    const bands = Math.ceil(t.paragraphs / 15);
+    if (bands > 1) for (let b = 1; b <= bands; b++) {
+      const lo = (b - 1) * 15 + 1, hi = Math.min(b * 15, t.paragraphs);
+      html += '<option value="' + b + '">§ ' + lo + "–" + hi + "</option>";
+    }
+  }
+  sel.innerHTML = html;
+  sel.value = String(range);
+  if (sel.value !== String(range)) { range = 0; sel.value = "0"; }
+}
+function textOptions() {
+  const sel = document.getElementById("text");
+  let html = TEXTS.length > 1 ? '<option value="all">Todos los textos</option>' : "";
+  html += TEXTS.map(t => '<option value="' + t.id + '">' + t.id + " · " + esc(t.title) +
+                         " · " + t.year + "</option>").join("");
+  sel.innerHTML = html; sel.value = textId;
+}
+function subtitle() {
+  const t = textById[textId];
+  document.getElementById("subtitle").textContent = t
+    ? t.title + " · " + t.author + " · " + t.year
+    : DATA.project + " · " + TEXTS.length + " textos";
+  document.getElementById("textrights").innerHTML = TEXTS
+    .filter(x => textId === "all" || x.id === textId)
+    .map(x => "<b>Texto</b> de " + esc(x.author) + (x.authorDates ? " (" + x.authorDates + ")" : "") +
+              ", dominio público.").join(" ");
+}
+function render() {
+  const onlyEd = sources.editorial && !sources.text;
+  const rangeSel = document.getElementById("range");
+  rangeOptions(); subtitle();
+  rangeSel.disabled = onlyEd || textId === "all";
+  if (rangeSel.disabled) { rangeSel.value = "0"; range = 0; }
+  if (mode === "browse") { drawBrowse(); return; }
+  if (!current) next();
+  else drawCard();
+}
+function next() {
+  revealed = false;
+  if (!queue.length) refill();
+  current = queue.pop() || null;
+  drawCard();
+}
+
+/* ---------- events ---------- */
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".seg button").forEach(x =>
+    x.setAttribute("aria-pressed", String(x === b)));
+  mode = b.dataset.mode; refill(); current = null; render();
+}));
+document.getElementById("text").addEventListener("change", e => {
+  textId = e.target.value; range = 0; refill(); current = null; render();
+});
+["text", "editorial"].forEach(k =>
+  document.getElementById("src-" + k).addEventListener("change", ev => {
+    sources[k] = ev.target.checked;
+    if (!sources.text && !sources.editorial) {   // never leave both off
+      sources[k] = true; ev.target.checked = true; return;
+    }
+    refill(); current = null; render();
+  }));
+document.getElementById("deck").addEventListener("change", e => {
+  deckName = e.target.value; refill(); current = null; render();
+});
+document.getElementById("range").addEventListener("change", e => {
+  range = +e.target.value; refill(); current = null; render();
+});
+document.getElementById("q").addEventListener("input", e => {
+  query = e.target.value.trim(); refill(); current = null; render();
+});
+stage.addEventListener("click", ev => {
+  if (ev.target.closest("#rev")) { revealed = true; drawCard(); return; }
+  const g = ev.target.closest("[data-grade]");
+  if (g && current) { schedule(current, +g.dataset.grade); next(); }
+});
+document.addEventListener("keydown", ev => {
+  if (mode === "browse" || ev.target.tagName === "INPUT") return;
+  if (ev.code === "Space") { ev.preventDefault(); if (!revealed) { revealed = true; drawCard(); } }
+  else if (revealed && "1234".includes(ev.key) && current) {
+    schedule(current, +ev.key - 1); next();
+  }
+});
+
+/* ---------- progress in and out ---------- */
+document.getElementById("export").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(progress)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "lexico-progreso.json";
+  a.click();
+});
+document.getElementById("import").addEventListener("click", () =>
+  document.getElementById("file").click());
+document.getElementById("file").addEventListener("change", ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const o = JSON.parse(r.result), out = {};
+      for (const k in o) out[k.includes("/") ? k : "02/" + k] = o[k];   // v1 exports
+      progress = out; Store.write(progress); refill(); current = null; render(); }
+    catch (e) { alert("Ese archivo no contiene un progreso legible."); }
+  };
+  r.readAsText(f);
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if (!confirm("Se borrará todo el progreso de este dispositivo. ¿Continuar?")) return;
+  progress = {}; Store.write(progress); refill(); current = null; render();
+});
+
+document.getElementById("rights").textContent = Store.persistent()
+  ? "" : " El navegador no guarda datos desde este origen: usa «Guardar progreso» antes de cerrar.";
+
+textOptions();
+refill();
+render();
+</script>
+</body>
+</html>
