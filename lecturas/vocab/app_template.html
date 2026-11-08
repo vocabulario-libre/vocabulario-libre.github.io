@@ -58,6 +58,29 @@ select,input[type=search],input[type=text]{background:var(--leaf);border:1px sol
 label.chk{display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
 label.chk input{accent-color:var(--verdigris);margin:0}
 .hint{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);margin:0 0 10px}
+.unitnav{align-items:center}
+.unitnav .unitlabel{font-family:var(--sans);font-size:12px;color:var(--ink-2);padding:0 8px;white-space:nowrap}
+.unitnav input{width:4.5em;border:0;border-left:1px solid var(--rule);border-radius:0;padding:5px 6px;background:transparent;text-align:center}
+.nextunit{margin:0 0 10px}
+.sides{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:-6px 0 12px;font-family:var(--sans);font-size:11.5px;color:var(--ink-3)}
+.sides .row{display:inline-flex;align-items:center;gap:4px}
+.sides .row>span{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;margin-right:3px}
+.chip{background:transparent;border:1px solid var(--rule);border-radius:10px;padding:1px 8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3)}
+.chip[aria-pressed=true]{background:var(--verdigris-soft);border-color:var(--verdigris);color:var(--ink)}
+.chip[disabled]{opacity:.45;cursor:default}
+.tip .fnl{display:block;margin-top:5px;padding-top:5px;border-top:1px dashed var(--rule);font-size:12px;color:var(--ink-2)}
+.status{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--ink-3)}
+.status.ok{color:var(--verdigris);border-color:var(--verdigris)}
+.status.rv{color:var(--ochre);border-color:var(--ochre)}
+.side{margin:0 0 6px}
+.side .lg{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-right:8px}
+.side .fm{font-size:20px;line-height:1.4;color:var(--ink)}
+.side .fm.none{color:var(--ink-3)}
+.fnline{font-family:var(--sans);font-size:13px;color:var(--ink-2);margin:4px 0 0}
+.atoms{margin:10px 0 0;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
+.atoms li{padding:3px 0;border-top:1px dashed var(--rule)}
+.atoms b{color:var(--ink);font-weight:600}
+.atoms .k{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-left:6px}
 .note{background:var(--verdigris-soft);border-left:2px solid var(--verdigris);
   padding:8px 11px;font-family:var(--sans);font-size:12px;color:var(--ink-2);margin-bottom:12px;border-radius:0 3px 3px 0}
 .note button{float:right;background:none;border:0;color:var(--ink-3);font-size:14px;line-height:1;padding:0 2px}
@@ -157,6 +180,16 @@ footer b{color:var(--ink-2);font-weight:600}
   .masthead select{max-width:60vw}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* 7.4b (decision 89, T1): the tour — colours from the trainer's own tokens, so both schemes hold */
+.tour { position: fixed; right: 1rem; bottom: 1rem; z-index: 50; max-width: 22rem; }
+.tour[hidden] { display: none; }
+.tour-card { background: var(--leaf); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: .8rem 1rem; box-shadow: var(--shadow); }
+.tour-n { margin: 0; font-size: .8rem; color: var(--ink-2); } .tour-title { margin: .2rem 0 .4rem; font-size: 1.05rem; color: var(--ink); }
+.tour-body { margin: 0 0 .7rem; font-size: .95rem; line-height: 1.45; color: var(--ink); } .tour-nav { margin: 0; display: flex; gap: .5rem; }
+.tour-nav .btn { color: var(--ink); } .tour-nav .btn:disabled { color: var(--ink-3); border-color: var(--rule); }
+.tour-hl { outline: 2px solid var(--ochre); outline-offset: 3px; border-radius: 3px; }
+@media (max-width: 40rem) { .tour { left: 1rem; right: 1rem; max-width: none; } }
 </style>
 </head>
 <body>
@@ -168,6 +201,7 @@ footer b{color:var(--ink-2);font-weight:600}
   <span class="spacer"></span>
   <span class="seg" id="langseg" aria-label="Idioma · Language · 言語"><button data-lang="es" aria-pressed="true">ES</button><button data-lang="en" aria-pressed="false">EN</button><button data-lang="ja" aria-pressed="false">JA</button></span>
   <button class="btn" id="sideswitch" data-t="side">⇄ lado</button>
+  <button class="btn" id="tourbtn" data-t="tour_btn" aria-label="Cómo usar · How to use · 使い方">?</button>
 </header>
 
 <div class="panes" id="panes">
@@ -185,7 +219,13 @@ footer b{color:var(--ink-2);font-weight:600}
         <button data-dir="cloze" aria-pressed="false" data-t="d_cloze">Producir</button>
       </div>
       <label class="chk"><input type="checkbox" id="fn"> <span data-t="fn">gramaticales</span></label>
+      <span class="seg" role="group" aria-label="Conjuntos">
+        <button data-set="words" aria-pressed="true" data-t="set_words">palabras</button>
+        <button data-set="atoms" aria-pressed="false" data-t="set_atoms">átomos</button>
+        <button data-set="stretches" aria-pressed="false" data-t="set_stretches">tramos</button>
+      </span>
     </div>
+    <div class="sides" id="sides"></div>
     <p class="hint" id="deckhint"></p>
     <div id="note1" class="note" hidden><button id="note1x" aria-label="Cerrar">×</button><span data-t="note1">El progreso se guarda en este navegador. Exporte un archivo («Guardar progreso», abajo) para conservarlo o cambiar de aparato.</span></div>
     <div id="fontnote" class="note" hidden></div>
@@ -200,6 +240,7 @@ footer b{color:var(--ink-2);font-weight:600}
       </div>
       <span id="selbar">
         <button class="btn" id="selall" aria-pressed="false" data-t="sel_all">Todo el texto</button>
+        <button class="btn" id="selalltexts" data-t="sel_all_texts">Todos los textos</button>
         <select id="saved" aria-label="Selecciones guardadas"></select>
         <button class="btn" id="save" data-t="save_sel">Guardar selección</button>
         <button class="btn" id="link" data-t="link_sel">Enlace a esta selección</button>
@@ -210,7 +251,7 @@ footer b{color:var(--ink-2);font-weight:600}
           <option value="freq" data-t="s_freq">Por frecuencia en la selección</option>
           <option value="disp" data-t="s_disp">Por dispersión (textos · autores)</option>
         </select>
-        <select id="unit" aria-label="Unidad de cien"></select>
+        <span class="seg unitnav" role="group" aria-label="Unidad de cien"><button id="unitprev" aria-label="‹">‹</button><span class="unitlabel" id="unitlabel"></span><input type="number" id="unit" min="1" value="1" aria-label="Unidad"><button id="unitnext" aria-label="›">›</button></span>
         <label class="chk"><input type="checkbox" id="src-text" checked> <span data-t="src_text">texto</span></label>
         <label class="chk"><input type="checkbox" id="src-ed"> <span data-t="src_ed">aparato</span></label>
         <input type="search" id="q" data-t-ph="search" placeholder="Buscar…" aria-label="Buscar">
@@ -223,6 +264,14 @@ footer b{color:var(--ink-2);font-weight:600}
 
 </div>
 
+<div id="tour" class="tour" hidden>
+  <div class="tour-card" role="dialog" aria-modal="false" aria-labelledby="tour-title">
+    <p class="tour-n" id="tour-n"></p>
+    <h2 class="tour-title" id="tour-title"></h2>
+    <p class="tour-body" id="tour-body"></p>
+    <p class="tour-nav"><button class="btn" id="tour-prev"></button><button class="btn" id="tour-next"></button><button class="btn" id="tour-close"></button></p>
+  </div>
+</div>
 <footer>
   <span id="textrights"></span>
   <span data-t="footer"><b>Equivalencias y definiciones</b> escritas para este proyecto; ninguna procede de un diccionario. Programa y datos bajo CC0 1.0.</span>
@@ -237,6 +286,7 @@ footer b{color:var(--ink-2);font-weight:600}
 
 <script>
 const DATA = /*__VOCAB_DATA__*/null;
+const GRAMMAR = /*__GRAMMAR_DATA__*/null;   // the grammar layer (8.3, decision 87): G concepts · L certified loci · R loci under review
 
 /* =====================================================================
    STRINGS — the chrome in Spanish, English and Japanese (the content is what it is)
@@ -266,7 +316,20 @@ const STRINGS = {
     link_copied: "Enlace copiado:", link: "Enlace:", bad_file: "Ese archivo no contiene un progreso legible.",
     confirm_reset: "Se borrará todo el progreso de este dispositivo. ¿Continuar?",
     no_store: " El navegador no guarda datos desde este origen: usa «Guardar progreso» antes de cerrar.",
-    text_of: "<b>Texto</b> de ", pd: ", dominio público.", fonts: "Para ver todos los alfabetos instale: ", lang_btn: "EN"
+    text_of: "<b>Texto</b> de ", pd: ", dominio público.", fonts: "Para ver todos los alfabetos instale: ", lang_btn: "EN",
+    set_words: "palabras", set_atoms: "átomos", set_stretches: "tramos", front: "anverso", back: "reverso",
+    certified: "certificado", review: "en revisión", function: "función", see_stretch: "tramo", no_stretch: "sin tramo",
+    atoms_in: "átomos del tramo", none: "—", cloze_atom: "Completa la palabra gramatical que falta", cloze_stretch: "Completa el tramo que falta",
+    loci: "apariciones certificadas", in_corpus: "en el corpus", k_word: "palabra", k_particle: "partícula", k_ending: "desinencia",
+    k_feature: "rasgo", k_order: "orden", k_null: "∅ (nada)", grade_note: "Sólo lo certificado forma fichas; lo demás espera revisión.",
+    sel_all_texts: "Todos los textos", unit_of: "Unidad {n} de {N} · {a}–{b}", next_unit: "Siguiente unidad ›", deck_done: "Mazo recorrido.",
+    texthint2: " «Todos los textos» selecciona los quince; el Índice los ordena por frecuencia en unidades de cien.",
+    tour_btn: "?", tour_title: "Cómo usar Léxico", tour_prev: "Anterior", tour_next: "Siguiente", tour_close: "Cerrar", tour_done: "Entendido",
+    tour_s1t: "El texto", tour_s1: "Elige un texto arriba. Clic en un párrafo: sus palabras forman las fichas. Mayúsculas-clic: un tramo de párrafos. «Todo el texto»: entero. Clic en una palabra: su equivalencia.",
+    tour_s2t: "Tres juegos de fichas", tour_s2: "«palabras»: cada forma con su frase y su equivalencia. «átomos»: las palabras gramaticales. «tramos»: el átomo en su trecho. Sólo lo certificado forma fichas; lo demás, «en revisión».",
+    tour_s3t: "El lado y el modo", tour_s3: "«⇄ lado» cambia el idioma del anverso. «Reconocer»: se ve la palabra, se recuerda el sentido. «Producir»: la frase con un hueco, se completa.",
+    tour_s4t: "El repaso", tour_s4: "La barra espaciadora muestra la respuesta. Otra vez · Difícil · Bien · Fácil fija el próximo repaso. «Por repasar» pone delante lo pendiente.",
+    tour_s5t: "El progreso", tour_s5: "Queda en este navegador y en ningún otro sitio. «Guardar progreso» lo escribe en un archivo; «Cargar progreso» lo lee. «?» vuelve a abrir esta guía.",
   },
   en: {
     lexicon: "Lexicon", side: "⇄ side", cards_due: "cards · to review:", o_text: "Text order", o_shuffle: "Shuffled",
@@ -292,7 +355,20 @@ const STRINGS = {
     link_copied: "Link copied:", link: "Link:", bad_file: "That file does not contain readable progress.",
     confirm_reset: "All progress on this device will be erased. Continue?",
     no_store: " The browser keeps no data from this origin: use “Save progress” before closing.",
-    text_of: "<b>Text</b> by ", pd: ", public domain.", fonts: "To see every alphabet install: ", lang_btn: "ES"
+    text_of: "<b>Text</b> by ", pd: ", public domain.", fonts: "To see every alphabet install: ", lang_btn: "ES",
+    set_words: "words", set_atoms: "atoms", set_stretches: "stretches", front: "front", back: "back",
+    certified: "certified", review: "under review", function: "function", see_stretch: "stretch", no_stretch: "no stretch",
+    atoms_in: "atoms of the stretch", none: "—", cloze_atom: "Supply the missing grammatical word", cloze_stretch: "Supply the missing stretch",
+    loci: "certified occurrences", in_corpus: "in the corpus", k_word: "word", k_particle: "particle", k_ending: "ending",
+    k_feature: "feature", k_order: "order", k_null: "∅ (nothing)", grade_note: "Only what is certified becomes a card; the rest awaits review.",
+    sel_all_texts: "All texts", unit_of: "Unit {n} of {N} · {a}–{b}", next_unit: "Next unit ›", deck_done: "Deck done.",
+    texthint2: " “All texts” selects all fifteen; the Index orders them by frequency in units of a hundred.",
+    tour_btn: "?", tour_title: "How to use Léxico", tour_prev: "Back", tour_next: "Next", tour_close: "Close", tour_done: "Done",
+    tour_s1t: "The text", tour_s1: "Choose a text above. Click a paragraph: its words form the cards. Shift-click: a stretch of paragraphs. “Whole text”: all of it. Click a word: its gloss.",
+    tour_s2t: "Three card sets", tour_s2: "“words”: each form with its sentence and gloss. “atoms”: the grammatical words. “stretches”: the atom in its span. Only what is certified forms cards; the rest says “under review”.",
+    tour_s3t: "Side and mode", tour_s3: "“⇄ side” changes the language on the front. “Recognise”: the word is shown, the sense recalled. “Produce”: the sentence with a gap, supplied.",
+    tour_s4t: "Review", tour_s4: "The space bar shows the answer. Again · Hard · Good · Easy sets the next review. “To review” puts what is due first.",
+    tour_s5t: "Progress", tour_s5: "It stays in this browser and nowhere else. “Save progress” writes it to a file; “Load progress” reads it. “?” reopens this guide.",
   },
   ja: {
     lexicon: "語彙", side: "⇄ 左右", cards_due: "枚 · 復習待ち:", o_text: "本文順", o_shuffle: "シャッフル",
@@ -318,7 +394,20 @@ const STRINGS = {
     link_copied: "リンクをコピーしました:", link: "リンク:", bad_file: "このファイルには読み取れる進捗がありません。",
     confirm_reset: "この端末の進捗をすべて消去します。続けますか？",
     no_store: " このブラウザはこのページのデータを保存しません。閉じる前に「進捗を保存」を使ってください。",
-    text_of: "<b>本文</b>：", pd: "、パブリックドメイン。", fonts: "すべての文字を表示するには次のフォントを入れてください: ", lang_btn: "JA"
+    text_of: "<b>本文</b>：", pd: "、パブリックドメイン。", fonts: "すべての文字を表示するには次のフォントを入れてください: ", lang_btn: "JA",
+    set_words: "語", set_atoms: "要素", set_stretches: "区間", front: "表", back: "裏",
+    certified: "検証済み", review: "審査中", function: "機能", see_stretch: "区間", no_stretch: "区間なし",
+    atoms_in: "区間の要素", none: "—", cloze_atom: "欠けている機能語を入れてください", cloze_stretch: "欠けている区間を入れてください",
+    loci: "検証済みの出現", in_corpus: "コーパス全体", k_word: "語", k_particle: "助詞", k_ending: "語尾",
+    k_feature: "素性", k_order: "語順", k_null: "∅（無）", grade_note: "検証済みのものだけがカードになります。残りは審査待ちです。",
+    sel_all_texts: "全テキスト", unit_of: "ユニット {n} / {N} · {a}–{b}", next_unit: "次のユニット ›", deck_done: "デッキ終了。",
+    texthint2: "「全テキスト」で十五すべてを選択。索引は頻度順に百語ずつ並べる。",
+    tour_btn: "?", tour_title: "Léxico の使い方", tour_prev: "戻る", tour_next: "次へ", tour_close: "閉じる", tour_done: "わかった",
+    tour_s1t: "本文", tour_s1: "上で文書を選ぶ。段落をクリック：その語がカードになる。Shift＋クリック：段落の範囲。「全文を選択」：文書全体。語をクリック：その対応語。",
+    tour_s2t: "三つのカード集", tour_s2: "「語」：各語形と、その文と対応語。「要素」：文法語。「区間」：要素が働く範囲。検証済みのものだけがカードになる。それ以外は「審査中」。",
+    tour_s3t: "左右とモード", tour_s3: "「⇄ 左右」は表面の言語を替える。「認識」：語を見て意味を思い出す。「穴埋め」：空所のある文を補う。",
+    tour_s4t: "復習", tour_s4: "スペースキーで答えを表示。もう一度・難しい・できた・簡単 が次の復習を決める。「復習待ち」は期限の来たものを先に出す。",
+    tour_s5t: "進捗", tour_s5: "このブラウザにのみ残る。「進捗を保存」はファイルに書き出す。「進捗を読み込む」はそれを読む。「?」でこの案内を再び開く。",
   }
 };
 
@@ -430,6 +519,69 @@ const Model = (() => {
     const c = (r.e.ctx && r.e.ctx[0]) || null;
     return { w: r.w, e: r.e, si: c ? c[0] : -1, a: c ? c[1] : 0, b: c ? c[2] : 0, count: r.n };
   });
+  /* ---- the grammar layer (8.3): G = [id, sense, class, en form, en kind]; L[si] = certified [o, g, a, b]; R[si] = offsets under review ---- */
+  const G = (GRAMMAR && GRAMMAR.G) || [], GL = (GRAMMAR && GRAMMAR.L) || {}, GR = (GRAMMAR && GRAMMAR.R) || {};
+  const LANGS = ["es", "en", "ja", "sa", "ae", "el"];
+  const DEFAULT_SIDES = { front: ["es"], back: ["en"] };
+  const lociOf = (si) => GL[si] || [];
+  /* every atom at an offset: a fused token (del, al) carries two, each with its own status */
+  const lociAt = (si, o) => {
+    const out = lociOf(si).filter(l => l[0] === o).map(l => ({ o: l[0], g: l[1], a: l[2], b: l[3], concept: G[l[1]], status: "certified" }));
+    for (const r of GR[si] || []) if (r === o) out.push({ o, status: "review" });
+    return out;
+  };
+  const locusAt = (si, o) => lociAt(si, o)[0] || null;
+  const atomHead = (g, word) => g[1].includes(":") ? g[1].split(":")[0].trim() : word;   // «el» for the el of «del»
+  const conceptCount = {};
+  for (const si in GL) for (const l of GL[si]) conceptCount[l[1]] = (conceptCount[l[1]] || 0) + 1;
+  const atomForm = (si, o) => { const m = DATA.sentences[si].slice(o).match(WORD_RE); return m ? m[0] : ""; };
+  /* atoms: one card per grammatical concept in the selection, its first certified locus lit; progress per concept (key G:…) */
+  const atomDeckOf = (selection) => {
+    const seen = new Map(), paras = {};
+    for (const [tid, n] of selection) (paras[tid] ||= new Set()).add(n);
+    for (const tid of Object.keys(paras).sort()) for (const P of parasOf(tid)) {
+      if (!paras[tid].has(P.n)) continue;
+      for (const si of P.sents) for (const l of lociOf(si)) {
+        const g = l[1], id = G[g][0];
+        if (!seen.has(id)) { const f = atomForm(si, l[0]); seen.set(id, { kind: "atom", w: id, g, concept: G[g], form: atomHead(G[g], f), word: f, si, a: l[0], b: l[0] + f.length, sa: l[2], sb: l[3], count: 0, total: conceptCount[g] || 0 }); }
+        seen.get(id).count++;
+      }
+    }
+    return [...seen.values()];
+  };
+  /* stretches: one card per distinct run (lower-cased) in the selection; its atoms beneath; progress per run (key S:…) */
+  const stretchDeckOf = (selection) => {
+    const seen = new Map(), paras = {};
+    for (const [tid, n] of selection) (paras[tid] ||= new Set()).add(n);
+    for (const tid of Object.keys(paras).sort()) for (const P of parasOf(tid)) {
+      if (!paras[tid].has(P.n)) continue;
+      for (const si of P.sents) {
+        const spans = new Map();
+        for (const l of lociOf(si)) if (l[2] >= 0) (spans.get(l[2] + ":" + l[3]) || spans.set(l[2] + ":" + l[3], []).get(l[2] + ":" + l[3])).push(l);
+        for (const ls of spans.values()) {
+          const a = ls[0][2], b = ls[0][3], run = DATA.sentences[si].slice(a, b), key = "S:" + run.toLowerCase().replace(/\s+/g, " ");
+          if (!seen.has(key)) seen.set(key, { kind: "stretch", w: key, run, si, a, b, atoms: ls.map(l => ({ o: l[0], g: l[1], concept: G[l[1]], form: atomHead(G[l[1]], atomForm(si, l[0])) })), count: 0 });
+          seen.get(key).count++;
+        }
+      }
+    }
+    return [...seen.values()];
+  };
+  /* the form of a card in a language: null when that language has no form yet (the card shows «—») */
+  const formIn = (c, L) => {
+    if (c.kind === "atom") return L === "es" ? c.form : L === "en" ? (c.concept[3] || null) : null;
+    if (c.kind === "stretch") return L === "es" ? c.run : null;
+    return L === "es" ? c.w : L === "en" ? (c.e.en || null) : null;
+  };
+  /* sides: the entrance segment `es~en+ja` (front~back; ASCII only; `~`, never `>`) */
+  const normSides = (o) => {
+    const ok = (xs) => Array.isArray(xs) ? xs.map(x => String(x).toLowerCase()).filter((x, i, A) => LANGS.includes(x) && A.indexOf(x) === i) : [];
+    const f = ok(o && o.front), b = ok(o && o.back);
+    return f.length && b.length ? { front: f, back: b } : null;
+  };
+  const parseSides = (seg) => { const m = /^([a-z]{2}(?:\+[a-z]{2})*)~([a-z]{2}(?:\+[a-z]{2})*)$/.exec(seg || ""); return m ? normSides({ front: m[1].split("+"), back: m[2].split("+") }) : null; };
+  const sidesSeg = (sides) => { const s = normSides(sides) || DEFAULT_SIDES; return s.front.join("+") === DEFAULT_SIDES.front.join("+") && s.back.join("+") === DEFAULT_SIDES.back.join("+") ? "" : s.front.join("+") + "~" + s.back.join("+"); };
+  const splitSides = (rest) => { const i = rest.indexOf("/"), head = i < 0 ? rest : rest.slice(0, i), sides = parseSides(head); return sides ? { sides, rest: i < 0 ? "" : rest.slice(i + 1) } : { sides: null, rest }; };
   /* deep links: an optional language prefix (es/, en/ or ja/, or #en alone), then #NN · #NN/§P · #índice · a selection */
   const splitLang = (h) => {
     const s = decodeURIComponent((h || "").replace(/^#/, "")).trim();
@@ -437,19 +589,20 @@ const Model = (() => {
     return m ? { lang: m[1].toLowerCase(), rest: m[2] || "" } : { lang: null, rest: s };
   };
   const parseHash = (h) => {
-    const s = splitLang(h).rest;
+    const s = splitSides(splitLang(h).rest).rest;
     if (!s) return null;
-    if (/^(índice|indice|index)$/i.test(s)) return { view: "index" };
+    const u = s.match(/^(?:índice|indice|index)(?:\/(\d+))?$/i);
+    if (u) return { view: "index", unit: u[1] ? +u[1] : null };
     const m = s.match(/^(\d{2})(?:\/§?\s*(\d+))?$/);
     return m ? { view: "text", text: m[1], para: m[2] ? +m[2] : null } : null;
   };
-  const hashFor = (selection) => {
-    const by = {};
+  const hashFor = (selection, sides) => {
+    const by = {}, seg = sidesSeg(sides);
     for (const [t, n] of selection) (by[t] ||= []).push(n);
-    return "#" + Object.keys(by).sort().map(t => t + "/" + by[t].sort((a, b) => a - b).join(",")).join(";");
+    return "#" + (seg ? seg + "/" : "") + Object.keys(by).sort().map(t => t + "/" + by[t].sort((a, b) => a - b).join(",")).join(";");
   };
   const parseSelection = (h) => {
-    const s = splitLang(h).rest, out = [];
+    const s = splitSides(splitLang(h).rest).rest, out = [];
     for (const part of s.split(";")) {
       const m = part.match(/^(\d{2})\/§?\s*([\d,]+)$/); if (!m) continue;
       for (const n of m[2].split(",")) if (n) out.push([m[1], +n]);
@@ -457,7 +610,8 @@ const Model = (() => {
     return out;
   };
   return { E, TEXTS, textById, byText, byForm, dispersion, parasOf, tokens, glossed, migrate, schedule, known, due,
-           deckOf, order, index, unitCards, splitLang, parseHash, hashFor, parseSelection };
+           deckOf, order, index, unitCards, splitLang, parseHash, hashFor, parseSelection,
+           G, LANGS, DEFAULT_SIDES, lociOf, lociAt, locusAt, conceptCount, atomDeckOf, stretchDeckOf, formIn, normSides, parseSides, sidesSeg, splitSides };
 })();
 if (typeof module !== "undefined") module.exports = Model;
 
@@ -498,7 +652,7 @@ function applyLang() {
   document.querySelectorAll("#langseg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
   document.title = t("lexicon") + " · Vocabulario Libre";
 }
-function setLang(l) { lang = STRINGS[l] ? l : "es"; Store.pref("lang", lang); applyLang(); savedOptions(); render(); }
+function setLang(l) { lang = STRINGS[l] ? l : "es"; Store.pref("lang", lang); applyLang(); savedOptions(); drawSides(); render(); }
 
 /* ---------- state ---------- */
 let textId = M.TEXTS[0].id;
@@ -509,12 +663,21 @@ let orderMode = "text", dir = "recog", includeFn = false;
 let lects = new Set(M.TEXTS.map(t => t.id)), src = { tx: true, ed: false }, sort = "freq", unit = 1, query = "";
 let cards = [], queue = [], current = null, revealed = false, answered = false;
 let occForm = null, markKnown = false, lastClicked = null;
+let roundGraded = 0, unitsTotal = 1;   // «next unit» is offered when every card of an index unit has been graded once
+let sets = { words: true, atoms: false, stretches: false };   // the three card sets (decision 85); words only by default
+let sides = M.DEFAULT_SIDES;                                     // the builder's preference: which languages face which way
+let sidesFromHash = false;
+try { const o = JSON.parse(Store.pref("sets") || "null"); if (o) sets = { words: !!o.words, atoms: !!o.atoms, stretches: !!o.stretches }; } catch (e) {}
+if (!sets.words && !sets.atoms && !sets.stretches) sets.words = true;
+try { const o = M.normSides(JSON.parse(Store.pref("sides") || "null")); if (o) sides = o; } catch (e) {}
 
 /* ---------- deck ---------- */
 const selHas = (tid, n) => selection.some(([a, b]) => a === tid && b === n);
 const allSelected = () => { const ps = M.parasOf(textId); return ps.length > 0 && ps.every(P => selHas(textId, P.n)); };
 function refill() {
-  cards = deckSource === "index" ? M.unitCards(M.index([...lects].sort(), src, sort, query), unit) : M.deckOf(selection, includeFn);
+  if (deckSource === "index") { const rows = M.index([...lects].sort(), src, sort, query); unitsTotal = Math.max(1, Math.ceil(rows.length / 100)); if (unit > unitsTotal) unit = unitsTotal; }
+  cards = deckSource === "index" ? M.unitCards(M.index([...lects].sort(), src, sort, query), unit)
+        : [].concat(sets.words ? M.deckOf(selection, includeFn) : [], sets.atoms ? M.atomDeckOf(selection) : [], sets.stretches ? M.stretchDeckOf(selection) : []);
   const ord = (!answered && orderMode === "review") ? "text" : orderMode;
   queue = M.order(cards, ord, progress, now()).reverse();
   const dueN = cards.filter(c => M.due(progress, c.w, now())).length;
@@ -524,21 +687,41 @@ function refill() {
 }
 function next() { revealed = false; if (!queue.length) refill(); current = queue.pop() || null; drawCard(); markCurrent(); }
 function graded(g) {
-  M.schedule(progress, current.w, g, now()); Store.write(progress);
+  M.schedule(progress, current.w, g, now()); Store.write(progress); roundGraded++;
   if (!answered) { answered = true; if (orderMode === "review") refill(); }
   refreshMarks(); next();
 }
 
 /* ---------- the card ---------- */
-function ctxHTML(c, cloze) {
+function ctxHTML(c, cloze, span) {
   if (c.si < 0) return "";
-  const s = DATA.sentences[c.si], p = DATA.sentPara[c.si], tx = DATA.sentText[c.si];
-  return '<p class="ctx' + (cloze ? " cloze" : "") + '" id="ctx">' + esc(s.slice(0, c.a)) + "<b>" + esc(s.slice(c.a, c.b)) + "</b>" +
-         esc(s.slice(c.b)) + '<span class="ref">' + tx + " · " + (p ? "§ " + p : t("aparato")) + "</span></p>";
+  const s = DATA.sentences[c.si], p = DATA.sentPara[c.si], tx = DATA.sentText[c.si], a = span ? span[0] : c.a, b = span ? span[1] : c.b;
+  return '<p class="ctx' + (cloze ? " cloze" : "") + '" id="ctx">' + esc(s.slice(0, a)) + "<b>" + esc(s.slice(a, b)) + "</b>" +
+         esc(s.slice(b)) + '<span class="ref">' + tx + " · " + (p ? "§ " + p : t("aparato")) + "</span></p>";
+}
+const kindName = (k) => k ? t("k_" + (k === "∅" ? "null" : k)) : "";
+const enOf = (g) => (g[3] && g[3] !== g[1] && g[3] !== g[1].replace(/^[^:]+:\s*/, "")) ? g[3] : null;   // the EN realisation only when it says more than the sense
+function statusHTML(st) { return '<span class="status ' + (st === "certified" ? "ok" : "rv") + '">' + t(st) + "</span>"; }
+/* a side: the chosen languages' forms, stacked; «—» where the language has no form yet (design § 4.1) */
+function sideHTML(c, langs, big) {
+  return langs.map(L => { const f = M.formIn(c, L);
+    return '<div class="side"><span class="lg">' + L.toUpperCase() + '</span><span class="fm' + (f === null ? " none" : "") + (big ? " big" : "") + '">' + esc(f === null ? t("none") : f) + "</span></div>"; }).join("");
+}
+function atomLines(c) {   // the function in a line, with the realisation kind and status; then the stretch
+  const g = c.concept, bits = ['<p class="fnline"><b>' + t("function") + ":</b> " + esc(g[1]) + (g[4] ? ' <span class="k">· ' + esc(kindName(g[4])) + "</span>" : "") + " " + statusHTML("certified") + "</p>"];
+  bits.push('<p class="fnline"><b>' + t("see_stretch") + ":</b> " + (c.sa >= 0 ? esc(DATA.sentences[c.si].slice(c.sa, c.sb)) : t("no_stretch")) + "</p>");
+  return bits.join("");
+}
+function stretchAtomsHTML(c) {
+  return '<p class="fnline"><b>' + t("atoms_in") + "</b></p><ul class=\"atoms\">" + c.atoms.map(x =>
+    "<li><b>" + esc(x.form) + "</b> — " + esc(x.concept[1]) + (enOf(x.concept) ? ' <span class="k">EN ' + esc(enOf(x.concept)) + "</span>" : "") +
+    (x.concept[4] ? ' <span class="k">· ' + esc(kindName(x.concept[4])) + "</span>" : "") + " " + statusHTML("certified") + "</li>").join("") + "</ul>";
 }
 function recurHTML(c) {
-  const d = M.dispersion(c.w), total = (M.byForm[c.w] || []).reduce((n, e) => n + e.n, 0);
   const vez = (n) => n + " " + (n === 1 ? t("once") : t("times"));
+  if (c.kind === "atom") return '<div class="recur">' + vez(c.count) + " " + t("in_sel") + "; " + c.total + " " + t("loci") + " " + t("in_corpus") + "</div>";
+  if (c.kind === "stretch") return '<div class="recur">' + vez(c.count) + " " + t("in_sel") + "</div>";
+  const d = M.dispersion(c.w), total = (M.byForm[c.w] || []).reduce((n, e) => n + e.n, 0);
   return '<div class="recur">' + vez(c.count) + " " + (deckSource === "index" ? t("in_marked") : t("in_sel")) + "; " +
          vez(total) + " " + t("in_") + " " + d.texts + " " + (d.texts === 1 ? t("text1") : t("textN")) + " " + t("by") + " " + d.authors + " " +
          (d.authors === 1 ? t("author1") : t("authorN")) + ' · <span class="go" data-occ="' + esc(c.w) + '">' + t("other_occ") + "</span></div>";
@@ -546,24 +729,33 @@ function recurHTML(c) {
 function locatorHTML(c) {
   const st = progress[c.w], bits = [];
   if (c.si >= 0) bits.push('<span class="go" data-goto="' + DATA.sentText[c.si] + "/" + DATA.sentPara[c.si] + '">' + DATA.sentText[c.si] + " · § " + DATA.sentPara[c.si] + "</span>");
-  bits.push("<span>×" + c.e.n + "</span>", '<span class="mark">' + (c.e.d ? t("defined") : t("glossed")) + "</span>");
+  if (c.kind === "atom") bits.push('<span class="mark">' + t("set_atoms") + "</span>", "<span>" + esc(c.concept[2] || "") + "</span>", statusHTML("certified"));
+  else if (c.kind === "stretch") bits.push('<span class="mark">' + t("set_stretches") + "</span>", "<span>" + c.atoms.length + " " + t("set_atoms") + "</span>", statusHTML("certified"));
+  else bits.push("<span>×" + c.e.n + "</span>", '<span class="mark">' + (c.e.d ? t("defined") : t("glossed")) + "</span>");
   if (st && st.reps) bits.push("<span>" + t("rep") + " " + st.reps + "</span>");
   return '<div class="locator">' + bits.join("<span>‖</span>") + "</div>";
 }
 function drawCard() {
   const stage = $("stage");
-  if (!current) { stage.innerHTML = '<div class="card"><div class="empty"><p>' + t(deckSource === "index" ? "empty_unit" : "empty_sel") + "</p></div></div>"; return; }
-  const c = current, e = c.e;
-  const gloss = (e.en ? '<p class="en">' + esc(e.en) + "</p>" : "") + (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "");
+  const offer = (deckSource === "index" && cards.length && roundGraded >= cards.length)
+    ? '<p class="hint nextunit">' + t("deck_done") + (unit < unitsTotal ? ' <button class="btn" id="nextunit">' + t("next_unit") + "</button>" : "") + "</p>" : "";
+  if (!current) { stage.innerHTML = offer + '<div class="card"><div class="empty"><p>' + t(deckSource === "index" ? "empty_unit" : "empty_sel") + "</p></div></div>"; return; }
+  const c = current, e = c.e || {};
+  const esFront = sides.front.length === 1 && sides.front[0] === "es", esBack = sides.back.length === 1 && sides.back[0] === "es";
+  const head = (txt) => '<h2 class="headword">' + esc(txt) + "</h2>";
+  const extra = c.kind === "atom" ? atomLines(c) : c.kind === "stretch" ? stretchAtomsHTML(c) : (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "");
+  const esText = c.kind === "atom" ? c.form : c.kind === "stretch" ? c.run : c.w;
+  const ctxSpan = c.kind === "atom" ? [c.a, c.b] : c.kind === "stretch" ? [c.a, c.b] : null;
   let front, back;
   if (dir === "recog") {
-    front = '<h2 class="headword">' + esc(c.w) + "</h2>" + (e.lem ? '<div class="prompt">' + t("of") + " " + esc(e.lem) + "</div>" : "");
-    back = gloss + ctxHTML(c, false);
+    front = (esFront ? head(esText) : sideHTML(c, sides.front, true)) + (!c.kind && e.lem ? '<div class="prompt">' + t("of") + " " + esc(e.lem) + "</div>" : "") +
+            (c.kind ? ctxHTML(c, false, ctxSpan) : "");
+    back = (esBack ? head(esText) : sideHTML(c, sides.back)) + extra + (c.kind ? "" : ctxHTML(c, false));
   } else {
-    front = '<p class="prompt">' + t("cloze_prompt") + "</p>" + (c.si >= 0 ? ctxHTML(c, true) : gloss);
-    back = '<h2 class="headword">' + esc(c.w) + "</h2>" + gloss;
+    front = '<p class="prompt">' + t(c.kind === "atom" ? "cloze_atom" : c.kind === "stretch" ? "cloze_stretch" : "cloze_prompt") + "</p>" + (c.si >= 0 ? ctxHTML(c, true, ctxSpan) : sideHTML(c, sides.back));
+    back = head(esText) + (esBack ? "" : sideHTML(c, sides.back)) + extra;
   }
-  stage.innerHTML = '<div class="card">' + locatorHTML(c) + front +
+  stage.innerHTML = offer + '<div class="card">' + locatorHTML(c) + front +
     '<div class="answer' + (revealed ? "" : " hidden") + '">' + back + recurHTML(c) + '</div><div class="grow"></div>' +
     (revealed ? '<div class="grade">' + [["g0", 0, "1"], ["g1", 1, "2"], ["g2", 2, "3"], ["g3", 3, "4"]]
         .map(([l, g, k]) => '<button data-grade="' + g + '">' + t(l) + "<kbd>" + k + "</kbd></button>").join("") + "</div>"
@@ -578,7 +770,7 @@ function meterHTML() {
 }
 
 /* ---------- the reading side: text ---------- */
-function wordHTML(tid, s) {
+function wordHTML(tid, s, si) {
   const bt = M.byText[tid] ? M.byText[tid].tx : {};
   let out = "", last = 0;
   for (const [w, a, b] of M.tokens(s)) {
@@ -586,7 +778,7 @@ function wordHTML(tid, s) {
     out += esc(s.slice(last, a));
     if (M.glossed(e)) {   // every glossed form can be hovered; function words are marked only when «gramaticales» is on
       const k = M.known(progress, w), mark = !e.fn || includeFn;
-      out += '<span class="w' + (mark ? (k ? (markKnown ? " k" : "") : " u") : "") + '" data-w="' + esc(w) + '">' + esc(s.slice(a, b)) + "</span>";
+      out += '<span class="w' + (mark ? (k ? (markKnown ? " k" : "") : " u") : "") + '" data-w="' + esc(w) + '" data-si="' + si + '" data-o="' + a + '">' + esc(s.slice(a, b)) + "</span>";
     } else out += esc(s.slice(a, b));
     last = b;
   }
@@ -594,16 +786,19 @@ function wordHTML(tid, s) {
 }
 function drawText() {
   const tx = M.textById[textId], paras = M.parasOf(textId);
-  $("texthint").textContent = t("texthint", { author: tx.author, date: tx.date, n: paras.length });
+  $("texthint").textContent = t("texthint", { author: tx.author, date: tx.date, n: paras.length }) + t("texthint2");
   $("reader").innerHTML = paras.map(P =>
     '<p class="para' + (selHas(textId, P.n) ? " sel" : "") + '" data-n="' + P.n + '"><span class="pn">' + P.n + "</span>" +
-    P.sents.map(si => wordHTML(textId, DATA.sentences[si])).join(" ") + "</p>").join("");
+    P.sents.map(si => wordHTML(textId, DATA.sentences[si], si)).join(" ") + "</p>").join("");
   const all = allSelected(); $("selall").setAttribute("aria-pressed", String(all)); $("selall").textContent = t(all ? "sel_none" : "sel_all");
 }
 function markCurrent() {
   document.querySelectorAll(".w.cur").forEach(x => x.classList.remove("cur"));
   if (!current || view !== "text") return;
-  const els = document.querySelectorAll('.w[data-w="' + CSS.escape(current.w) + '"]');
+  let els;
+  if (current.kind) {   // an atom or a stretch lights its own span in its own sentence, by offsets
+    els = [...document.querySelectorAll('.w[data-si="' + current.si + '"]')].filter(x => +x.dataset.o >= current.a && +x.dataset.o < current.b);
+  } else els = document.querySelectorAll('.w[data-w="' + CSS.escape(current.w) + '"]');
   els.forEach(x => x.classList.add("cur"));
   const p = current.si >= 0 && DATA.sentText[current.si] === textId ? DATA.sentPara[current.si] : null;
   const target = p ? document.querySelector('.para[data-n="' + p + '"]') : els[0];
@@ -619,10 +814,11 @@ function refreshMarks() {
 /* ---------- the reading side: index ---------- */
 function drawIndex() {
   const rows = M.index([...lects].sort(), src, sort, query);
-  const units = Math.max(1, Math.ceil(rows.length / 100));
-  const us = $("unit");
-  us.innerHTML = Array.from({ length: units }, (_, i) => '<option value="' + (i + 1) + '">' + (i * 100 + 1) + "–" + Math.min((i + 1) * 100, rows.length) + "</option>").join("");
-  if (unit > units) unit = units; us.value = String(unit);
+  const units = Math.max(1, Math.ceil(rows.length / 100)); unitsTotal = units;
+  if (unit > units) unit = units; if (unit < 1) unit = 1;
+  $("unit").max = String(units); $("unit").value = String(unit);
+  $("unitlabel").textContent = t("unit_of", { n: unit, N: units, a: (unit - 1) * 100 + 1, b: Math.min(unit * 100, rows.length) });
+  $("unitprev").disabled = unit <= 1; $("unitnext").disabled = unit >= units;
   $("texthint").textContent = t("idxhint", { n: rows.length.toLocaleString(lang), t: lects.size, s: lects.size === 1 ? "" : "s" });
   const page = rows.slice((unit - 1) * 100, unit * 100);
   let occ = "";
@@ -656,7 +852,7 @@ function render() {
   drawCard(); markCurrent();
 }
 function setSelection(sel, from) {
-  selection = sel; deckSource = "selection"; answered = false; current = null;
+  selection = sel; deckSource = "selection"; answered = false; current = null; roundGraded = 0;
   refill(); next(); if (view === "text") drawText(); markCurrent();
   if (from !== "hash") Store.pref("lastsel", M.hashFor(selection));
 }
@@ -672,6 +868,29 @@ function openText(tid, p) {
   if (el && el.scrollIntoView) el.scrollIntoView({ block: "center" });
 }
 
+/* ---------- the builder: two rows of chips (front / back), one per language; a chip is disabled when it would empty a side ---------- */
+function drawSides() {
+  const row = (side) => '<span class="row"><span>' + t(side) + "</span>" + M.LANGS.map(L => {
+    const on = sides[side].includes(L), only = on && sides[side].length === 1;
+    return '<button class="chip" data-side="' + side + '" data-lang="' + L + '" aria-pressed="' + on + '"' + (only ? " disabled" : "") + ">" + L.toUpperCase() + "</button>"; }).join("") + "</span>";
+  $("sides").innerHTML = row("front") + row("back") + '<span>' + t("grade_note") + "</span>";
+  document.querySelectorAll("[data-set]").forEach(b => b.setAttribute("aria-pressed", String(!!sets[b.dataset.set])));
+}
+$("sides").addEventListener("click", ev => {
+  const b = ev.target.closest(".chip"); if (!b || b.disabled) return;
+  const side = b.dataset.side, L = b.dataset.lang, cur = sides[side].slice();
+  const nxt = cur.includes(L) ? cur.filter(x => x !== L) : M.LANGS.filter(x => cur.includes(x) || x === L);
+  if (!nxt.length) return;
+  sides = Object.assign({}, sides, { [side]: nxt }); sidesFromHash = false; Store.pref("sides", JSON.stringify(sides));
+  drawSides(); drawCard();
+});
+document.querySelectorAll("[data-set]").forEach(b => b.addEventListener("click", () => {
+  const k = b.dataset.set, nxt = Object.assign({}, sets, { [k]: !sets[k] });
+  if (!nxt.words && !nxt.atoms && !nxt.stretches) return;
+  sets = nxt; Store.pref("sets", JSON.stringify(sets)); drawSides();
+  if (deckSource === "selection") { current = null; refill(); next(); }
+}));
+
 /* ---------- events: deck ---------- */
 document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll("[data-order]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
@@ -684,6 +903,7 @@ document.querySelectorAll("[data-dir]").forEach(b => b.addEventListener("click",
 $("fn").addEventListener("change", e => { includeFn = e.target.checked; current = null; refill(); next(); refreshMarks(); });
 $("stage").addEventListener("click", ev => {
   if (ev.target.closest("#rev")) { revealed = true; drawCard(); return; }
+  if (ev.target.closest("#nextunit")) { setUnit(unit + 1); return; }
   const g = ev.target.closest("[data-grade]");
   if (g && current) { graded(+g.dataset.grade); return; }
   const go = ev.target.closest("[data-goto]");
@@ -717,7 +937,7 @@ $("reader").addEventListener("click", ev => {
   }
   const oc = ev.target.closest("[data-occ]");
   if (oc) { occForm = occForm === oc.dataset.occ ? null : oc.dataset.occ; drawIndex(); return; }
-  if (ev.target.closest("#studyunit")) { deckSource = "index"; answered = false; current = null; refill(); next(); $("deckpane").classList.add("open"); }
+  if (ev.target.closest("#studyunit")) { deckSource = "index"; answered = false; current = null; roundGraded = 0; refill(); next(); $("deckpane").classList.add("open"); }
 });
 $("selall").addEventListener("click", () => {   // a toggle: all of this text, or none of it
   lastClicked = null;
@@ -738,13 +958,14 @@ $("saved").addEventListener("change", e => {
   if (v) { const sel = M.parseSelection(v); if (sel.length) { textId = sel[0][0]; $("text").value = textId; view = "text"; setSelection(sel); render(); } }
 });
 $("link").addEventListener("click", () => {
-  const url = location.href.replace(/#.*$/, "") + (selection.length ? M.hashFor(selection) : "#" + textId);
+  const url = location.href.replace(/#.*$/, "") + (selection.length ? M.hashFor(selection, sides) : "#" + (M.sidesSeg(sides) ? M.sidesSeg(sides) + "/" : "") + textId);
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(() => alert(t("link_copied") + "\n" + url), () => prompt(t("link"), url));
   else prompt(t("link"), url);
 });
 $("markknown").addEventListener("change", e => { markKnown = e.target.checked; Store.pref("markknown", markKnown ? "1" : "0"); refreshMarks(); });
 ["sort", "unit", "q"].forEach(id => $(id).addEventListener(id === "q" ? "input" : "change", e => {
-  if (id === "sort") sort = e.target.value; else if (id === "unit") unit = +e.target.value; else query = e.target.value.trim();
+  if (id === "sort") sort = e.target.value; else if (id === "unit") unit = Math.max(1, Math.min(unitsTotal, +e.target.value || 1)); else query = e.target.value.trim();
+  if (id === "unit") roundGraded = 0;
   if (deckSource === "index") { current = null; refill(); next(); }
   drawIndex();
 }));
@@ -753,6 +974,12 @@ $("markknown").addEventListener("change", e => { markKnown = e.target.checked; S
   if (!src.tx && !src.ed) { src[k] = true; e.target.checked = true; return; }
   if (deckSource === "index") { current = null; refill(); next(); } drawIndex();
 }));
+function setUnit(n) { unit = Math.max(1, Math.min(unitsTotal, n)); roundGraded = 0; if (deckSource === "index") { current = null; refill(); next(); } if (view === "index") drawIndex(); }
+$("unitprev").addEventListener("click", () => setUnit(unit - 1));
+$("unitnext").addEventListener("click", () => setUnit(unit + 1));
+$("selalltexts").addEventListener("click", () => {   // the trainer finding (1): whole-corpus study in one click
+  lastClicked = null; setSelection([].concat(...M.TEXTS.map(tx => M.parasOf(tx.id).map(P => [tx.id, P.n]))));
+});
 $("lects").addEventListener("change", e => {
   const id = e.target.dataset.lect; if (!id) return;
   if (e.target.checked) lects.add(id); else lects.delete(id);
@@ -769,15 +996,21 @@ function showTip(el, byClick) {
   if (tip && tip.dataset.w === w) return;
   hideTip();
   tip = document.createElement("div"); tip.className = "tip"; tip.dataset.w = w;
+  let fnl = "";   // a function word shows its resolved sense, never the form string's gloss alone; or «under review», never the guess
+  if (e.fn && el.dataset.si !== undefined) {
+    fnl = M.lociAt(+el.dataset.si, +el.dataset.o).map(L => '<span class="fnl">' + (L.status === "certified"
+      ? esc(L.concept[1]) + (enOf(L.concept) ? " · EN " + esc(enOf(L.concept)) : "") + " " + statusHTML("certified")
+      : statusHTML("review")) + "</span>").join("");
+  }
   tip.innerHTML = '<span class="t">' + esc(w) + (progress[w] && progress[w].reps ? " · " + t("rep") + " " + progress[w].reps : "") + "</span>" +
-    esc(e.en || "") + (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "") + '<span class="go">' + t("tip_go") + "</span>";
+    esc(e.en || "") + (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "") + fnl + '<span class="go">' + t("tip_go") + "</span>";
   document.body.appendChild(tip);
   const r = el.getBoundingClientRect();
   tip.style.left = Math.max(6, Math.min(window.innerWidth - tip.offsetWidth - 6, r.left + window.scrollX)) + "px";
   tip.style.top = (r.bottom + window.scrollY + 4) + "px";
 }
 function toCard(w) {
-  const i = cards.findIndex(c => c.w === w);
+  const i = cards.findIndex(c => !c.kind && c.w === w);
   if (i >= 0) current = cards[i];
   else { const e = M.byText[textId].tx[w], c = (e.ctx && e.ctx[0]) || null;
          current = { w, e, si: c ? c[0] : -1, a: c ? c[1] : 0, b: c ? c[2] : 0, count: 0 }; }
@@ -824,10 +1057,14 @@ $("text").innerHTML = M.TEXTS.map(tx => '<option value="' + tx.id + '">' + tx.id
 function enter() {
   const h = location.hash, L = M.splitLang(h);
   lang = L.lang || Store.pref("lang") || "es"; if (!STRINGS[lang]) lang = "es"; Store.pref("lang", lang); applyLang();
+  const S = M.splitSides(L.rest);   // a sides segment in the entrance applies to this visit; absent = the stored preference, else the default
+  if (S.sides) { sides = S.sides; sidesFromHash = true; }
+  else if (sidesFromHash) { sidesFromHash = false; try { sides = M.normSides(JSON.parse(Store.pref("sides") || "null")) || M.DEFAULT_SIDES; } catch (e) { sides = M.DEFAULT_SIDES; } }
+  drawSides();
   $("rights").textContent = Store.persistent() ? "" : t("no_store");
   const sel = M.parseSelection(h), p = M.parseHash(h);
   if (sel.length && !(p && p.text)) { textId = sel[0][0]; view = "text"; $("text").value = textId; setSelection(sel, "hash"); render(); return; }
-  if (p && p.view === "index") { view = "index"; render(); return; }
+  if (p && p.view === "index") { view = "index"; if (p.unit) unit = Math.max(1, p.unit); render(); if (p.unit) { deckSource = "index"; answered = false; current = null; roundGraded = 0; refill(); next(); drawIndex(); } return; }
   if (p && p.text && M.textById[p.text]) {
     textId = p.text; view = "text"; $("text").value = textId;
     if (p.para) setSelection([[textId, p.para]], "hash"); else refill();
@@ -839,9 +1076,48 @@ function enter() {
   if (ls.length) setSelection(ls, "hash"); else refill();
   render();
 }
+/* TOUR-BEGIN */
+// 7.4b (decision 89; the compiler chose T1, 2026-11-08): a stepwise, dismissable tour. Each step is keyed to a real
+// data-t control; «?» in the masthead re-opens it; Close, Done or Escape stores the preference vl-tour=1. It opens by
+// itself only on a first visit that is not a deep link. Tested by work/test_trainer_tour.js; guarded by trainer_check.py.
+const Tour = (() => {
+  const STEPS = [["v_text", "s1"], ["set_words", "s2"], ["side", "s3"], ["o_review", "s4"], ["export", "s5"]];
+  let i = 0, open = false;
+  // Open by itself only on a first visit (no preference stored) that is not a deep link: once the lang and sides
+  // segments are stripped, nothing remains — no text, no paragraph, no selection, no index unit.
+  const shouldOpen = (hash, seen) => {
+    if (seen) return false;
+    const rest = String(hash || "").replace(/^#/, "").split("/").filter(seg => seg && !/^(es|en|ja|sa|ae|el)$/.test(seg) && !/[~+]/.test(seg));
+    return rest.length === 0;
+  };
+  const el = (id) => (typeof document !== "undefined") ? document.getElementById(id) : null;
+  const unhl = () => { if (typeof document === "undefined") return; document.querySelectorAll(".tour-hl").forEach(e => e.classList.remove("tour-hl")); };
+  const show = () => {
+    const [key, s] = STEPS[i], box = el("tour"); if (!box) return;
+    el("tour-n").textContent = (i + 1) + " / " + STEPS.length;
+    el("tour-title").textContent = t("tour_" + s + "t"); el("tour-body").textContent = t("tour_" + s);
+    el("tour-prev").textContent = t("tour_prev"); el("tour-prev").disabled = i === 0;
+    el("tour-next").textContent = t(i === STEPS.length - 1 ? "tour_done" : "tour_next"); el("tour-close").textContent = t("tour_close");
+    unhl(); const target = document.querySelector('[data-t="' + key + '"]');
+    if (target) { target.classList.add("tour-hl"); if (target.scrollIntoView) target.scrollIntoView({ block: "nearest" }); }
+    box.hidden = false;
+  };
+  const start = () => { i = 0; open = true; show(); };
+  const close = () => { open = false; unhl(); const box = el("tour"); if (box) box.hidden = true; Store.pref("tour", "1"); };
+  const next = () => { if (i >= STEPS.length - 1) { close(); return; } i++; show(); };
+  const prev = () => { if (i > 0) { i--; show(); } };
+  const bind = () => {
+    const b = el("tourbtn"); if (b) b.addEventListener("click", start);
+    if (el("tour-next")) { el("tour-next").addEventListener("click", next); el("tour-prev").addEventListener("click", prev); el("tour-close").addEventListener("click", close); }
+    if (typeof document !== "undefined") document.addEventListener("keydown", (e) => { if (open && e.key === "Escape") close(); });
+  };
+  return { shouldOpen, start, close, next, prev, bind, step: () => i, isOpen: () => open, steps: STEPS.map(s => s[0]) };
+})();
+/* TOUR-END */
 window.addEventListener("hashchange", enter);
 savedOptions();
 enter();
+Tour.bind(); if (Tour.shouldOpen(location.hash, Store.pref("tour"))) Tour.start();   // 7.4b
 })();
 </script>
 </body>

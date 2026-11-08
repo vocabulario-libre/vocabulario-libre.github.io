@@ -1,0 +1,87 @@
+{
+ "certified": 34010,
+ "grammatical": 744,
+ "lexical": 11930,
+ "loci": 65567,
+ "review": 31557,
+ "signatures_failed": 102,
+ "signatures_validated": 1678,
+ "stretches": 25511,
+ "texts": {
+  "01": {
+   "certified": 898,
+   "loci": 1755,
+   "review": 857
+  },
+  "02": {
+   "certified": 1886,
+   "loci": 3961,
+   "review": 2075
+  },
+  "03": {
+   "certified": 2597,
+   "loci": 4156,
+   "review": 1559
+  },
+  "04": {
+   "certified": 1613,
+   "loci": 3409,
+   "review": 1796
+  },
+  "05": {
+   "certified": 2733,
+   "loci": 5319,
+   "review": 2586
+  },
+  "06": {
+   "certified": 1643,
+   "loci": 3425,
+   "review": 1782
+  },
+  "07": {
+   "certified": 2837,
+   "loci": 5487,
+   "review": 2650
+  },
+  "08": {
+   "certified": 55,
+   "loci": 105,
+   "review": 50
+  },
+  "09": {
+   "certified": 135,
+   "loci": 308,
+   "review": 173
+  },
+  "10": {
+   "certified": 1794,
+   "loci": 3579,
+   "review": 1785
+  },
+  "11": {
+   "certified": 5871,
+   "loci": 9994,
+   "review": 4123
+  },
+  "12": {
+   "certified": 20,
+   "loci": 57,
+   "review": 37
+  },
+  "13": {
+   "certified": 4794,
+   "loci": 9962,
+   "review": 5168
+  },
+  "14": {
+   "certified": 4088,
+   "loci": 8130,
+   "review": 4042
+  },
+  "15": {
+   "certified": 3046,
+   "loci": 5920,
+   "review": 2874
+  }
+ }
+}
