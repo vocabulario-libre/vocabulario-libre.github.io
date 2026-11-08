@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使い方 · Vocabulario Libre</title>
+<style>
+:root { color-scheme: light dark; --fg: #1a1a1a; --bg: #fdfcf9; --mute: #5a5a5a; --rule: #d9d6cf; --link: #1f4d7a; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e1; --bg: #15171a; --mute: #a4a39e; --rule: #33363b; --link: #8ab4e0; --code: #22252a; } }
+html { font-family: Georgia, "Times New Roman", "Noto Serif", serif; font-size: 18px; line-height: 1.5; }
+body { margin: 0 auto; max-width: 44rem; padding: 2rem 1.25rem 4rem; color: var(--fg); background: var(--bg); }
+.masthead { font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 1.2rem; }
+h1 { font-size: 1.9rem; font-weight: normal; margin: 0 0 .25rem; }
+h2 { font-size: 1.05rem; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute);
+     margin: 2.4rem 0 .6rem; border-bottom: 1px solid var(--rule); padding-bottom: .2rem; }
+p { margin: .6rem 0; }
+a { color: var(--link); text-decoration: none; } a:hover, a:focus { text-decoration: underline; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); padding: 0 .25em; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+td { padding: .4rem .4rem .4rem 0; vertical-align: top; border-bottom: 1px solid var(--rule); }
+td.n { color: var(--mute); width: 2.2rem; } td.l { white-space: nowrap; text-align: right; }
+td.l a { margin-left: .7rem; }
+ul { margin: .4rem 0 .4rem 1.2rem; padding: 0; } li { margin: .25rem 0; }
+dl { margin: .4rem 0; } dt { margin-top: .5rem; } dd { margin: 0 0 0 1.2rem; color: var(--mute); font-size: .92rem; }
+.mute { color: var(--mute); font-size: .9rem; }
+h3.corpus { font-size: 1.3rem; font-weight: normal; margin: 1rem 0 .2rem; }   /* B3: a corpus entry under «Los textos» */
+.lang { text-align: right; font-size: .9rem; margin: 0; }
+footer { margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; font-size: .9rem; color: var(--mute); }
+footer a { margin-right: .8rem; }
+@media (max-width: 40rem) { td.l { white-space: normal; text-align: left; } td.l a { margin: 0 .7rem 0 0; } }
+</style>
+</head>
+<body>
+<p class="lang"><a href="como-usar.html" lang="es" hreflang="es">Español</a> · <a href="como-usar.en.html" lang="en" hreflang="en">English</a></p>
+<p class="masthead"><a href="index.ja.html">Vocabulario Libre</a> · トップページ</p>
+
+<h1>使い方</h1>
+<p class="mute">四つの節：何があるか・読む・学ぶ・確かめる。終わりに六つの用語。</p>
+
+<h2>何があるか</h2>
+<p>ボリバル、サン・マルティン、オイギンスの十五の文書、1812–1843年。各文書は読むための校訂版：確定した本文とその校異。
+語彙トレーナー Léxico は十五の文書を内蔵する。すべてを検証するための文書：出所、方針、方法、マニフェスト。本文はパブリックドメイン、
+それ以外は CC0。収録は文書群ごとに増える。現在は一つ、スペイン語。</p>
+
+<h2>読む</h2>
+<p>トップページは十五の文書を年代順に、著者と年とともに並べる。各項目は校訂版の本文を開く。校異は、底本に対して校訂版が変えた箇所を
+一つずつ記録する。出所記録（<a href="lecturas/PROVENANCE.md"><code>PROVENANCE.md</code></a>）は各文書の底本と権利を示す。</p>
+
+<h2>学ぶ</h2>
+<p><a href="lecturas/vocab/flashcards.html#ja">Léxico</a> は「本文」表示で開く。段落をクリック：その語がカードになる。Shift＋クリック：段落の範囲。
+「全文を選択」：文書全体。語をクリック：その箇所のための英語の対応語。「索引」表示は全語形を頻度順に百語ずつ並べる。
+「このユニットを学習」がデッキを作る。</p>
+<p>三つのカード集：「語」（各語形と、その文と対応語）、「要素」（文法語：助詞、語尾、素性、語順、∅）、「区間」（要素が働く文の範囲）。
+検証済みのものだけがカードになる。それ以外は「審査中」と表示する。</p>
+<p>二つのモード：「認識」（語を見て、意味を思い出す）と「穴埋め」（空所のある文を補う）。「⇄ 左右」は表面の言語を替える。
+三つの順序：「本文順」「シャッフル」「復習待ち」。スペースキーで答えを表示。もう一度・難しい・できた・簡単 が次の復習を決める。</p>
+<p>進捗はこのブラウザにのみ残る。「進捗を保存」はファイルに書き出す。「進捗を読み込む」はそれを読む。「最初からやり直す」は消去する。
+「選択を保存」は段落の組を保持する。「この選択へのリンク」はどの端末でもそれを開くアドレスを作る。</p>
+
+<h2>確かめる</h2>
+<p><a href="lecturas/MANIFEST.sha256"><code>MANIFEST.sha256</code></a> は各ファイルとそのハッシュを列挙する。
+<code>sha256sum -c MANIFEST.sha256</code> で配布物全体を検証できる。<code>PROVENANCE.md</code> は底本と権利を示す。
+<a href="lecturas/POLICY-scholarship-and-compliance.pdf">方針</a>が規則を定め、方法がその適用を記す。どのページも追跡を行わない。プログラムを実行するのはトレーナーのみで、
+読者の端末上でのみ動く。</p>
+
+<h2>用語</h2>
+<dl>
+<dt>校訂版</dt><dd>底本から確定した本文と、その校異</dd>
+<dt>校異</dt><dd>底本に対して校訂版が変えた箇所の一覧、一件ずつ</dd>
+<dt>底本</dt><dd>本文の出所となる印刷物または写本</dd>
+<dt>要素</dt><dd>文法語または文法標識：助詞、語尾、素性、語順、∅</dd>
+<dt>区間</dt><dd>要素が働く文の範囲</dd>
+<dt>検証済み</dt><dd>意味が確認された箇所。カードになるのはこれだけ</dd>
+</dl>
+<footer>
+<p><a href="index.ja.html">トップページ</a> <a href="lecturas/POLICY-scholarship-and-compliance.pdf">方針</a> <a href="lecturas/LICENSE">CC0</a> <a href="releases.xml">フィード</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo usar · Vocabulario Libre</title>
+<style>
+:root { color-scheme: light dark; --fg: #1a1a1a; --bg: #fdfcf9; --mute: #5a5a5a; --rule: #d9d6cf; --link: #1f4d7a; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e1; --bg: #15171a; --mute: #a4a39e; --rule: #33363b; --link: #8ab4e0; --code: #22252a; } }
+html { font-family: Georgia, "Times New Roman", "Noto Serif", serif; font-size: 18px; line-height: 1.5; }
+body { margin: 0 auto; max-width: 44rem; padding: 2rem 1.25rem 4rem; color: var(--fg); background: var(--bg); }
+.masthead { font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 1.2rem; }
+h1 { font-size: 1.9rem; font-weight: normal; margin: 0 0 .25rem; }
+h2 { font-size: 1.05rem; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute);
+     margin: 2.4rem 0 .6rem; border-bottom: 1px solid var(--rule); padding-bottom: .2rem; }
+p { margin: .6rem 0; }
+a { color: var(--link); text-decoration: none; } a:hover, a:focus { text-decoration: underline; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); padding: 0 .25em; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+td { padding: .4rem .4rem .4rem 0; vertical-align: top; border-bottom: 1px solid var(--rule); }
+td.n { color: var(--mute); width: 2.2rem; } td.l { white-space: nowrap; text-align: right; }
+td.l a { margin-left: .7rem; }
+ul { margin: .4rem 0 .4rem 1.2rem; padding: 0; } li { margin: .25rem 0; }
+dl { margin: .4rem 0; } dt { margin-top: .5rem; } dd { margin: 0 0 0 1.2rem; color: var(--mute); font-size: .92rem; }
+.mute { color: var(--mute); font-size: .9rem; }
+h3.corpus { font-size: 1.3rem; font-weight: normal; margin: 1rem 0 .2rem; }   /* B3: a corpus entry under «Los textos» */
+.lang { text-align: right; font-size: .9rem; margin: 0; }
+footer { margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; font-size: .9rem; color: var(--mute); }
+footer a { margin-right: .8rem; }
+@media (max-width: 40rem) { td.l { white-space: normal; text-align: left; } td.l a { margin: 0 .7rem 0 0; } }
+</style>
+</head>
+<body>
+<p class="lang"><a href="como-usar.en.html" lang="en" hreflang="en">English</a> · <a href="como-usar.ja.html" lang="ja" hreflang="ja">日本語</a></p>
+<p class="masthead"><a href="index.html">Vocabulario Libre</a> · Página principal</p>
+
+<h1>Cómo usar</h1>
+<p class="mute">Cuatro apartados: qué hay, leer, estudiar, comprobar. Al final, seis términos.</p>
+
+<h2>Qué hay</h2>
+<p>Quince textos de Bolívar, San Martín y O’Higgins, 1812–1843, cada uno en una edición de lectura: el texto establecido y
+su aparato. Un entrenador de vocabulario, Léxico, que lleva los quince textos dentro. Los documentos que permiten
+comprobarlo todo: procedencia, política, método, manifiesto. El texto es de dominio público; lo demás, CC0. La colección
+crece por corpus; hoy, uno, en español.</p>
+
+<h2>Leer</h2>
+<p>La página principal lista los quince textos en orden cronológico, con autor y fecha. Cada entrada abre el texto en su
+edición. El aparato registra, caso por caso, lo que la edición cambió respecto del testimonio. El registro de procedencia
+(<a href="lecturas/PROVENANCE.md"><code>PROVENANCE.md</code></a>) nombra el testimonio de cada texto y sus derechos.</p>
+
+<h2>Estudiar</h2>
+<p><a href="lecturas/vocab/flashcards.html">Léxico</a> abre en la vista «Texto». Clic en un párrafo: sus palabras forman las
+fichas. Mayúsculas-clic: un tramo de párrafos. «Todo el texto»: el texto entero. Clic en una palabra: su equivalencia en
+inglés, escrita para ese pasaje. La vista «Índice» ordena todas las formas por frecuencia, en unidades de cien;
+«Estudiar esta unidad» forma el mazo.</p>
+<p>Tres juegos de fichas: «palabras» (cada forma con la frase en que aparece y su equivalencia), «átomos» (las palabras
+gramaticales: partícula, desinencia, rasgo, orden, ∅) y «tramos» (el átomo en el trecho de frase donde actúa). Sólo lo
+certificado forma fichas; lo demás dice «en revisión».</p>
+<p>Dos modos: «Reconocer» (se ve la palabra; se recuerda el sentido) y «Producir» (la frase con un hueco; se completa).
+«⇄ lado» cambia el idioma del anverso. Tres órdenes: «Orden del texto», «Barajadas», «Por repasar». La barra espaciadora
+muestra la respuesta; Otra vez · Difícil · Bien · Fácil fija el próximo repaso.</p>
+<p>El progreso queda en este navegador y en ningún otro sitio. «Guardar progreso» lo escribe en un archivo; «Cargar
+progreso» lo lee; «Empezar de nuevo» lo borra. «Guardar selección» conserva un grupo de párrafos; «Enlace a esta
+selección» produce una dirección que lo abre en cualquier aparato.</p>
+
+<h2>Comprobar</h2>
+<p><a href="lecturas/MANIFEST.sha256"><code>MANIFEST.sha256</code></a> lista cada archivo con su huella;
+<code>sha256sum -c MANIFEST.sha256</code> comprueba la distribución entera. <code>PROVENANCE.md</code> nombra testimonios y
+derechos. La <a href="lecturas/POLICY-scholarship-and-compliance.pdf">política</a> fija las reglas; el método, cómo se aplicaron. Ninguna página lleva rastreo;
+sólo el entrenador ejecuta programa, y sólo en el aparato del lector.</p>
+
+<h2>Términos</h2>
+<dl>
+<dt>edición</dt><dd>el texto establecido a partir de un testimonio, con su aparato</dd>
+<dt>aparato</dt><dd>la lista de lo que la edición cambió respecto del testimonio, caso por caso</dd>
+<dt>testimonio</dt><dd>la impresión o el manuscrito del que procede el texto</dd>
+<dt>átomo</dt><dd>una palabra gramatical o una marca gramatical: partícula, desinencia, rasgo, orden, ∅</dd>
+<dt>tramo</dt><dd>el trecho de frase en que un átomo actúa</dd>
+<dt>certificado</dt><dd>un lugar cuyo sentido quedó comprobado; sólo éstos forman fichas</dd>
+</dl>
+<footer>
+<p><a href="index.html">Página principal</a> <a href="lecturas/POLICY-scholarship-and-compliance.pdf">Política</a> <a href="lecturas/LICENSE">CC0</a> <a href="releases.xml">Feed</a></p>
+</footer>
+</body>
+</html>

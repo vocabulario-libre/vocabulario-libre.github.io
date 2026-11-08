@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://www.vocabulario-libre.workers.dev/">
 <title>Vocabulario Libre</title>
-<id>urn:sha256:c31450ede2e2a25ff6e9fa8d9a8805b3141d2cf7c7c931be24064227c4724258</id>
+<id>urn:sha256:2b9307fc6fff407c51db31de11b473b8eebdceda91f607e7bf337b7be77620a1</id>
 <updated>2026-11-08T00:00:00Z</updated>
 <author><name>Vocabulario Libre</name></author>
 <link rel="self" href="releases.xml"/>
@@ -36,7 +36,14 @@
 </entry>
 <entry>
 <title>Vocabulario Libre — Quinta distribución: la capa gramatical — átomos y tramos certificados en el entrenador · Fifth distribution: the grammar layer — certified atoms and stretches in the trainer · 第五配布：文法レイヤー ― 検証済みの要素と区間 (2026-11-08)</title>
-<id>urn:sha256:c31450ede2e2a25ff6e9fa8d9a8805b3141d2cf7c7c931be24064227c4724258</id>
+<id>urn:sha256:release-2026-11-08</id>
+<updated>2026-11-08T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Quinta distribución: la capa gramatical — átomos y tramos certificados en el entrenador · Fifth distribution: the grammar layer — certified atoms and stretches in the trainer · 第五配布：文法レイヤー ― 検証済みの要素と区間</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Sexta distribución: cómo usar — la guía en el sitio y el recorrido en el entrenador; el sitio habla por la colección · Sixth distribution: how to use — the guide on the site and the tour in the trainer; the hub speaks for the collection · 第六配布：使い方 ― サイトの案内とトレーナーのツアー (2026-11-08)</title>
+<id>urn:sha256:2b9307fc6fff407c51db31de11b473b8eebdceda91f607e7bf337b7be77620a1</id>
 <updated>2026-11-08T00:00:00Z</updated>
 <link rel="alternate" href="lecturas/index.html"/>
 <summary>Corpus cerrado y publicado (2 de noviembre de 2026). Versiones · versions: 01 2.4 · 02 1.5 · 03 2.5 · 04 1.7 · 05 1.6 · 06 1.9 · 07 1.7 · 08 1.5 · 09 1.6 · 10 1.8 · 11 1.5 · 12 1.2 · 13 1.5 · 14 1.7 · 15 1.8.</summary>

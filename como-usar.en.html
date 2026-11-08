@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use · Vocabulario Libre</title>
+<style>
+:root { color-scheme: light dark; --fg: #1a1a1a; --bg: #fdfcf9; --mute: #5a5a5a; --rule: #d9d6cf; --link: #1f4d7a; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e1; --bg: #15171a; --mute: #a4a39e; --rule: #33363b; --link: #8ab4e0; --code: #22252a; } }
+html { font-family: Georgia, "Times New Roman", "Noto Serif", serif; font-size: 18px; line-height: 1.5; }
+body { margin: 0 auto; max-width: 44rem; padding: 2rem 1.25rem 4rem; color: var(--fg); background: var(--bg); }
+.masthead { font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 1.2rem; }
+h1 { font-size: 1.9rem; font-weight: normal; margin: 0 0 .25rem; }
+h2 { font-size: 1.05rem; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute);
+     margin: 2.4rem 0 .6rem; border-bottom: 1px solid var(--rule); padding-bottom: .2rem; }
+p { margin: .6rem 0; }
+a { color: var(--link); text-decoration: none; } a:hover, a:focus { text-decoration: underline; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); padding: 0 .25em; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+td { padding: .4rem .4rem .4rem 0; vertical-align: top; border-bottom: 1px solid var(--rule); }
+td.n { color: var(--mute); width: 2.2rem; } td.l { white-space: nowrap; text-align: right; }
+td.l a { margin-left: .7rem; }
+ul { margin: .4rem 0 .4rem 1.2rem; padding: 0; } li { margin: .25rem 0; }
+dl { margin: .4rem 0; } dt { margin-top: .5rem; } dd { margin: 0 0 0 1.2rem; color: var(--mute); font-size: .92rem; }
+.mute { color: var(--mute); font-size: .9rem; }
+h3.corpus { font-size: 1.3rem; font-weight: normal; margin: 1rem 0 .2rem; }   /* B3: a corpus entry under «Los textos» */
+.lang { text-align: right; font-size: .9rem; margin: 0; }
+footer { margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; font-size: .9rem; color: var(--mute); }
+footer a { margin-right: .8rem; }
+@media (max-width: 40rem) { td.l { white-space: normal; text-align: left; } td.l a { margin: 0 .7rem 0 0; } }
+</style>
+</head>
+<body>
+<p class="lang"><a href="como-usar.html" lang="es" hreflang="es">Español</a> · <a href="como-usar.ja.html" lang="ja" hreflang="ja">日本語</a></p>
+<p class="masthead"><a href="index.en.html">Vocabulario Libre</a> · Main page</p>
+
+<h1>How to use</h1>
+<p class="mute">Four parts: what is here, read, study, check. Six terms at the end.</p>
+
+<h2>What is here</h2>
+<p>Fifteen texts by Bolívar, San Martín and O’Higgins, 1812–1843, each in a reading edition: the established text and its
+apparatus. A vocabulary trainer, Léxico, with the fifteen texts inside it. The documents that let all of it be checked:
+provenance, policy, method, manifest. The text is public domain; everything else is CC0. The collection grows by corpus;
+today, one, in Spanish.</p>
+
+<h2>Read</h2>
+<p>The main page lists the fifteen texts in chronological order, with author and date. Each entry opens the text in its
+edition. The apparatus records, case by case, what the edition changed against the witness. The provenance record
+(<a href="lecturas/PROVENANCE.md"><code>PROVENANCE.md</code></a>) names each text’s witness and its rights.</p>
+
+<h2>Study</h2>
+<p><a href="lecturas/vocab/flashcards.html#en">Léxico</a> opens in the “Text” view. Click a paragraph: its words form the cards.
+Shift-click: a stretch of paragraphs. “Whole text”: the entire text. Click a word: its English gloss, written for that
+passage. The “Index” view orders every form by frequency, in units of a hundred; “Study this unit” forms the deck.</p>
+<p>Three card sets: “words” (each form with the sentence it occurs in and its gloss), “atoms” (the grammatical words:
+particle, ending, feature, order, ∅) and “stretches” (the atom in the span of sentence where it acts). Only what is
+certified forms cards; the rest says “under review”.</p>
+<p>Two modes: “Recognise” (the word is shown; the sense is recalled) and “Produce” (the sentence with a gap; it is
+supplied). “⇄ side” changes the language on the front. Three orders: “Text order”, “Shuffled”, “To review”. The space
+bar shows the answer; Again · Hard · Good · Easy sets the next review.</p>
+<p>Progress stays in this browser and nowhere else. “Save progress” writes it to a file; “Load progress” reads it; “Start
+over” erases it. “Save selection” keeps a group of paragraphs; “Link to this selection” produces an address that opens it
+on any device.</p>
+
+<h2>Check</h2>
+<p><a href="lecturas/MANIFEST.sha256"><code>MANIFEST.sha256</code></a> lists every file with its digest;
+<code>sha256sum -c MANIFEST.sha256</code> verifies the whole distribution. <code>PROVENANCE.md</code> names witnesses and
+rights. The <a href="lecturas/POLICY-scholarship-and-compliance.pdf">policy</a> sets the rules; the method, how they were applied. No page carries tracking;
+only the trainer runs a program, and only on the reader’s device.</p>
+
+<h2>Terms</h2>
+<dl>
+<dt>edition</dt><dd>the text established from a witness, with its apparatus</dd>
+<dt>apparatus</dt><dd>the list of what the edition changed against the witness, case by case</dd>
+<dt>witness</dt><dd>the printing or manuscript the text comes from</dd>
+<dt>atom</dt><dd>a grammatical word or a grammatical mark: particle, ending, feature, order, ∅</dd>
+<dt>stretch</dt><dd>the span of sentence in which an atom acts</dd>
+<dt>certified</dt><dd>a locus whose sense was verified; only these form cards</dd>
+</dl>
+<footer>
+<p><a href="index.en.html">Main page</a> <a href="lecturas/POLICY-scholarship-and-compliance.pdf">Policy</a> <a href="lecturas/LICENSE">CC0</a> <a href="releases.xml">Feed</a></p>
+</footer>
+</body>
+</html>
