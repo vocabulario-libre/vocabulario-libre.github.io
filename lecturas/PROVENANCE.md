@@ -1352,7 +1352,7 @@ Use in the corpus: closes the «por comprobar» of 06 § 10 (author's dates, gra
 | Sigla | Role | Text layer | What | Provider | Rights line as read | Read on | Evidence files |
 |---|---|---|---|---|---|---|---|
 | **C** | base | 1819 |  | Banco de la República (Colombia), Biblioteca Luis Ángel Arango, Hemeroteca Digital Histórica p17054coll26 | Derechos de autor: Dominio público | 2026-11-02 (compiler, on the record) | `work/07/evidence/C-rights-2026-11-02.txt` |
-| **C2** | derived | 1819 |  | esta edición (Tesseract sobre las imágenes de C) | CC0 (capa propia) |  | — (derived: this edition's own read of another witness) |
+| **C2** | derived | 1819 |  | esta edición (Tesseract sobre las imágenes de C) | CC0 (capa propia) |  | — (derived: this edition’s own read of another witness) |
 
 Provider records and pages read:
 

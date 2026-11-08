@@ -172,8 +172,9 @@ def provenance(m: dict) -> str:
             for q in ev:
                 if q not in files: files.append(q)
             cell = lambda x: str(x or "").replace("|", "\\|").replace("\n", " ")
+            evcell = lambda ev: ", ".join("`" + str(q.relative_to(ROOT)) + "`" for q in ev) or "— (derived: this edition’s own read of another witness)"   # no backslash inside an f-string expression (Python < 3.12)
             L.append(f"| **{w['sigla']}** | {cell(w.get('role'))} | {cell(w.get('text_layer'))} | {cell(w.get('what'))} | {cell(w.get('provider'))} | "
-                     f"{cell(w.get('rights'))} | {cell(w.get('rights_read_on'))} | {', '.join('`' + str(q.relative_to(ROOT)) + '`' for q in ev) or '— (derived: this edition\'s own read of another witness)'} |")
+                     f"{cell(w.get('rights'))} | {cell(w.get('rights_read_on'))} | {evcell(ev)} |")
         L.append("")
         urls = [(w["sigla"], k, v) for w in r.get("witnesses", []) for k, v in (w.get("urls") or {}).items()]
         if urls:
