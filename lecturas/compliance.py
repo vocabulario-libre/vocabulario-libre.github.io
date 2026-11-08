@@ -614,6 +614,69 @@ def audit_governing(manifest: dict) -> int:
     return a.report()
 
 
+def audit_schema() -> int:
+    """8.2 (2026-11-08; decisions 85, 87; design §§ 2, 9): the grammar layer's data as distributed — vocab/concepts.json, vocab/NN/senses.json,
+    vocab/schema-summary.json. Portable: reads only files of the distribution.
+    (1) every glossed text form of every published lectura (function words apart) attaches to exactly one lexical concept, with that text as source;
+    (2) no concept without an English form: every lexical concept has an English pivot form, every grammatical concept an English realisation;
+    (3) every function-word locus resolves — a concept that exists, a status certified or review, and a reason wherever it is under review;
+    (4) every grammatical concept's realisations are explicit in every language that has forms at all (∅ written, never absent), with a kind from the
+        declared set; (5) the summary's counts equal the data's; a concept with no locus is named."""
+    import json, glob
+    a = Audit()
+    vocab = corpus.ROOT / "vocab"
+    cpath, spath = vocab / "concepts.json", vocab / "schema-summary.json"
+    a.check(cpath.exists() and spath.exists(), "schema present (vocab/concepts.json, vocab/schema-summary.json)")
+    if not (cpath.exists() and spath.exists()):
+        return a.report()
+    C = json.loads(cpath.read_text(encoding="utf-8")); S = json.loads(spath.read_text(encoding="utf-8"))
+    V = json.loads((vocab / "vocab.json").read_text(encoding="utf-8")) if (vocab / "vocab.json").exists() else None
+    sys.path.insert(0, str(vocab)); from extract_vocab import FUNCTION  # noqa
+    kinds = {"word", "particle", "ending", "feature", "order", "∅"}
+    # (2)
+    no_en = [c["id"] for c in C["lexical"] if not any((f.get("form") or "").strip() for f in (c["forms"].get("en") or []))]
+    a.check(not no_en, f"every lexical concept has an English form ({len(C['lexical']):,} concepts)", f"{len(no_en)}: {no_en[:5]}")
+    # (4)
+    langs_with_forms = {L for g in C["grammatical"] for L, fs in (g.get("forms") or {}).items() if fs}
+    bad_real = [(g["id"], L) for g in C["grammatical"] for L in langs_with_forms
+                if not (g.get("forms") or {}).get(L) or not all((f.get("form") or "").strip() and f.get("realisation") in kinds for f in g["forms"][L])]
+    a.check(not bad_real, f"every grammatical concept's realisation explicit in every language with forms ({len(C['grammatical'])} concepts; {', '.join(sorted(langs_with_forms)) or 'none'}; ∅ written, never absent)", f"{len(bad_real)}: {bad_real[:4]}")
+    # (1) — needs vocab.json (the workshop; a scratch rebuild in a distribution has it after extract_vocab.py)
+    if V is not None:
+        att: dict = {}
+        for c in C["lexical"]:
+            for f in c["forms"].get("es") or []:
+                for t in f.get("source") or []:
+                    att[(t, f["form"])] = att.get((t, f["form"]), 0) + 1
+        lex_entries = [e for e in V["entries"] if (e.get("en") or "").strip() and e["w"].lower() not in FUNCTION and e["w"].lower() not in ("al", "del")]
+        excluded = {(x[0], x[1]) for x in C.get("excluded", [])}   # [text, form, gloss] triples
+        unattached = [(e["t"], e["w"]) for e in lex_entries if att.get((e["t"], e["w"]), 0) == 0 and (e["t"], e["w"]) not in excluded]
+        multi = [(e["t"], e["w"]) for e in lex_entries if att.get((e["t"], e["w"]), 0) > 1]
+        a.check(not unattached and not multi, f"every glossed form attaches to exactly one lexical concept ({len(lex_entries):,} forms; {len(excluded)} excluded as note-only glosses, listed)",
+                f"unattached {len(unattached)}: {unattached[:4]}; multiple {len(multi)}: {multi[:4]}")
+    else:
+        a.check(False, "every glossed form attaches to one lexical concept", "vocab/vocab.json not built — run vocab/extract_vocab.py")
+    # (3) and (5)
+    ids = {g["id"] for g in C["grammatical"]}
+    n = cert = bad = 0; used = set(); per_text = {}
+    for f in sorted(glob.glob(str(vocab / "[0-9][0-9]" / "senses.json"))):
+        d = json.loads(Path(f).read_text(encoding="utf-8"))
+        tc = 0
+        for l in d["loci"]:
+            n += 1; used.add(l.get("c"))
+            ok = l.get("c") in ids and l.get("status") in ("certified", "review") and (l["status"] == "certified" or bool(l.get("reason")))
+            bad += 0 if ok else 1
+            if l.get("status") == "certified": cert += 1; tc += 1
+        per_text[d["text"]] = (len(d["loci"]), tc)
+    a.check(bad == 0, f"every function-word locus resolves: a concept that exists, certified or under review with a reason ({n:,} loci in {len(per_text)} texts)", f"{bad} do not")
+    sum_ok = S.get("loci") == n and S.get("certified") == cert and S.get("grammatical") == len(C["grammatical"]) and S.get("lexical") == len(C["lexical"]) \
+             and all(S["texts"].get(t, {}).get("loci") == a_ and S["texts"].get(t, {}).get("certified") == c_ for t, (a_, c_) in per_text.items())
+    a.check(sum_ok, f"schema-summary.json equals the data ({cert:,} of {n:,} loci certified; {len(C['lexical']):,} lexical, {len(C['grammatical'])} grammatical concepts)")
+    orphan = sorted(ids - used)
+    a.check(not orphan, "every grammatical concept has a locus", f"{len(orphan)}: {orphan[:4]}")
+    return a.report()
+
+
 def main() -> int:
     if not Path(POLICY).exists():
         sys.exit(f"Policy not found: {POLICY}")
@@ -651,6 +714,10 @@ def main() -> int:
         print("DISTRIBUTION")
         import dist
         rc |= dist.check()
+    # ---- Schema: the grammar layer's data (8.2; decisions 85, 87) -------------
+    if len(sys.argv) == 1:
+        print("SCHEMA (8.2)")
+        rc |= audit_schema()
     # ---- Release gate (policy § 8) — reported, not enforced here ------------
     if len(sys.argv) == 1:
         print("RELEASE GATE (policy § 8.2; informational — release.py enforces it)")

@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://www.vocabulario-libre.workers.dev/">
-<title>Vocabulario</title>
-<id>urn:sha256:a304012534894ad016798f71b4684f6890afa5eaecc81a78f6c13fc98f348e0a</id>
-<updated>2026-11-06T00:00:00Z</updated>
-<author><name>Vocabulario</name></author>
+<title>Vocabulario Libre</title>
+<id>urn:sha256:c31450ede2e2a25ff6e9fa8d9a8805b3141d2cf7c7c931be24064227c4724258</id>
+<updated>2026-11-08T00:00:00Z</updated>
+<author><name>Vocabulario Libre</name></author>
 <link rel="self" href="releases.xml"/>
 <link rel="alternate" href="index.html"/>
 <entry>
-<title>Vocabulario — Primera distribución · First distribution (2026-11-02)</title>
+<title>Vocabulario Libre — Primera distribución · First distribution (2026-11-02)</title>
 <id>urn:sha256:release-2026-11-02</id>
 <updated>2026-11-02T00:00:00Z</updated>
 <link rel="alternate" href="lecturas/index.html"/>
 <summary>Primera distribución · First distribution</summary>
 </entry>
 <entry>
-<title>Vocabulario — Segunda distribución: encabezado «Texto de lectura» en las quince ediciones · Second distribution: the heading «Texto de lectura» in all fifteen editions (2026-11-03)</title>
+<title>Vocabulario Libre — Segunda distribución: encabezado «Texto de lectura» en las quince ediciones · Second distribution: the heading «Texto de lectura» in all fifteen editions (2026-11-03)</title>
 <id>urn:sha256:release-2026-11-03</id>
 <updated>2026-11-03T00:00:00Z</updated>
 <link rel="alternate" href="lecturas/index.html"/>
 <summary>Segunda distribución: encabezado «Texto de lectura» en las quince ediciones · Second distribution: the heading «Texto de lectura» in all fifteen editions</summary>
 </entry>
 <entry>
-<title>Vocabulario — Tercera distribución: entrenador v2 — el texto junto a sus palabras · Third distribution: trainer v2 — the text beside its words (2026-11-06)</title>
+<title>Vocabulario Libre — Tercera distribución: entrenador v2 — el texto junto a sus palabras · Third distribution: trainer v2 — the text beside its words (2026-11-06)</title>
 <id>urn:sha256:release-2026-11-06</id>
 <updated>2026-11-06T00:00:00Z</updated>
 <link rel="alternate" href="lecturas/index.html"/>
 <summary>Tercera distribución: entrenador v2 — el texto junto a sus palabras · Third distribution: trainer v2 — the text beside its words</summary>
 </entry>
 <entry>
-<title>Vocabulario — Cuarta distribución: interfaz en japonés · Fourth distribution: the interface in Japanese · 第四配布：日本語インターフェース (2026-11-06)</title>
-<id>urn:sha256:a304012534894ad016798f71b4684f6890afa5eaecc81a78f6c13fc98f348e0a</id>
+<title>Vocabulario Libre — Cuarta distribución: interfaz en japonés · Fourth distribution: the interface in Japanese · 第四配布：日本語インターフェース (2026-11-06)</title>
+<id>urn:sha256:release-2026-11-06</id>
 <updated>2026-11-06T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Cuarta distribución: interfaz en japonés · Fourth distribution: the interface in Japanese · 第四配布：日本語インターフェース</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Quinta distribución: la capa gramatical — átomos y tramos certificados en el entrenador · Fifth distribution: the grammar layer — certified atoms and stretches in the trainer · 第五配布：文法レイヤー ― 検証済みの要素と区間 (2026-11-08)</title>
+<id>urn:sha256:c31450ede2e2a25ff6e9fa8d9a8805b3141d2cf7c7c931be24064227c4724258</id>
+<updated>2026-11-08T00:00:00Z</updated>
 <link rel="alternate" href="lecturas/index.html"/>
 <summary>Corpus cerrado y publicado (2 de noviembre de 2026). Versiones · versions: 01 2.4 · 02 1.5 · 03 2.5 · 04 1.7 · 05 1.6 · 06 1.9 · 07 1.7 · 08 1.5 · 09 1.6 · 10 1.8 · 11 1.5 · 12 1.2 · 13 1.5 · 14 1.7 · 15 1.8.</summary>
 </entry>

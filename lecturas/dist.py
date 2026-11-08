@@ -3,8 +3,9 @@
 
 The distributable set is derived from the manifest by allowlist: the
 governing document, every lectura with status *publicada* (source, PDF,
-EPUB, register, vocabulary meaning files), the policy (source and PDF), the
-manifest, the scripts that regenerate everything, and the trainer. Nothing
+EPUB, register, vocabulary meaning files and the grammar layer's senses), the policy
+and the method document (source and PDF), the schema's concepts, stretches and summary,
+the manifest, the scripts that regenerate everything, and the trainer. Nothing
 under work/ is ever included; ROADMAP.md, research reports, provider files,
 generated intermediates (vocab/vocab.json) and a user's own progress file
 (vocab/lexico-progreso.json) stay in the workshop.
@@ -33,13 +34,16 @@ def allowlist() -> list[str]:
     m = corpus.load_manifest()
     files = ["README.md", m["policy"], Path(m["policy"]).with_suffix(".pdf").name,
              "corpus.json", m["governing"], Path(m["governing"]).with_suffix(".pdf").name,
-             Path(m["governing"]).with_suffix(".epub").name, "vocab/flashcards.html"] + SCRIPTS
+             Path(m["governing"]).with_suffix(".epub").name, "vocab/flashcards.html",
+             "vocab/concepts.json", "vocab/stretches.json", "vocab/schema-summary.json"] + SCRIPTS   # 8.4: the grammar layer's data
+    if m.get("method"):   # decision 86 (8.4, 2026-11-08): the method document ships with the layer it explains, source and PDF
+        files += [m["method"], Path(m["method"]).with_suffix(".pdf").name]
     for rec in m["lecturas"]:
         if rec.get("status") != "publicada":
             continue
         st = corpus.stem(rec)
         files += [rec["edition"], st + ".pdf", st + ".epub", rec["register"],
-                  f"{rec['vocab']}/glosses.json", f"{rec['vocab']}/definitions.json"]
+                  f"{rec['vocab']}/glosses.json", f"{rec['vocab']}/definitions.json", f"{rec['vocab']}/senses.json"]
     return sorted(dict.fromkeys(files))
 
 

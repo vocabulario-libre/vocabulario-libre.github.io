@@ -2,6 +2,7 @@
  "project": "Lecturas de los libertadores",
  "description": "Reading editions of texts by Bolívar, San Martín and O'Higgins for personal study of Spanish, each built to POLICY-scholarship-and-compliance.md. Chronological order; the two-digit number prefixes every file of a lectura.",
  "policy": "POLICY-scholarship-and-compliance.md",
+ "method": "METHOD-grammar-layer.md",
  "governing": "00-lecturas-de-los-libertadores.md",
  "status_values": {
   "pendiente": "no files yet; every tool skips it",
