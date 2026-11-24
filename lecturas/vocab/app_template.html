@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Léxico · Vocabulario Libre</title>
+<style>
+:root{
+  --ink:#16262E; --ink-2:#41565F; --ink-3:#59656A;
+  --board:#DCE1E0; --board-2:#CBD3D2; --leaf:#F7F7F5;
+  --verdigris:#2F6F60; --verdigris-soft:#E2EDE9; --on-verdigris:#FFFFFF; --ochre:#8F6C2C; --gold:#8F6C2C; --on-gold:#FFFFFF; --rule:#B9C3C2;
+  --shadow:0 1px 0 rgba(22,38,46,.06), 0 6px 22px -14px rgba(22,38,46,.5);
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#DCE3E2;--ink-2:#A7B6BA;--ink-3:#7F8F94;--board:#111A1E;--board-2:#18242A;
+        --leaf:#1B282E;--verdigris:#6FBFA8;--verdigris-soft:#1D3B36;--on-verdigris:#111A1E;--ochre:#C79A4A;--gold:#C79A4A;--on-gold:#111A1E;
+        --rule:#2C3D45;--shadow:0 6px 22px -14px #000;}
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{background:var(--board);color:var(--ink);font-family:var(--serif);
+     -webkit-font-smoothing:antialiased;line-height:1.5;display:flex;flex-direction:column}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--verdigris);outline-offset:2px;border-radius:2px}
+
+/* ---------- frame ---------- */
+header.masthead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:12px 18px;border-bottom:1px solid var(--rule);background:var(--board)}
+.masthead h1{font-size:17px;font-weight:600;margin:0;letter-spacing:.01em}
+.masthead .brand{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.masthead a.brand{display:inline-flex;align-items:center;min-height:24px;text-decoration:underline;text-underline-offset:3px}   /* the name is the way to the main page */
+.masthead .spacer{flex:1}
+.masthead select{max-width:46vw}
+.panes{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);min-height:0}
+.panes.text-left{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.panes.text-left .textpane{order:0}
+.panes.text-left .deckpane{order:1}
+.textpane{order:1;overflow:auto;padding:18px 22px 60px;border-left:1px solid var(--rule)}
+.panes.text-left .textpane{border-left:0;border-right:1px solid var(--rule)}
+.deckpane{order:0;overflow:auto;padding:18px 18px 0}
+#under{padding-bottom:60px}         /* the pane's room at its end stands under its last line, so that a card's foot reaches the pane's very end */
+
+/* ---------- controls ---------- */
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:6px 10px;font-family:var(--sans);
+  font-size:12.5px;color:var(--ink-2);border-right:1px solid var(--rule)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed=true]{background:var(--verdigris);color:var(--on-verdigris)}
+.btn{background:transparent;border:1px solid var(--rule);border-radius:3px;padding:5px 10px;
+  font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+.btn:hover{border-color:var(--verdigris)}
+.btn[aria-pressed=true]{background:var(--verdigris-soft);border-color:var(--verdigris)}
+select,input[type=search],input[type=text]{background:var(--leaf);border:1px solid var(--rule);
+  border-radius:3px;padding:5px 8px;font-family:var(--sans);font-size:12.5px}
+label.chk{display:inline-flex;align-items:center;gap:5px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+label.chk input{accent-color:var(--verdigris);margin:0}
+.hint{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);margin:0 0 10px}
+.unitnav{align-items:center}
+.unitnav .unitlabel{font-family:var(--sans);font-size:12px;color:var(--ink-2);padding:0 8px;white-space:nowrap}
+.unitnav input{width:4.5em;border:0;border-left:1px solid var(--rule);border-radius:0;padding:5px 6px;background:transparent;text-align:center}
+.nextunit{margin:0 0 10px}
+.sides{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:-6px 0 12px;font-family:var(--sans);font-size:11.5px;color:var(--ink-3)}
+.sides .row{display:inline-flex;align-items:center;gap:4px}
+.sides .row>span{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;margin-right:3px}
+.chip{background:transparent;border:1px solid var(--rule);border-radius:10px;padding:1px 8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3)}
+.chip[aria-pressed=true]{background:var(--verdigris-soft);border-color:var(--verdigris);color:var(--ink)}
+.chip[disabled]{opacity:.45;cursor:default}
+.chip,label.chk{min-height:24px}       /* no control smaller than 24 px either way */
+/* the deck's choices — the order, the mode, the sets, the sides, the script — behind the line that says what the deck holds */
+.deckset > summary{list-style:none;font-family:var(--sans);font-size:11.5px;color:var(--ink-3);cursor:pointer;min-height:24px;display:flex;align-items:center;padding:0 0 6px}
+.deckset > summary::-webkit-details-marker{display:none}
+.deckset > summary::before{content:"▸";margin-right:5px}
+.deckset[open] > summary::before{content:"▾"}
+/* the languages of the face that is up, in one row beside the card, where the screen is narrow or a finger points: the chips share the row */
+.facebar{display:block;margin:0 0 10px}
+.facebar[hidden]{display:none}
+.facebar .row{display:block;margin:0}
+.facebar .cap{display:block;margin:0 0 4px}
+.facebar .chips{display:flex;gap:4px;margin:0}
+.facebar .chip{flex:1 1 44px;min-width:24px;padding:0;text-align:center}
+#dock{display:none}
+/* the index's list of texts stands open over the table on a wide screen under a pointer, with no line of its own; elsewhere it is folded behind
+   one line, a button's shape, that says how many texts are chosen (the trial of U.2, T2) */
+.lectset > summary{display:none}
+/* the tools of the selection stand open in their bar on a wide screen under a pointer; elsewhere behind one control, «⋯», beside «Todo el texto» */
+#more{display:none}
+#more[aria-expanded=true]{background:var(--verdigris-soft);border-color:var(--verdigris)}
+@media (max-width:720px),(pointer:coarse){
+  .sides .row.faces{display:none}      /* the two rows of the sides: here the row of the face that is up stands in their place */
+  #selbar{display:contents}            /* «Todo el texto» and «⋯» stand in the bar's own row, so that the tools open under them and move neither */
+  #selbar[hidden]{display:none}
+  #more{display:inline-block}
+  #seltools{display:none}
+  #selbar.open #seltools{display:flex;flex:1 0 100%;flex-wrap:wrap;gap:8px;align-items:center}
+  .has-sel #texthint .how{display:none}      /* the hint's instructions stand until something is chosen; from then on, the facts of the text alone */
+  .lectset > summary{display:inline-flex;align-items:center;list-style:none;margin:0;cursor:pointer}
+  .lectset > summary::-webkit-details-marker{display:none}
+  .lectset > summary::before{content:"▸";margin-right:6px}
+  .lectset[open] > summary::before{content:"▾"}
+  .lectset[open] > summary{background:var(--verdigris-soft);border-color:var(--verdigris);margin-bottom:8px}
+}
+.tip .fnl{display:block;margin-top:5px;padding-top:5px;border-top:1px dashed var(--rule);font-size:12px;color:var(--ink-2)}
+.status{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--ink-3)}
+.status.ok{color:var(--verdigris);border-color:var(--verdigris)}
+.status.rv{color:var(--ochre);border-color:var(--ochre)}
+.side{margin:0 0 6px}
+.side .lg{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-right:8px}
+.side .fm{font-size:20px;line-height:1.4;color:var(--ink)}
+.side .fm.none{color:var(--ink-3)}
+.side .sub{font-family:var(--sans);font-size:12.5px;line-height:1.45;color:var(--ink-2);margin-left:26px}
+.side .k{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-left:6px}
+.side .mk{font-family:inherit;font-size:10px;line-height:1;vertical-align:.7em;min-width:24px;min-height:24px;border:0;background:transparent;
+  padding:0 3px;margin:-8px 0 -8px 1px;color:var(--ochre);cursor:pointer}     /* ◇: a control, at the size of the small labels beside a form, raised */
+.face{position:relative}
+.mktip{position:absolute;z-index:6;max-width:280px;background:var(--leaf);border:1px solid var(--rule);box-shadow:var(--shadow);
+  border-radius:3px;padding:7px 10px;font-family:var(--sans);font-size:12.5px;line-height:1.45;color:var(--ink);cursor:auto}
+.legend{font-family:var(--sans);font-size:12px;color:var(--ink-2);margin:12px 0 0}
+.legend .mk{color:var(--ochre);margin-right:4px}
+/*__FONT_FACE__*/
+.fnline{font-family:var(--sans);font-size:13px;color:var(--ink-2);margin:4px 0 0}
+.atoms{margin:10px 0 0;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
+.atoms li{padding:3px 0;border-top:1px dashed var(--rule)}
+.atoms b{color:var(--ink);font-weight:600}
+.atoms .k{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-left:6px}
+.note{background:var(--verdigris-soft);border-left:2px solid var(--verdigris);
+  padding:8px 11px;font-family:var(--sans);font-size:12px;color:var(--ink-2);margin-bottom:12px;border-radius:0 3px 3px 0}
+.note button{float:right;background:none;border:0;color:var(--ink-3);font-size:14px;line-height:1;padding:0 2px;min-width:24px;min-height:24px;margin:-4px -6px 0 4px}
+
+/* ---------- text pane ---------- */
+.para{position:relative;margin:0 0 12px;padding:6px 8px 6px 46px;border-radius:3px;cursor:pointer;
+  font-size:16px;line-height:1.62;border:1px solid transparent}
+.para:hover{background:var(--leaf)}
+.para.sel{background:var(--leaf);border-color:var(--rule);box-shadow:var(--shadow)}
+.para .pn{position:absolute;left:8px;top:7px;font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.05em}
+.para.sel .pn{color:var(--verdigris)}
+.para .pn::before{content:"§ "}
+.w{cursor:help}
+.w.u{text-decoration:underline dotted var(--ink-3);text-underline-offset:3px}
+.w.k{color:var(--ink-3)}            /* only when «marcar lo asentado» is on */
+.w.cur{background:var(--verdigris-soft);border-radius:2px;outline:1px solid var(--verdigris)}
+.tip{position:absolute;z-index:5;max-width:280px;background:var(--leaf);border:1px solid var(--rule);
+  box-shadow:var(--shadow);border-radius:3px;padding:7px 10px;font-family:var(--sans);font-size:12.5px;color:var(--ink)}
+.tip .t{font-family:var(--mono);font-size:10px;color:var(--ink-3);display:block;margin-bottom:3px}
+.tip .def{font-size:12px;color:var(--ink-2);margin:4px 0 0}
+.tip .go{display:block;margin-top:6px;font-size:11px;color:var(--verdigris)}
+
+/* ---------- index ---------- */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-align:left;
+  color:var(--ink-3);border-bottom:1px solid var(--rule);padding:6px 6px}
+td{border-bottom:1px solid var(--rule);padding:6px;vertical-align:top}
+td.n{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-align:right;white-space:nowrap}
+td.w{font-weight:600;width:24%;cursor:pointer}
+td.d{color:var(--ink-2);font-size:13px}
+tr.und td.d{color:var(--ink-3);font-style:italic}
+tr.k td.w{color:var(--ink-3);font-weight:400}
+.lects{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0}
+#texthint{padding-top:10px}         /* the room between the bar and the hint, which the list of texts held even where it was not shown: the hint's own now, and not a margin, which would fold into the bar's */
+.occ{margin:10px 0 14px;padding:8px 10px;background:var(--leaf);border:1px solid var(--rule);border-radius:3px;font-size:14px}
+.occ p{margin:0 0 6px;color:var(--ink-2)}
+.occ b{color:var(--ink);background:var(--verdigris-soft);padding:0 2px;border-radius:2px}
+.occ .ref{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-left:6px;white-space:nowrap}
+
+/* ---------- card: two faces, one of them shown; its first line and its foot are the same on both ---------- */
+.card{background:var(--leaf);border:1px solid var(--rule);border-radius:4px;box-shadow:var(--shadow);
+  padding:22px 22px 18px;min-height:300px;display:flex;flex-direction:column}
+.card [hidden]{display:none}
+.card.turns{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}     /* a touch turns it: the browser's own flash over the whole card is not wanted, and two quick touches are two turns, not a zoom */
+.locator{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;color:var(--ink-3);text-transform:uppercase;
+  display:flex;gap:10px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:16px}
+.locator .where{flex:1 1 auto;min-width:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}     /* what the line says wraps in its own room */
+.locator .turn{flex:none;background:transparent;border:1px solid var(--rule);border-radius:3px;min-height:24px;
+  font-family:var(--sans);font-size:12.5px;letter-spacing:0;text-transform:none;color:var(--ink-2);padding:2px 9px;line-height:1.3}
+.locator .turn:hover{border-color:var(--verdigris)}
+/* the foot stays in view: where a face is taller than the room, the face runs under it */
+.foot{position:sticky;bottom:0;background:var(--leaf);margin:14px -22px -18px;padding:0 22px 18px;
+  border-top:1px dashed var(--rule);border-radius:0 0 3px 3px}
+.locator .mark{color:var(--verdigris)}
+.locator .go{cursor:pointer;color:var(--verdigris)}
+.locator .go,.recur .go{display:inline-block;padding:5px 0;margin:-5px 0}     /* a line of text reached over 24 px */
+.headword{font-size:34px;line-height:1.15;font-weight:500;letter-spacing:-.01em;margin:0 0 6px;word-break:break-word}
+.prompt{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-bottom:6px}
+.en{font-size:20px;line-height:1.4;margin:0 0 8px;color:var(--ink)}
+.def{font-size:15px;line-height:1.55;margin:0 0 4px;color:var(--ink-2)}
+.ctx{font-size:15px;line-height:1.62;color:var(--ink-3);margin:12px 0 0}
+.ctx b{color:var(--ink);font-weight:600;background:var(--verdigris-soft);padding:0 2px;border-radius:2px}
+.ctx .ref{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3);margin-left:6px;white-space:nowrap}
+.cloze b{background:var(--verdigris-soft);color:transparent;border-bottom:2px solid var(--verdigris);border-radius:0}
+.recur{margin-top:12px;font-family:var(--sans);font-size:12px;color:var(--ink-3)}
+.recur .go{color:var(--verdigris);cursor:pointer}
+.grow{flex:1}
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.grade button{background:var(--leaf);border:1px solid var(--rule);border-radius:3px;padding:10px 6px;
+  font-family:var(--sans);font-size:12.5px;color:var(--ink-2);display:flex;flex-direction:column;gap:3px;align-items:center}
+.grade button:hover{border-color:var(--verdigris)}
+.grade button kbd{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);border:1px solid var(--rule);border-radius:2px;padding:0 4px}
+.reveal{width:100%;margin-top:14px;background:var(--verdigris);color:var(--on-verdigris);border:0;border-radius:3px;padding:12px;
+  font-family:var(--sans);font-size:13.5px}
+.meter{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);margin-top:12px}
+.meter b{color:var(--ink);font-weight:600}
+.track{height:2px;background:var(--board-2);border-radius:2px;overflow:hidden;margin-top:10px}
+.track i{display:block;height:100%;background:var(--verdigris);width:0}
+.empty{padding:40px 10px;text-align:center;color:var(--ink-3);font-size:14px}
+.empty p{margin:0 0 10px}
+
+/* ---------- footer ---------- */
+footer{padding:12px 18px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:11.5px;
+  color:var(--ink-3);line-height:1.6;background:var(--board)}
+footer b{color:var(--ink-2);font-weight:600}
+/* the line of every page, at the trainer's foot. It serves a reader who has come to a page's end: it is a row of the footer where the page scrolls — the narrow rule,
+   below. Where the trainer is one screen that does not scroll, its head is in view with its foot and the row would be taken from the card: there it is not shown */
+footer .nav{display:none}footer .nav a{display:inline-flex;align-items:center;min-height:24px;color:inherit}footer .nav [aria-current]{font-weight:600;color:var(--ink-2)}
+.tools{display:inline-flex;gap:6px;flex-wrap:wrap;margin-left:8px;vertical-align:middle}
+.tools button{background:transparent;border:1px solid var(--rule);border-radius:3px;padding:3px 8px;
+  font-family:var(--sans);font-size:11px;color:var(--ink-2)}
+
+/* ---------- narrow: the deck is a sheet over the handle; what is touched at every card stands at the screen's foot ---------- */
+.handle{display:none}
+@media (max-width:720px),(max-height:720px) and (pointer:coarse){
+  .panes,.panes.text-left{display:block;overflow:visible;flex:none}
+  html,body{height:auto;min-height:100%}            /* the page is as tall as its text: its foot comes after the text, not under it */
+  .textpane,.panes.text-left .textpane{border:0;padding:14px;overflow:visible}
+  footer .nav{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;margin:0 0 6px}   /* the page scrolls here: the line of every page is the footer's first row */
+  footer{padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))}      /* its own 12 px and the handle's 44, which lies over the page's end */
+  /* the sheet stands between the screen's top and the handle; in it the card scrolls, and the dock stays */
+  .deckpane{position:fixed;left:0;right:0;top:0;bottom:calc(44px + env(safe-area-inset-bottom,0px));padding:0;display:flex;flex-direction:column;overflow:hidden;
+    background:var(--board);transform:translateY(100%);transition:transform .18s;z-index:4}
+  .deckpane.open{transform:none}
+  .deckpane .upper{flex:1 1 auto;min-height:0;position:relative;display:flex;flex-direction:column}
+  .deckpane .scroll{flex:1 1 auto;min-height:0;overflow:auto;padding:0 14px}
+  #under{padding-bottom:30px}
+  .deckpane .first{min-height:100%;display:flex;flex-direction:column}
+  .deckpane .first #stage{flex:1 0 auto;display:flex;flex-direction:column}
+  .deckpane .first .card{flex:1 0 auto;min-height:0;padding:16px 16px 12px;margin-bottom:10px}
+  /* the deck's line is what the deck holds, said at its head; its choices open over the dock, from the control at the end of the languages' row */
+  .deckpane .deckset > summary{pointer-events:none;min-height:0;padding:8px 0 6px}
+  .deckpane .deckset > summary::before,.deckpane .deckset[open] > summary::before{content:none}
+  #deckmenu{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:12px 14px 4px;background:var(--board);border-top:1px solid var(--rule);
+    box-shadow:0 -8px 24px -16px rgba(0,0,0,.6);max-height:min(60vh,100%);overflow:auto}      /* never taller than the card's room: on a short screen it scrolls within it */
+  #deckmenu .bar{margin-bottom:10px}
+  #deckmenu .sides{margin:0 0 8px}
+  /* the dock: the languages of the face that is up, and under them «Ver respuesta» or the grades */
+  #dock{display:block;flex:none;padding:8px 14px 8px;border-top:1px solid var(--rule);background:var(--board)}
+  #dock .facebar{margin:0 0 8px}
+  #dockfoot .reveal,#dockfoot .grade{margin-top:0}
+  .facebar .gear{flex:1 1 44px;min-width:24px;padding:0;border-radius:3px;font-size:15px;line-height:1;color:var(--ink-2)}
+  /* the handle: the screen's foot, in the same place whether the text or the cards are up; its label in the middle says what a touch does */
+  .handle{position:fixed;left:0;right:0;bottom:0;z-index:5;height:calc(44px + env(safe-area-inset-bottom,0px));padding:0 14px env(safe-area-inset-bottom,0px);margin:0;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;background:var(--board);border:0;border-top:1px solid var(--rule);border-radius:0;
+    box-shadow:0 -8px 24px -16px rgba(0,0,0,.6);font-family:var(--sans);color:var(--ink-2);text-align:left}
+  .handle b{color:var(--ink)}
+  .handle .golabel{font-size:12.5px;font-weight:700;border:1px solid var(--gold);border-radius:3px;padding:5px 10px;background:var(--gold);color:var(--on-gold);white-space:nowrap}
+  .handle.quiet .golabel{background:transparent;color:var(--ink-2);border-color:var(--rule)}
+  .handle .hl,.handle .hr{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}
+  .handle .hl{text-align:right}
+  .headword{font-size:28px}
+  .grade{grid-template-columns:repeat(4,1fr);gap:6px}
+  .grade button{padding-left:2px;padding-right:2px}   /* four in a row at the narrowest width: the label on one line */
+  .locator{margin-bottom:12px;padding-bottom:10px}
+  /* the head in two rows: the name, the title and the help; then the list of texts beside the languages */
+  header.masthead{padding:8px 14px;gap:0 8px;align-items:center}
+  .masthead #sideswitch{display:none}                 /* the panes do not stand side by side here: there is nothing to swap */
+  .masthead .brand{order:1}.masthead h1{order:2}.masthead .spacer{order:3}.masthead #tourbtn{order:4}
+  .masthead::after{content:"";order:5;flex-basis:100%;height:0}
+  .masthead select{order:6;flex:1 1 0;min-width:0;max-width:none;margin-top:8px}
+  .masthead #langseg{order:7;margin-top:8px}
+  .textpane .bar{margin-bottom:8px}
+  /* held sideways — the screen wider than tall, and wide enough for a card as wide as the narrowest phone beside the dock (320 + 264 px):
+     what is touched at every card stands at the card's side, at the screen's right edge, where a thumb is, and the card has the sheet's whole
+     height; the head takes one row */
+  @media (orientation:landscape) and (min-width:584px){
+    .deckpane{flex-direction:row}
+    .deckpane .upper{min-width:0;border-right:1px solid var(--rule)}
+    #dock{width:264px;border-top:0;display:flex;flex-direction:column;overflow:auto}
+    #dock > :first-child{margin-top:auto}       /* its controls stand at its foot, over the handle; were they ever taller than it, they would scroll and not be cut */
+    #dock .facebar .chips{flex-wrap:wrap;margin-right:0}
+    #dock .facebar .chip,#dock .facebar .gear{flex:0 0 44px}       /* five to a row: 5 × 44 and four gaps of 4 are the dock's 264 less its two margins of 14 */
+    #dock .grade{grid-template-columns:repeat(2,1fr)}
+    #deckmenu{max-height:100%}
+    .masthead::after{content:none}
+    .masthead .spacer{display:none}
+    .masthead select{order:3;flex:1 1 8rem;margin-top:0}
+    .masthead #langseg{order:4;margin-top:0}
+    .masthead #tourbtn{order:5}
+  }
+}
+/* ---------- a finger: every control as tall as the handle, 44 px, and as wide — but the chips of the languages, which share one row ---------- */
+@media (pointer:coarse){
+  .masthead a.brand{min-height:44px;align-self:center}footer .nav a{min-height:44px;min-width:44px}   /* the way out, under a finger; the name set at the row's middle, so that the row is no taller for it */
+  .seg button,.btn,.chip,select,.tools button,.locator .turn,.grade button,.reveal,.note button{min-height:44px;min-width:44px}
+  input[type=search],input[type=number]{min-height:44px}
+  td.w{height:44px}                    /* a row of the index is reached over 44 px */
+  .chip{padding:1px 12px}
+  .facebar .chip,.facebar .gear{min-width:24px;padding:0}
+  label.chk{min-height:44px}
+  .deckset > summary{min-height:44px;padding:0}
+  .locator .go,.recur .go{padding:15px 0;margin:-15px 0}
+  .side .mk{min-width:44px;min-height:44px;margin:-18px -9px}
+  .grade button kbd,.reveal kbd{display:none}
+  .sides .row{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* 7.4b (decision 89, T1): the tour — colours from the trainer's own tokens, so both schemes hold */
+.tour { position: fixed; right: 1rem; bottom: 1rem; z-index: 50; max-width: 22rem; }
+.tour[hidden] { display: none; }
+.tour.up { top: 1rem; bottom: auto; }       /* where the card would lie over what it points at, it stands at the screen's other end, */
+.tour.aside { left: 1rem; right: auto; }    /* or at its other side */
+.tour-card { max-height: calc(100vh - 2rem); overflow: auto; background: var(--leaf); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: .8rem 1rem; box-shadow: var(--shadow); }
+.tour-n { margin: 0; font-size: .8rem; color: var(--ink-2); } .tour-title { margin: .2rem 0 .4rem; font-size: 1.05rem; color: var(--ink); }
+.tour-body { margin: 0 0 .7rem; font-size: .95rem; line-height: 1.45; color: var(--ink); } .tour-nav { margin: 0; display: flex; gap: .5rem; }
+.tour-nav .btn { color: var(--ink); } .tour-nav .btn:disabled { color: var(--ink-3); border-color: var(--rule); }
+.tour-hl { outline: 2px solid var(--ochre); outline-offset: 3px; border-radius: 3px; }
+@media (max-width: 40rem) { .tour { left: 1rem; right: 1rem; max-width: none; } }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brand" href="../index.html" data-way="index">Vocabulario Libre</a>
+  <h1 data-t="lexicon">Léxico</h1>
+  <select id="text" aria-label="Texto"></select>
+  <span class="spacer"></span>
+  <span class="seg" id="langseg" aria-label="Idioma · Language · 言語"><button data-lang="es" aria-pressed="true">ES</button><button data-lang="en" aria-pressed="false">EN</button><button data-lang="ja" aria-pressed="false">JA</button></span>
+  <button class="btn" id="sideswitch" data-t="side">⇄ panel</button>
+  <button class="btn" id="tourbtn" data-t="tour_btn" aria-label="Cómo usar · How to use · 使い方">?</button>
+</header>
+
+<div class="panes" id="panes">
+
+  <section class="deckpane" id="deckpane" aria-label="Fichas">
+    <div class="upper">
+      <div class="scroll">
+        <div class="first">
+          <details class="deckset" id="deckset">
+            <summary id="deckhint"></summary>
+            <div class="in" id="deckmenu">
+              <div class="bar">
+                <div class="seg" role="group">
+                  <button data-order="text" aria-pressed="true" data-t="o_text">Orden del texto</button>
+                  <button data-order="shuffle" aria-pressed="false" data-t="o_shuffle">Barajadas</button>
+                  <button data-order="review" aria-pressed="false" data-t="o_review">Por repasar</button>
+                </div>
+                <div class="seg" role="group">
+                  <button data-dir="recog" aria-pressed="true" data-t="d_recog">Reconocer</button>
+                  <button data-dir="cloze" aria-pressed="false" data-t="d_cloze">Producir</button>
+                </div>
+                <label class="chk"><input type="checkbox" id="fn"> <span data-t="fn">gramaticales</span></label>
+                <span class="seg" role="group" aria-label="Conjuntos">
+                  <button data-set="words" aria-pressed="true" data-t="set_words">palabras</button>
+                  <button data-set="atoms" aria-pressed="false" data-t="set_atoms">átomos</button>
+                  <button data-set="stretches" aria-pressed="false" data-t="set_stretches">tramos</button>
+                </span>
+              </div>
+              <div class="sides" id="sides"></div>
+            </div>
+          </details>
+          <div id="note1" class="note" hidden><button id="note1x" aria-label="Cerrar">×</button><span data-t="note1">El progreso se guarda en este navegador. Exporte un archivo («Guardar progreso», abajo) para conservarlo o cambiar de aparato.</span></div>
+          <div id="fontnote" class="note" hidden></div>
+          <div class="sides facebar" id="facebartop" hidden></div>
+          <main id="stage">
+            <div id="offer"></div>
+            <div class="card" id="card">
+              <div class="locator" id="cardhead"><span class="where" id="where"></span><button class="turn" id="turn" type="button"></button></div>
+              <div class="face" id="face" role="group" aria-live="polite"></div>
+              <div class="grow"></div>
+              <div class="foot" id="foot"></div>
+            </div>
+          </main>
+        </div>
+        <div id="under"></div>
+      </div>
+    </div>
+    <div id="dock">
+      <div class="sides facebar" id="facebar" hidden></div>
+      <div id="dockfoot"></div>
+    </div>
+  </section>
+
+  <section class="textpane" id="textpane" aria-label="Texto">
+    <div class="bar">
+      <div class="seg" role="group">
+        <button data-view="text" aria-pressed="true" data-t="v_text">Texto</button>
+        <button data-view="index" aria-pressed="false" data-t="v_index">Índice</button>
+      </div>
+      <span id="selbar">
+        <button class="btn" id="selall" aria-pressed="false" data-t="sel_all">Todo el texto</button>
+        <button class="btn" id="more" type="button" aria-expanded="false" aria-controls="seltools" aria-label="más" data-t-label="more">⋯</button>
+        <span id="seltools"><button class="btn" id="selalltexts" data-t="sel_all_texts">Todos los textos</button>
+        <select id="saved" aria-label="Selecciones guardadas"></select>
+        <button class="btn" id="save" data-t="save_sel">Guardar selección</button>
+        <button class="btn" id="link" data-t="link_sel">Enlace a esta selección</button>
+        <label class="chk"><input type="checkbox" id="markknown"> <span data-t="markknown">marcar lo asentado</span></label></span>
+      </span>
+      <span id="idxbar" hidden>
+        <select id="sort" aria-label="Orden del índice">
+          <option value="freq" data-t="s_freq">Por frecuencia en la selección</option>
+          <option value="disp" data-t="s_disp">Por dispersión (textos · autores)</option>
+        </select>
+        <span class="seg unitnav" role="group" aria-label="Unidad de cien"><button id="unitprev" aria-label="‹">‹</button><span class="unitlabel" id="unitlabel"></span><input type="number" id="unit" min="1" value="1" aria-label="Unidad"><button id="unitnext" aria-label="›">›</button></span>
+        <label class="chk"><input type="checkbox" id="src-text" checked> <span data-t="src_text">texto</span></label>
+        <label class="chk"><input type="checkbox" id="src-ed"> <span data-t="src_ed">aparato</span></label>
+        <input type="search" id="q" data-t-ph="search" placeholder="Buscar…" aria-label="Buscar">
+      </span>
+    </div>
+    <details class="lectset" id="lectset" hidden><summary class="btn" id="lectline"></summary><div id="lects" class="lects"></div></details>
+    <p class="hint" id="texthint"></p>
+    <div id="reader"></div>
+  </section>
+
+</div>
+
+<button class="handle" id="handle" type="button" aria-expanded="false" aria-controls="deckpane"><span class="hl"><b id="hcount">0</b> <span id="hcountw"></span></span><span class="golabel" id="golabel"></span><span class="hr"><b id="hdue">0</b> <span id="hduew"></span></span></button>
+
+<div id="tour" class="tour" hidden>
+  <div class="tour-card" role="dialog" aria-modal="false" aria-labelledby="tour-title">
+    <p class="tour-n" id="tour-n"></p>
+    <h2 class="tour-title" id="tour-title"></h2>
+    <p class="tour-body" id="tour-body"></p>
+    <p class="tour-nav"><button class="btn" id="tour-prev"></button><button class="btn" id="tour-next"></button><button class="btn" id="tour-close"></button></p>
+  </div>
+</div>
+<footer>
+  <nav class="nav nav-foot" aria-label="Navegación" data-t-label="nav_label"><a href="../index.html" data-way="index" data-t="nav_main">Página principal</a> · <span aria-current="page">Léxico</span> · <a href="../como-usar.html" data-way="como-usar" data-t="nav_guide">Cómo usar</a></nav>
+  <span id="textrights"></span>
+  <span data-t="footer"><b>Equivalencias y definiciones</b> escritas para este proyecto; ninguna procede de un diccionario. Programa y datos bajo CC0 1.0.</span>
+  <span id="rights"></span>
+  <span class="tools">
+    <button id="export" data-t="export">Guardar progreso</button>
+    <button id="import" data-t="import">Cargar progreso</button>
+    <button id="reset" data-t="reset">Empezar de nuevo</button>
+    <input type="file" id="file" accept="application/json" hidden>
+  </span>
+</footer>
+
+<script>
+const DATA = /*__VOCAB_DATA__*/null;
+const GRAMMAR = /*__GRAMMAR_DATA__*/null;   // the grammar layer (8.3, decision 87): G concepts · L certified loci · R loci under review
+
+/* =====================================================================
+   STRINGS — the chrome in Spanish, English and Japanese (the content is what it is)
+   ===================================================================== */
+const STRINGS = {
+  es: {
+    lexicon: "Léxico", side: "⇄ panel", cards_due: "fichas · por repasar:", o_text: "Orden del texto", o_shuffle: "Barajadas",
+    o_review: "Por repasar", d_recog: "Reconocer", d_cloze: "Producir", fn: "gramaticales",
+    note1: "El progreso se guarda en este navegador. Exporte un archivo («Guardar progreso», abajo) para conservarlo o cambiar de aparato.",
+    v_text: "Texto", v_index: "Índice", sel_all: "Todo el texto", sel_none: "Quitar todo", save_sel: "Guardar selección",
+    link_sel: "Enlace a esta selección", markknown: "marcar lo asentado", s_freq: "Por frecuencia en la selección",
+    s_disp: "Por dispersión (textos · autores)", src_text: "texto", src_ed: "aparato", search: "Buscar…",
+    footer: "<b>Equivalencias y definiciones</b> escritas para este proyecto; ninguna procede de un diccionario. Programa y datos bajo CC0 1.0.",
+    export: "Guardar progreso", import: "Cargar progreso", reset: "Empezar de nuevo",
+    saved_ph: "Selecciones guardadas…", saved_del: "— borrar una guardada", unit_idx: "Unidad {n} del índice · ",
+    paras: "{n} párrafo{s} · ", nosel: "Sin selección · ", cards: "{n} fichas · {d} por repasar",
+    empty_unit: "Nada en esta unidad.", empty_sel: "Elige uno o varios párrafos del texto (clic; mayúsculas-clic para un tramo) y se forman las fichas.",
+    of: "de", cloze_prompt: "Completa la palabra que falta", g0: "Otra vez", g1: "Difícil", g2: "Bien", g3: "Fácil",
+    reveal: "Ver respuesta", space: "espacio", m_seen: "vistas", m_known: "asentadas", m_deck: "del mazo", m_left: "quedan",
+    aparato: "aparato", defined: "definida", glossed: "con equivalencia", rep: "rep", once: "vez", times: "veces",
+    in_sel: "en esta selección", in_marked: "en los textos marcados", in_: "en", text1: "texto", textN: "textos", by: "de",
+    author1: "autor", authorN: "autores", other_occ: "otras apariciones",
+    texthint: "{author} · {date} · {n} párrafos.", texthint_how: " Clic en un párrafo para estudiarlo; mayúsculas-clic para un tramo; clic en una palabra: su equivalencia.",
+    idxhint: "{n} formas en {t} texto{s} · unidades de cien · clic en una palabra: sus apariciones · «Estudiar esta unidad» forma el mazo.",
+    study_unit: "Estudiar esta unidad", h_word: "Palabra", h_n: "Veces", h_disp: "Textos · autores", h_gloss: "Equivalencia",
+    no_gloss: "aún sin equivalencia", tip_go: "otro clic: la ficha", name_sel: "Nombre de la selección:", which_del: "¿Cuál borrar?",
+    link_copied: "Enlace copiado:", link: "Enlace:", bad_file: "Ese archivo no contiene un progreso legible.",
+    confirm_reset: "Se borrará todo el progreso de este dispositivo. ¿Continuar?",
+    no_store: " El navegador no guarda datos desde este origen: usa «Guardar progreso» antes de cerrar.",
+    text_of: "<b>Texto</b> de ", pd: ", dominio público.", fonts: "Para ver todos los alfabetos instale: ", lang_btn: "EN",
+    set_words: "palabras", set_atoms: "átomos", set_stretches: "tramos", front: "anverso", back: "reverso",
+    certified: "certificado", review: "en revisión", function: "función", see_stretch: "tramo", no_stretch: "sin tramo",
+    atoms_in: "átomos del tramo", none: "—", cloze_atom: "Completa la palabra gramatical que falta", cloze_stretch: "Completa el tramo que falta",
+    loci: "apariciones certificadas", in_corpus: "en el corpus", k_word: "palabra", k_particle: "partícula", k_ending: "desinencia",
+    k_feature: "rasgo", k_order: "orden", k_null: "∅ (nada)", grade_note: "Sólo lo certificado forma fichas; lo demás espera revisión.",
+    tier_2: "etapa posterior", tier_3: "derivada", tier_3r: "reconstruida", tier_4: "préstamo provisional", uncited: "sin cita",
+    unchecked: "Forma escrita para este proyecto que todavía no ha revisado ninguna persona que lea la lengua: puede contener errores.",
+    left_out: " · {n} fuera: sin forma en las lenguas del anverso", sc_both: "ambas", sc_script: "escritura", sc_translit: "transliteración",
+    sel_all_texts: "Todos los textos", unit_of: "Unidad {n} de {N} · {a}–{b}", next_unit: "Siguiente unidad ›", deck_done: "Mazo recorrido.",
+    texthint2: " «Todos los textos» selecciona los quince; el Índice los ordena por frecuencia en unidades de cien.",
+    go_cards: "Ver fichas", go_text: "Ver texto", deck_settings: "ajustes del mazo", more: "más", lects_line: "{n} de {N} textos",
+    nav_label: "Navegación", nav_main: "Página principal", nav_guide: "Cómo usar",
+    tour_btn: "?", tour_title: "Cómo usar Léxico", tour_prev: "Anterior", tour_next: "Siguiente", tour_close: "Cerrar", tour_done: "Entendido",
+    tour_s1t: "El texto", tour_s1: "Elige un texto arriba. Clic en un párrafo: sus palabras forman las fichas. Mayúsculas-clic: un tramo de párrafos. «Todo el texto»: entero. Clic en una palabra: su equivalencia.",
+    tour_s2t: "Tres juegos de fichas", tour_s2: "«palabras»: cada forma con su frase y su equivalencia. «átomos»: las palabras gramaticales. «tramos»: el átomo en su trecho. Sólo lo certificado forma fichas; lo demás, «en revisión».",
+    tour_s3t: "Panel, caras y modo", tour_s3: "En pantalla ancha, «⇄ panel» pasa el texto al otro lado de las fichas. Junto a la ficha se eligen los idiomas de cada cara, «anverso» y «reverso». «Reconocer»: se ve la palabra, se recuerda el sentido. «Producir»: la frase con un hueco, se completa.",
+    tour_s4t: "El repaso", tour_s4: "La barra espaciadora gira la ficha, y también un clic o un toque sobre ella; al repetirlo vuelve el anverso. Otra vez · Difícil · Bien · Fácil fija el próximo repaso. «Por repasar» pone delante lo pendiente.",
+    tour_s5t: "El progreso", tour_s5: "Queda en este navegador y en ningún otro sitio. «Guardar progreso» lo escribe en un archivo; «Cargar progreso» lo lee. «?» vuelve a abrir esta guía.",
+  },
+  en: {
+    lexicon: "Lexicon", side: "⇄ pane", cards_due: "cards · to review:", o_text: "Text order", o_shuffle: "Shuffled",
+    o_review: "To review", d_recog: "Recognise", d_cloze: "Produce", fn: "grammatical words",
+    note1: "Progress is kept in this browser. Export a file (“Save progress”, below) to keep it or to change device.",
+    v_text: "Text", v_index: "Index", sel_all: "Whole text", sel_none: "Clear all", save_sel: "Save selection",
+    link_sel: "Link to this selection", markknown: "mark what is known", s_freq: "By frequency in the selection",
+    s_disp: "By spread (texts · authors)", src_text: "text", src_ed: "apparatus", search: "Search…",
+    footer: "<b>Glosses and definitions</b> written for this project; none comes from a dictionary. Program and data under CC0 1.0.",
+    export: "Save progress", import: "Load progress", reset: "Start over",
+    saved_ph: "Saved selections…", saved_del: "— delete a saved one", unit_idx: "Index unit {n} · ",
+    paras: "{n} paragraph{s} · ", nosel: "No selection · ", cards: "{n} cards · {d} to review",
+    empty_unit: "Nothing in this unit.", empty_sel: "Choose one or more paragraphs of the text (click; shift-click for a stretch) and the cards form.",
+    of: "from", cloze_prompt: "Supply the missing word", g0: "Again", g1: "Hard", g2: "Good", g3: "Easy",
+    reveal: "Show answer", space: "space", m_seen: "seen", m_known: "known", m_deck: "of deck", m_left: "left",
+    aparato: "apparatus", defined: "defined", glossed: "glossed", rep: "rep", once: "time", times: "times",
+    in_sel: "in this selection", in_marked: "in the checked texts", in_: "in", text1: "text", textN: "texts", by: "by",
+    author1: "author", authorN: "authors", other_occ: "other occurrences",
+    texthint: "{author} · {date} · {n} paragraphs.", texthint_how: " Click a paragraph to study it; shift-click for a stretch; click a word for its gloss.",
+    idxhint: "{n} forms in {t} text{s} · units of a hundred · click a word for its occurrences · “Study this unit” forms the deck.",
+    study_unit: "Study this unit", h_word: "Word", h_n: "Count", h_disp: "Texts · authors", h_gloss: "Gloss",
+    no_gloss: "no gloss yet", tip_go: "click again: the card", name_sel: "Name of the selection:", which_del: "Which one to delete?",
+    link_copied: "Link copied:", link: "Link:", bad_file: "That file does not contain readable progress.",
+    confirm_reset: "All progress on this device will be erased. Continue?",
+    no_store: " The browser keeps no data from this origin: use “Save progress” before closing.",
+    text_of: "<b>Text</b> by ", pd: ", public domain.", fonts: "To see every alphabet install: ", lang_btn: "ES",
+    set_words: "words", set_atoms: "atoms", set_stretches: "stretches", front: "front", back: "back",
+    certified: "certified", review: "under review", function: "function", see_stretch: "stretch", no_stretch: "no stretch",
+    atoms_in: "atoms of the stretch", none: "—", cloze_atom: "Supply the missing grammatical word", cloze_stretch: "Supply the missing stretch",
+    loci: "certified occurrences", in_corpus: "in the corpus", k_word: "word", k_particle: "particle", k_ending: "ending",
+    k_feature: "feature", k_order: "order", k_null: "∅ (nothing)", grade_note: "Only what is certified becomes a card; the rest awaits review.",
+    tier_2: "later stage", tier_3: "derived", tier_3r: "reconstructed", tier_4: "provisional loan", uncited: "uncited",
+    unchecked: "A form written for this project that no person who reads the language has checked yet: it may be wrong.",
+    left_out: " · {n} left out: no form in the front's languages", sc_both: "both", sc_script: "script", sc_translit: "transliteration",
+    sel_all_texts: "All texts", unit_of: "Unit {n} of {N} · {a}–{b}", next_unit: "Next unit ›", deck_done: "Deck done.",
+    texthint2: " “All texts” selects all fifteen; the Index orders them by frequency in units of a hundred.",
+    go_cards: "Show cards", go_text: "Show text", deck_settings: "deck settings", more: "more", lects_line: "{n} of {N} texts",
+    nav_label: "Navigation", nav_main: "Main page", nav_guide: "How to use",
+    tour_btn: "?", tour_title: "How to use Léxico", tour_prev: "Back", tour_next: "Next", tour_close: "Close", tour_done: "Done",
+    tour_s1t: "The text", tour_s1: "Choose a text above. Click a paragraph: its words form the cards. Shift-click: a stretch of paragraphs. “Whole text”: all of it. Click a word: its gloss.",
+    tour_s2t: "Three card sets", tour_s2: "“words”: each form with its sentence and gloss. “atoms”: the grammatical words. “stretches”: the atom in its span. Only what is certified forms cards; the rest says “under review”.",
+    tour_s3t: "Pane, faces and mode", tour_s3: "On a wide screen, “⇄ pane” moves the text to the other side of the cards. Beside the card the languages of each face are chosen, “front” and “back”. “Recognise”: the word is shown, the sense recalled. “Produce”: the sentence with a gap, supplied.",
+    tour_s4t: "Review", tour_s4: "The space bar turns the card, and so does a click or a tap on it; done again, it brings the front back. Again · Hard · Good · Easy sets the next review. “To review” puts what is due first.",
+    tour_s5t: "Progress", tour_s5: "It stays in this browser and nowhere else. “Save progress” writes it to a file; “Load progress” reads it. “?” reopens this guide.",
+  },
+  ja: {
+    lexicon: "語彙", side: "⇄ 左右", cards_due: "枚 · 復習待ち:", o_text: "本文順", o_shuffle: "シャッフル",
+    o_review: "復習待ち", d_recog: "認識", d_cloze: "穴埋め", fn: "機能語",
+    note1: "学習の記録はこのブラウザに保存されます。残しておくには、または別の端末で続けるには、ファイルに書き出してください（下の「進捗を保存」）。",
+    v_text: "本文", v_index: "索引", sel_all: "全文を選択", sel_none: "選択を解除", save_sel: "選択を保存",
+    link_sel: "この選択へのリンク", markknown: "習得済みに印", s_freq: "選択内の頻度順",
+    s_disp: "分布順（テキスト · 著者）", src_text: "本文", src_ed: "校訂注", search: "検索…",
+    footer: "<b>訳語と定義</b>はこのプロジェクトのために書かれたもので、辞書からの引用はありません。プログラムとデータは CC0 1.0。",
+    export: "進捗を保存", import: "進捗を読み込む", reset: "最初からやり直す",
+    saved_ph: "保存した選択…", saved_del: "— 保存した選択を削除", unit_idx: "索引ユニット {n} · ",
+    paras: "{n} 段落 · ", nosel: "選択なし · ", cards: "{n} 枚 · 復習待ち {d} 枚",
+    empty_unit: "このユニットには何もありません。", empty_sel: "本文の段落を一つ以上選んでください（クリック、Shift＋クリックで範囲指定）。カードができます。",
+    of: "見出し語:", cloze_prompt: "欠けている語を入れてください", g0: "もう一度", g1: "難しい", g2: "できた", g3: "簡単",
+    reveal: "答えを見る", space: "スペース", m_seen: "既読", m_known: "習得", m_deck: "デッキ", m_left: "残り",
+    aparato: "校訂注", defined: "定義あり", glossed: "訳語あり", rep: "復習", once: "回", times: "回",
+    in_sel: "この選択内", in_marked: "選択したテキスト内", in_: "／", text1: "テキスト中", textN: "テキスト中", by: "・著者",
+    author1: "名", authorN: "名", other_occ: "他の出現箇所",
+    texthint: "{author} · {date} · {n} 段落。", texthint_how: "段落をクリックして学習、Shift＋クリックで範囲指定、語をクリックすると訳語。",
+    idxhint: "{n} 語形 · {t} テキスト · 百語ずつ · 語をクリックすると出現箇所 ·「このユニットを学習」でデッキを作る。",
+    study_unit: "このユニットを学習", h_word: "語", h_n: "回数", h_disp: "テキスト · 著者", h_gloss: "訳語",
+    no_gloss: "訳語はまだありません", tip_go: "もう一度クリックでカード", name_sel: "選択の名前:", which_del: "どれを削除しますか？",
+    link_copied: "リンクをコピーしました:", link: "リンク:", bad_file: "このファイルには読み取れる進捗がありません。",
+    confirm_reset: "この端末の進捗をすべて消去します。続けますか？",
+    no_store: " このブラウザはこのページのデータを保存しません。閉じる前に「進捗を保存」を使ってください。",
+    text_of: "<b>本文</b>：", pd: "、パブリックドメイン。", fonts: "すべての文字を表示するには次のフォントを入れてください: ", lang_btn: "JA",
+    set_words: "語", set_atoms: "要素", set_stretches: "区間", front: "表", back: "裏",
+    certified: "検証済み", review: "審査中", function: "機能", see_stretch: "区間", no_stretch: "区間なし",
+    atoms_in: "区間の要素", none: "—", cloze_atom: "欠けている機能語を入れてください", cloze_stretch: "欠けている区間を入れてください",
+    loci: "検証済みの出現", in_corpus: "コーパス全体", k_word: "語", k_particle: "助詞", k_ending: "語尾",
+    k_feature: "素性", k_order: "語順", k_null: "∅（無）", grade_note: "検証済みのものだけがカードになります。残りは審査待ちです。",
+    tier_2: "後代の語形", tier_3: "派生語", tier_3r: "再建形", tier_4: "暫定的な借用", uncited: "出典未記載",
+    unchecked: "このプロジェクトのために書かれた語形で、その言語を読める人による確認がまだ済んでいません。誤りを含むことがあります。",
+    left_out: " · {n} 枚を除外：表面の言語に語形なし", sc_both: "両方", sc_script: "文字", sc_translit: "翻字",
+    sel_all_texts: "全テキスト", unit_of: "ユニット {n} / {N} · {a}–{b}", next_unit: "次のユニット ›", deck_done: "デッキ終了。",
+    texthint2: "「全テキスト」で十五すべてを選択。索引は頻度順に百語ずつ並べる。",
+    go_cards: "カードを見る", go_text: "本文を見る", deck_settings: "デッキの設定", more: "その他", lects_line: "{N} テキスト中 {n}",
+    nav_label: "ナビゲーション", nav_main: "トップページ", nav_guide: "使い方",
+    tour_btn: "?", tour_title: "Léxico の使い方", tour_prev: "戻る", tour_next: "次へ", tour_close: "閉じる", tour_done: "わかった",
+    tour_s1t: "本文", tour_s1: "上で文書を選ぶ。段落をクリック：その語がカードになる。Shift＋クリック：段落の範囲。「全文を選択」：文書全体。語をクリック：その対応語。",
+    tour_s2t: "三つのカード集", tour_s2: "「語」：各語形と、その文と対応語。「要素」：文法語。「区間」：要素が働く範囲。検証済みのものだけがカードになる。それ以外は「審査中」。",
+    tour_s3t: "パネル・表裏・モード", tour_s3: "広い画面では、「⇄ 左右」が本文をカードの反対側へ移す。カードのそばで、「表」と「裏」それぞれの言語を選ぶ。「認識」：語を見て意味を思い出す。「穴埋め」：空所のある文を補う。",
+    tour_s4t: "復習", tour_s4: "スペースキー、またはカードのクリックやタップでカードを裏返す。同じ操作で表に戻る。もう一度・難しい・できた・簡単 が次の復習を決める。「復習待ち」は期限の来たものを先に出す。",
+    tour_s5t: "進捗", tour_s5: "このブラウザにのみ残る。「進捗を保存」はファイルに書き出す。「進捗を読み込む」はそれを読む。「?」でこの案内を再び開く。",
+  }
+};
+
+/* =====================================================================
+   MODEL — no document access; testable in node (work/test_trainer_model.js)
+   ===================================================================== */
+const DAY = 86400000;
+const WORD_RE = /[\p{L}\p{M}][\p{L}\p{M}'’-]*/gu;
+const FONTS = {};   // script → {font, probe}; filled as Phases 9–12 add scripts (Spanish needs none)
+
+const Model = (() => {
+  const E = DATA.entries, TEXTS = DATA.texts;
+  const textById = Object.fromEntries(TEXTS.map(t => [t.id, t]));
+  const byText = {};
+  for (const e of E) {
+    const k = e.src_deck === "editorial" ? "ed" : "tx";
+    (byText[e.t] ||= { tx: {}, ed: {} })[k][e.w] = e;
+  }
+  const byForm = {};
+  for (const e of E) if (e.src_deck !== "editorial") (byForm[e.w] ||= []).push(e);
+  const dispersion = (w) => {
+    const es = byForm[w] || [];
+    return { texts: new Set(es.map(e => e.t)).size, authors: new Set(es.map(e => textById[e.t].author)).size };
+  };
+  const parasOf = (tid) => {
+    const out = []; let cur = null;
+    DATA.sentText.forEach((t, si) => {
+      if (t !== tid || !DATA.sentPara[si]) return;
+      const p = DATA.sentPara[si];
+      if (!cur || cur.n !== p) { cur = { n: p, sents: [] }; out.push(cur); }
+      cur.sents.push(si);
+    });
+    return out;
+  };
+  const tokens = (s) => { const out = []; for (const m of s.matchAll(WORD_RE)) out.push([m[0].toLowerCase(), m.index, m.index + m[0].length]); return out; };
+  const glossed = (e) => !!(e && (e.en || e.d));
+  const migrate = (o) => {
+    const out = {};
+    for (const k in o) {
+      const w = k.includes("/") ? k.slice(k.indexOf("/") + 1) : k;
+      const p = o[k], q = out[w];
+      if (!q || (p.reps || 0) > (q.reps || 0) || ((p.reps || 0) === (q.reps || 0) && (p.seen || 0) > (q.seen || 0))) out[w] = p;
+    }
+    return out;
+  };
+  const schedule = (progress, w, grade, now) => {
+    const p = progress[w] || { ease: 2.5, reps: 0, iv: 0 };
+    if (grade === 0) { p.reps = 0; p.iv = 0; p.ease = Math.max(1.3, p.ease - 0.2); }
+    else {
+      p.ease = Math.max(1.3, p.ease + (0.1 - (3 - grade) * (0.08 + (3 - grade) * 0.02)));
+      p.reps += 1;
+      p.iv = p.reps === 1 ? 1 : p.reps === 2 ? 4 : Math.round(p.iv * p.ease);
+    }
+    p.due = now + Math.max(p.iv, grade === 0 ? 0 : 1) * DAY;
+    if (grade === 0) p.due = now + 60000;
+    p.seen = now;
+    progress[w] = p;
+    return p;
+  };
+  const known = (progress, w) => (progress[w] || {}).reps >= 2;
+  const due = (progress, w, now) => !progress[w] || (progress[w].due || 0) <= now;
+  const deckOf = (selection, includeFn) => {
+    const seen = new Map(), paras = {};
+    for (const [tid, n] of selection) (paras[tid] ||= new Set()).add(n);
+    for (const tid of Object.keys(paras).sort()) {
+      const want = paras[tid], bt = byText[tid];
+      if (!bt) continue;
+      for (const P of parasOf(tid)) {
+        if (!want.has(P.n)) continue;
+        for (const si of P.sents) for (const [w, a, b] of tokens(DATA.sentences[si])) {
+          const e = bt.tx[w];
+          if (!glossed(e) || (e.fn && !includeFn)) continue;
+          if (!seen.has(w)) seen.set(w, { w, e, si, a, b, count: 0 });
+          seen.get(w).count++;
+        }
+      }
+    }
+    return [...seen.values()];
+  };
+  const order = (cards, mode, progress, now, rnd) => {
+    const c = cards.slice();
+    if (mode === "shuffle") { for (let i = c.length - 1; i > 0; i--) { const j = Math.floor((rnd || Math.random)() * (i + 1)); [c[i], c[j]] = [c[j], c[i]]; } return c; }
+    if (mode === "review") {
+      const rank = (x) => !progress[x.w] ? 0 : due(progress, x.w, now) ? 1 : 2;
+      return c.map((x, i) => [rank(x), i, x]).sort((p, q) => p[0] - q[0] || p[1] - q[1]).map(x => x[2]);
+    }
+    return c;
+  };
+  const index = (lects, src, sort, query) => {
+    const agg = {};
+    for (const tid of lects) {
+      const bt = byText[tid]; if (!bt) continue;
+      for (const k of ["tx", "ed"]) {
+        if (!src[k]) continue;
+        for (const w in bt[k]) {
+          const e = bt[k][w]; if (e.fn || e.name) continue;
+          const a = (agg[w] ||= { w, n: 0, e });
+          a.n += e.n; if (glossed(e) && !glossed(a.e)) a.e = e;
+        }
+      }
+    }
+    let rows = Object.values(agg).map(a => Object.assign(a, dispersion(a.w)));
+    if (query) { const q = query.toLowerCase(); rows = rows.filter(r => r.w.includes(q) || (r.e.en || "").toLowerCase().includes(q) || (r.e.d || "").toLowerCase().includes(q)); }
+    rows.sort(sort === "disp" ? (p, q) => q.texts - p.texts || q.authors - p.authors || q.n - p.n || (p.w < q.w ? -1 : 1)
+                                : (p, q) => q.n - p.n || q.texts - p.texts || (p.w < q.w ? -1 : 1));
+    return rows;
+  };
+  const unitCards = (rows, unit) => rows.slice((unit - 1) * 100, unit * 100).map(r => {
+    const c = (r.e.ctx && r.e.ctx[0]) || null;
+    return { w: r.w, e: r.e, si: c ? c[0] : -1, a: c ? c[1] : 0, b: c ? c[2] : 0, count: r.n };
+  });
+  /* ---- the grammar layer (8.3): G = [id, sense, class, en form, en kind]; L[si] = certified [o, g, a, b]; R[si] = offsets under review ---- */
+  const G = (GRAMMAR && GRAMMAR.G) || [], GL = (GRAMMAR && GRAMMAR.L) || {}, GR = (GRAMMAR && GRAMMAR.R) || {};
+  const LANGS = ["es", "en", "ja", "ru", "de", "sa", "ae", "el"];
+  const DEFAULT_SIDES = { front: ["es"], back: ["en"] };
+  const lociOf = (si) => GL[si] || [];
+  /* every atom at an offset: a fused token (del, al) carries two, each with its own status */
+  const lociAt = (si, o) => {
+    const out = lociOf(si).filter(l => l[0] === o).map(l => ({ o: l[0], g: l[1], a: l[2], b: l[3], concept: G[l[1]], status: "certified" }));
+    for (const r of GR[si] || []) if (r === o) out.push({ o, status: "review" });
+    return out;
+  };
+  const locusAt = (si, o) => lociAt(si, o)[0] || null;
+  const atomHead = (g, word) => g[1].includes(":") ? g[1].split(":")[0].trim() : word;   // «el» for the el of «del»
+  const conceptCount = {};
+  for (const si in GL) for (const l of GL[si]) conceptCount[l[1]] = (conceptCount[l[1]] || 0) + 1;
+  const atomForm = (si, o) => { const m = DATA.sentences[si].slice(o).match(WORD_RE); return m ? m[0] : ""; };
+  /* atoms: one card per grammatical concept in the selection, its first certified locus lit; progress per concept (key G:…) */
+  const atomDeckOf = (selection) => {
+    const seen = new Map(), paras = {};
+    for (const [tid, n] of selection) (paras[tid] ||= new Set()).add(n);
+    for (const tid of Object.keys(paras).sort()) for (const P of parasOf(tid)) {
+      if (!paras[tid].has(P.n)) continue;
+      for (const si of P.sents) for (const l of lociOf(si)) {
+        const g = l[1], id = G[g][0];
+        if (!seen.has(id)) { const f = atomForm(si, l[0]); seen.set(id, { kind: "atom", w: id, g, concept: G[g], form: atomHead(G[g], f), word: f, si, a: l[0], b: l[0] + f.length, sa: l[2], sb: l[3], count: 0, total: conceptCount[g] || 0 }); }
+        seen.get(id).count++;
+      }
+    }
+    return [...seen.values()];
+  };
+  /* stretches: one card per distinct run (lower-cased) in the selection; its atoms beneath; progress per run (key S:…) */
+  const stretchDeckOf = (selection) => {
+    const seen = new Map(), paras = {};
+    for (const [tid, n] of selection) (paras[tid] ||= new Set()).add(n);
+    for (const tid of Object.keys(paras).sort()) for (const P of parasOf(tid)) {
+      if (!paras[tid].has(P.n)) continue;
+      for (const si of P.sents) {
+        const spans = new Map();
+        for (const l of lociOf(si)) if (l[2] >= 0) (spans.get(l[2] + ":" + l[3]) || spans.set(l[2] + ":" + l[3], []).get(l[2] + ":" + l[3])).push(l);
+        for (const ls of spans.values()) {
+          const a = ls[0][2], b = ls[0][3], run = DATA.sentences[si].slice(a, b), key = "S:" + run.toLowerCase().replace(/\s+/g, " ");
+          if (!seen.has(key)) seen.set(key, { kind: "stretch", w: key, run, si, a, b, atoms: ls.map(l => ({ o: l[0], g: l[1], concept: G[l[1]], form: atomHead(G[l[1]], atomForm(si, l[0])) })), count: 0 });
+          seen.get(key).count++;
+        }
+      }
+    }
+    return [...seen.values()];
+  };
+  /* the forms of the languages of the cards: F.W["word\tgloss"], F.A[concept index] by lectura, F.S[sentence]["a:b"]; each `f` in the order of F.langs */
+  const F = (GRAMMAR && GRAMMAR.F) || { langs: [], W: {}, A: {}, S: {}, T: {} };
+  const madeLangs = (tid) => (F.T || {})[tid] || [];      /* the languages in which every card of a lectura has its form: [] where its forms are not made */
+  /* the scale at which letters of mean heights `a` stand as tall as letters of mean heights `b`; 1 where either cannot be measured */
+  const letterScale = (a, b) => { const mean = (xs) => xs.reduce((n, x) => n + x, 0) / (xs.length || 1), k = mean(b) / mean(a); return isFinite(k) && k > 0 ? k : 1; };
+  /* the unit a card shows, or null where no lectura has written it. A word: by the word and its gloss, wherever it stands.
+     An atom: what its own lectura wrote; else what another wrote of the concept as such — never a reading tied to another lectura (`w`). */
+  const unitOf = (c) => {
+    if (c.kind === "atom") { const us = F.A[c.g] || [], tx = DATA.sentText[c.si]; return us.find(u => u.t === tx) || us.find(u => !u.w) || null; }
+    if (c.kind === "stretch") return (F.S[c.si] || {})[c.a + ":" + c.b] || null;
+    return (c.e && c.e.en && F.W[c.w + "\t" + c.e.en]) || null;
+  };
+  /* what a card has in a language of F.langs (or the English of a stretch): {f form, r reading, d dictionary form, …}, {x: why there is none}, or null */
+  const cardForm = (c, L) => { const u = unitOf(c); if (!u) return null; if (L === "en") return u.en || null; const i = F.langs.indexOf(L); return i < 0 ? null : u.f[i]; };
+  /* a realisation that is no form of the language: nothing (∅), or what realises it said in words — «the locative» —, which the
+     lectura's file gives in a field of its own (`sd`); nothing is guessed from a form's letters */
+  const inWords = (f) => f.k === "∅" || !!f.sd;
+  /* what a side shows of a card in a language. mode: "both" | "script" | "translit" — Sanskrit and Avestan alone.
+     {none[, why]} where there is no form; else {main[, av][, latn][, plain], sub: [lines beneath], dict[, dictLatn], tier, mark (◇), uncited, kind, rule, drv: [{src, rows}]};
+     `latn`: the form stands in transliteration, not in the language's own letters, and `dictLatn` its dictionary form;
+     `plain`: a realisation that is not a form of the language — ∅, or «the locative» —; `said`: of those, the one said in words, which
+     are English */
+  const partsOf = (c, L, mode) => {
+    if (L === "es" || (L === "en" && c.kind !== "stretch")) { const x = formIn(c, L); return x === null ? { none: true } : { main: x, sub: [] }; }
+    const f = cardForm(c, L);
+    if (!f) return { none: true };
+    if (f.x) return { none: true, why: f.x };
+    const p = { main: f.f || f.sd || (f.k === "∅" ? "∅" : ""), sub: [], mark: !!f.g && f.g !== "A" };
+    if (f.k) { p.kind = f.k; p.rule = f.rule || ""; if (inWords(f)) { p.plain = true; if (f.sd) p.said = true; } }
+    if (f.t) p.tier = String(f.t);
+    if (f.u) p.uncited = true;
+    let dict = f.d || "";
+    if (L === "sa") {                                  /* f in Devanagari, r its transliteration */
+      if (mode === "translit" && f.r) { p.main = f.r; p.latn = true; dict = f.dr || dict; if (f.dr) p.dictLatn = true; }
+      else if (mode !== "script") { if (f.r) p.sub.push(f.r); if (f.d && f.dr) dict = f.d + " " + f.dr; }
+    } else if (L === "ae") {                           /* f in transliteration, s its letters, w its derivation with every outcome */
+      const tr = f.w ? f.w.map(w => w[1].join(" / ")).join(" ") : (f.f || ""), two = !!f.w && f.w.some(w => w[1].length > 1);
+      if (f.s && F.font && mode !== "translit") { p.main = f.s; p.av = true; if (mode !== "script" || two) p.sub.push(tr); }
+      else { p.main = tr || p.main; p.latn = true; }
+      p.dictLatn = true;
+      if (f.do) dict = f.do.join(" / ");
+      if (f.w) p.drv = f.w.map(w => ({ src: w[0], rows: w[2] }));
+    } else {                                           /* r: kana; in Russian the word with its stress, which says the form too */
+      if (f.r) p.sub.push(f.r);
+      if (f.d && f.dr) dict = L === "ru" ? f.dr : f.d + " " + f.dr;
+    }
+    if (dict) p.dict = dict;
+    return p;
+  };
+  /* the form of a card in a language: null when that language has no form (the card shows «—»); «∅» where the language says it with nothing */
+  const formIn = (c, L) => {
+    if (L === "es") return c.kind === "atom" ? c.form : c.kind === "stretch" ? c.run : c.w;
+    if (L === "en" && c.kind === "atom") return c.concept[3] || null;
+    if (L === "en" && !c.kind) return c.e.en || null;
+    const f = cardForm(c, L);
+    return !f || f.x ? null : (f.f || f.sd || (f.k === "∅" ? "∅" : null));
+  };
+  /* the language a form says it is in (`lang`), so that a browser draws it with that language's shapes and a screen reader reads it with
+     its voice: the language's tag, and «-Latn» where Sanskrit or Avestan stands in transliteration */
+  const tagOf = (L, latn) => L + (latn && (L === "sa" || L === "ae") ? "-Latn" : "");
+  /* the two faces of a card: what each holds, as parts in the order they stand. The view draws one face at a time, the back in the
+     front's place; the card's first line and its foot are the same on both and are not parts. `mode`: "recog" — the form is shown,
+     the sense recalled; "cloze" — the sentence with a gap, the form supplied. A side that is Spanish alone is the headword; any
+     other is the forms of its languages, and of no others. */
+  const faces = (c, sides, mode) => {
+    const kind = c.kind || "word", e = c.e || {}, shown = sides.front.concat(sides.back), u = unitOf(c);
+    const P = (part, more) => Object.assign({ part }, more || {});
+    const form = (side, big) => sides[side].length === 1 && sides[side][0] === "es" ? P("headword") : P("forms", { langs: sides[side].slice(), big: !!big });
+    /* what the lectura's forms say of the unit as a whole, where a language of the forms is on a side */
+    const unit = !!u && !!(u.w || u.n) && shown.some(L => F.langs.includes(L)) ? [P("unit")] : [];
+    const whole = kind === "atom" ? [P("function")] : kind === "stretch" ? [P("atoms")] : e.d ? [P("definition")] : [];
+    const sentence = c.si >= 0 ? [P("sentence", { gap: false })] : [];
+    if (mode !== "cloze") return {
+      front: [form("front", true)].concat(kind === "word" ? (e.lem ? [P("lemma")] : []) : sentence),
+      back: [form("back", false)].concat(unit, whole, kind === "word" ? sentence : [], [P("recurrence")]) };
+    return {
+      front: [P("instruction", { of: kind })].concat(c.si >= 0 ? [P("sentence", { gap: true })] : [P("forms", { langs: sides.back.slice(), big: false })]),
+      back: [P("headword")].concat(sides.back.length === 1 && sides.back[0] === "es" ? [] : [P("forms", { langs: sides.back.slice(), big: false })], unit, whole, sentence, [P("recurrence")]) };
+  };
+  /* whether a deck holds a form that carries ◇ in a language of its sides: then the deck says, once, what the mark means */
+  const marked = (cards, langs) => cards.some(c => langs.some(L => L !== "es" && !!partsOf(c, L, "both").mark));
+  /* the deck a choice of front leaves: a card with no form in any language chosen for its front is left out */
+  const onFront = (cards, front) => cards.filter(c => front.some(L => formIn(c, L) !== null));
+  /* sides: the entrance segment `es~en+ja` (front~back; ASCII only; `~`, never `>`) */
+  const normSides = (o) => {
+    const ok = (xs) => Array.isArray(xs) ? xs.map(x => String(x).toLowerCase()).filter((x, i, A) => LANGS.includes(x) && A.indexOf(x) === i) : [];
+    const f = ok(o && o.front), b = ok(o && o.back);
+    return f.length && b.length ? { front: f, back: b } : null;
+  };
+  const parseSides = (seg) => { const m = /^([a-z]{2}(?:\+[a-z]{2})*)~([a-z]{2}(?:\+[a-z]{2})*)$/.exec(seg || ""); return m ? normSides({ front: m[1].split("+"), back: m[2].split("+") }) : null; };
+  const sidesSeg = (sides) => { const s = normSides(sides) || DEFAULT_SIDES; return s.front.join("+") === DEFAULT_SIDES.front.join("+") && s.back.join("+") === DEFAULT_SIDES.back.join("+") ? "" : s.front.join("+") + "~" + s.back.join("+"); };
+  const splitSides = (rest) => { const i = rest.indexOf("/"), head = i < 0 ? rest : rest.slice(0, i), sides = parseSides(head); return sides ? { sides, rest: i < 0 ? "" : rest.slice(i + 1) } : { sides: null, rest }; };
+  /* deep links: an optional language prefix (es/, en/ or ja/, or #en alone), then #NN · #NN/§P · #índice · a selection */
+  const splitLang = (h) => {
+    const s = decodeURIComponent((h || "").replace(/^#/, "")).trim();
+    const m = s.match(/^(es|en|ja)(?:\/(.*))?$/i);
+    return m ? { lang: m[1].toLowerCase(), rest: m[2] || "" } : { lang: null, rest: s };
+  };
+  const parseHash = (h) => {
+    const s = splitSides(splitLang(h).rest).rest;
+    if (!s) return null;
+    const u = s.match(/^(?:índice|indice|index)(?:\/(\d+))?$/i);
+    if (u) return { view: "index", unit: u[1] ? +u[1] : null };
+    const m = s.match(/^(\d{2})(?:\/§?\s*(\d+))?$/);
+    return m ? { view: "text", text: m[1], para: m[2] ? +m[2] : null } : null;
+  };
+  const hashFor = (selection, sides) => {
+    const by = {}, seg = sidesSeg(sides);
+    for (const [t, n] of selection) (by[t] ||= []).push(n);
+    return "#" + (seg ? seg + "/" : "") + Object.keys(by).sort().map(t => t + "/" + by[t].sort((a, b) => a - b).join(",")).join(";");
+  };
+  const parseSelection = (h) => {
+    const s = splitSides(splitLang(h).rest).rest, out = [];
+    for (const part of s.split(";")) {
+      const m = part.match(/^(\d{2})\/§?\s*([\d,]+)$/); if (!m) continue;
+      for (const n of m[2].split(",")) if (n) out.push([m[1], +n]);
+    }
+    return out;
+  };
+  return { E, TEXTS, textById, byText, byForm, dispersion, parasOf, tokens, glossed, migrate, schedule, known, due,
+           deckOf, order, index, unitCards, splitLang, parseHash, hashFor, parseSelection,
+           G, LANGS, DEFAULT_SIDES, lociOf, lociAt, locusAt, conceptCount, atomDeckOf, stretchDeckOf, F, madeLangs, letterScale, onFront, unitOf, cardForm, partsOf, formIn, tagOf, faces, marked, normSides, parseSides, sidesSeg, splitSides };
+})();
+if (typeof module !== "undefined") module.exports = Model;
+
+/* =====================================================================
+   VIEW
+   ===================================================================== */
+if (typeof document !== "undefined") (function () {
+const M = Model;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+/* ---------- storage ---------- */
+const Store = (() => {
+  const KEY = "vocabulario-lexico-v3", OLD = ["lecturas-lexico-v2", "carta-lexico-v1"];
+  let ok = false;
+  try { localStorage.setItem("__t", "1"); localStorage.removeItem("__t"); ok = true; } catch (e) {}
+  const get = (k) => { try { return ok ? localStorage.getItem(k) : null; } catch (e) { return null; } };
+  const set = (k, v) => { if (ok) try { localStorage.setItem(k, v); } catch (e) {} };
+  const read = () => {
+    const cur = get(KEY); if (cur) try { return JSON.parse(cur); } catch (e) {}
+    for (const k of OLD) { const o = get(k); if (o) try { return M.migrate(JSON.parse(o)); } catch (e) {} }
+    return {};
+  };
+  return { read, write: (o) => set(KEY, JSON.stringify(o)),
+           pref: (k, v) => v === undefined ? get("vl-" + k) : set("vl-" + k, v), persistent: () => ok };
+})();
+let progress = Store.read();
+const now = () => Date.now();
+
+/* ---------- language ---------- */
+let lang = "es";
+const t = (k, vars) => { let s = (STRINGS[lang] && STRINGS[lang][k]) ?? STRINGS.es[k] ?? k;
+  if (vars) for (const v in vars) s = s.split("{" + v + "}").join(vars[v]); return s; };
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el => { const k = el.dataset.t; if (k === "footer") el.innerHTML = t(k); else if (k === "sel_all") el.textContent = t(allSelected() ? "sel_none" : "sel_all"); else el.textContent = t(k); });
+  document.querySelectorAll("[data-t-ph]").forEach(el => el.placeholder = t(el.dataset.tPh));
+  document.querySelectorAll("[data-t-label]").forEach(el => el.setAttribute("aria-label", t(el.dataset.tLabel)));
+  document.querySelectorAll("#langseg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
+  document.querySelectorAll("[data-way]").forEach(a => a.setAttribute("href", "../" + a.dataset.way + (lang === "es" ? "" : "." + lang) + ".html"));   // the way out, to the page in the trainer's language
+  document.title = t("lexicon") + " · Vocabulario Libre";
+}
+function setLang(l) { lang = STRINGS[l] ? l : "es"; Store.pref("lang", lang); applyLang(); savedOptions(); drawSides(); render(); drawHandle(); }
+
+/* ---------- state ---------- */
+let textId = M.TEXTS[0].id;
+let selection = [];                       // [[tid, n], …]
+let deckSource = "selection";             // "selection" | "index"
+let view = "text";                        // the reading side: "text" | "index"
+let orderMode = "text", dir = "recog", includeFn = false;
+let lects = new Set(M.TEXTS.map(t => t.id)), src = { tx: true, ed: false }, sort = "freq", unit = 1, query = "";
+let cards = [], queue = [], current = null, answered = false;
+let revealed = false, seen = false;       // the card: its back is up; its back has been shown — from then on the foot offers the grades
+let occForm = null, markKnown = false, lastClicked = null;
+let roundGraded = 0, unitsTotal = 1;   // «next unit» is offered when every card of an index unit has been graded once
+let sets = { words: true, atoms: false, stretches: false };   // the three card sets (decision 85); words only by default
+let sides = M.DEFAULT_SIDES;                                     // the builder's preference: which languages face which way
+let sidesFromHash = false;
+let scriptMode = "both";                                         // Sanskrit and Avestan: "both" | "script" | "translit"
+try { const o = JSON.parse(Store.pref("sets") || "null"); if (o) sets = { words: !!o.words, atoms: !!o.atoms, stretches: !!o.stretches }; } catch (e) {}
+if (!sets.words && !sets.atoms && !sets.stretches) sets.words = true;
+try { const o = M.normSides(JSON.parse(Store.pref("sides") || "null")); if (o) sides = o; } catch (e) {}
+if (["both", "script", "translit"].includes(Store.pref("script"))) scriptMode = Store.pref("script");
+/* the order, the mode and «gramaticales» are kept between visits, as the sets, the sides and the script are */
+if (["text", "shuffle", "review"].includes(Store.pref("order"))) orderMode = Store.pref("order");
+if (["recog", "cloze"].includes(Store.pref("dir"))) dir = Store.pref("dir");
+includeFn = Store.pref("fn") === "1";
+function drawChoices() {
+  document.querySelectorAll("[data-order]").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.order === orderMode)));
+  document.querySelectorAll("[data-dir]").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.dir === dir)));
+  $("fn").checked = includeFn;
+}
+
+/* ---------- the screen: narrow — a screen no wider than the rule or, under a finger, no taller: a phone, however it is held — the deck is a sheet over
+   the handle, and what is touched at every card is docked at the screen's foot, or at its side where the phone is held sideways (the stylesheet);
+   roomy — a wide screen under a pointer, where the deck's choices stand open; a finger — the languages of the face that is up in one row ---------- */
+const narrow = matchMedia("(max-width:720px), (max-height:720px) and (pointer:coarse)"), roomy = matchMedia("(min-width:721px) and (pointer:fine)"), finger = matchMedia("(pointer:coarse)");
+const docked = () => narrow.matches;
+/* the sheet, on a narrow screen: open or closed. Closed, it is out of the screen and out of reach of a key and of a screen reader */
+function setDeck(open) {
+  const pane = $("deckpane");
+  pane.classList.toggle("open", !!open); pane.inert = docked() && !open;
+  if (!open) setMenu(false);
+  drawHandle();
+}
+/* the handle says what a touch on it does — «Ver fichas» while the text is up, «Ver texto» while the cards are —, between the count and what
+   is due, each with its figure first; its label is filled where a touch has something to show, and quiet while there is no card */
+function drawHandle() {
+  const open = $("deckpane").classList.contains("open"), parts = t("cards_due").split(" · "), h = $("handle");
+  $("golabel").textContent = (open ? "▼ " : "▲ ") + t(open ? "go_text" : "go_cards");
+  $("hcountw").textContent = parts[0]; $("hduew").textContent = (parts[1] || "").replace(/[:：]\s*$/, "");
+  h.setAttribute("aria-expanded", String(open)); h.classList.toggle("quiet", !open && !cards.length);
+}
+/* the deck's choices: on a narrow screen a panel over the dock, opened from the control at the end of the languages' row */
+function setMenu(open) {
+  if (!docked()) return;
+  $("deckset").open = !!open;
+  const g = $("deckgear"); if (g) { g.setAttribute("aria-expanded", String(!!open)); g.setAttribute("aria-pressed", String(!!open)); }
+}
+/* the tools of the selection, where they stand behind «⋯»: open or closed. The control stays where it is, and the tools open under its row */
+function setMore(open) {
+  $("selbar").classList.toggle("open", !!open); $("more").setAttribute("aria-expanded", String(!!open));
+}
+/* what follows the screen: where the deck's choices stand open, where the line that says what the deck holds is a control, which foot is the card's */
+function place() {
+  $("deckset").open = roomy.matches; setMore(false); $("lectset").open = roomy.matches;
+  $("deckhint").tabIndex = docked() ? -1 : 0;
+  $("deckpane").inert = docked() && !$("deckpane").classList.contains("open");
+  footWas = null; drawCard(); drawHandle();
+}
+
+/* ---------- deck ---------- */
+const selHas = (tid, n) => selection.some(([a, b]) => a === tid && b === n);
+const allSelected = () => { const ps = M.parasOf(textId); return ps.length > 0 && ps.every(P => selHas(textId, P.n)); };
+function refill() {
+  if (deckSource === "index") { const rows = M.index([...lects].sort(), src, sort, query); unitsTotal = Math.max(1, Math.ceil(rows.length / 100)); if (unit > unitsTotal) unit = unitsTotal; }
+  const all = deckSource === "index" ? M.unitCards(M.index([...lects].sort(), src, sort, query), unit)
+        : [].concat(sets.words ? M.deckOf(selection, includeFn) : [], sets.atoms ? M.atomDeckOf(selection) : [], sets.stretches ? M.stretchDeckOf(selection) : []);
+  cards = M.onFront(all, sides.front);
+  const ord = (!answered && orderMode === "review") ? "text" : orderMode;
+  queue = M.order(cards, ord, progress, now()).reverse();
+  const dueN = cards.filter(c => M.due(progress, c.w, now())).length;
+  $("hcount").textContent = cards.length; $("hdue").textContent = dueN;
+  $("deckhint").textContent = (deckSource === "index" ? t("unit_idx", { n: unit })
+    : selection.length ? t("paras", { n: selection.length, s: selection.length > 1 ? "s" : "" }) : t("nosel")) + t("cards", { n: cards.length, d: dueN }) +
+    (all.length > cards.length ? t("left_out", { n: all.length - cards.length }) : "");
+  drawHandle();
+}
+const fresh = () => { revealed = false; seen = false; };                    // a card not yet answered: its front up
+function next() { fresh(); if (!queue.length) refill(); current = queue.pop() || null; drawCard(); markCurrent(); }
+/* the turn, both ways: the other face in this one's place. It writes nothing — a card is graded once, when a grade is given */
+function turn() { if (!current) return; revealed = !revealed; if (revealed) seen = true; drawCard(); }
+function graded(g) {
+  M.schedule(progress, current.w, g, now()); Store.write(progress); roundGraded++;
+  if (!answered) { answered = true; if (orderMode === "review") refill(); }
+  refreshMarks(); next();
+}
+
+/* ---------- the card ---------- */
+function ctxHTML(c, cloze, span) {
+  if (c.si < 0) return "";
+  const s = DATA.sentences[c.si], p = DATA.sentPara[c.si], tx = DATA.sentText[c.si], a = span ? span[0] : c.a, b = span ? span[1] : c.b;
+  return '<p class="ctx' + (cloze ? " cloze" : "") + '" lang="es">' + esc(s.slice(0, a)) + "<b>" + esc(s.slice(a, b)) + "</b>" +
+         esc(s.slice(b)) + '<span class="ref">' + tx + " · " + (p ? "§ " + p : t("aparato")) + "</span></p>";
+}
+const kindName = (k) => k ? t("k_" + (k === "∅" ? "null" : k)) : "";
+const enOf = (g) => (g[3] && g[3] !== g[1] && g[3] !== g[1].replace(/^[^:]+:\s*/, "")) ? g[3] : null;   // the EN realisation only when it says more than the sense
+function statusHTML(st) { return '<span class="status ' + (st === "certified" ? "ok" : "rv") + '">' + t(st) + "</span>"; }
+/* a side: the chosen languages' forms, stacked; «—» where the language has no form yet (design § 4.1). A form, what is read beneath
+   it and its dictionary form each say their language (`lang`); what realises a grammatical concept, said in words, says English, and ∅ none */
+function sideHTML(c, langs, big) {
+  return langs.map(L => { const p = M.partsOf(c, L, scriptMode), lg = '<div class="side"><span class="lg">' + L.toUpperCase() + "</span>", sub = (x) => '<div class="sub">' + x + "</div>";
+    if (p.none) return lg + '<span class="fm none' + (big ? " big" : "") + '">' + esc(t("none")) + "</span>" + (p.why ? sub(esc(p.why)) : "") + "</div>";
+    const meta = [p.kind && p.kind !== "∅" ? kindName(p.kind) : "", p.tier ? t("tier_" + p.tier) : "", p.uncited ? t("uncited") : ""].filter(Boolean);
+    const said = (x, latn) => '<span lang="' + M.tagOf(L, latn) + '">' + esc(x) + "</span>";
+    return lg + '<span class="fm' + (big ? " big" : "") + '"' + (p.said ? ' lang="en"' : p.plain ? "" : ' lang="' + M.tagOf(L, p.latn) + '"') + ">" + (p.av ? '<span class="av">' + esc(p.main) + "</span>" : esc(p.main)) + "</span>" +
+      (p.mark ? '<button class="mk" type="button" data-mk title="' + esc(t("unchecked")) + '" aria-label="' + esc(t("unchecked")) + '">◇</button>' : "") + (meta.length ? '<span class="k">' + esc(meta.join(" · ")) + "</span>" : "") +
+      p.sub.map(x => sub(said(x, true))).join("") + (p.dict ? sub(t("of") + " " + said(p.dict, p.dictLatn)) : "") + (p.rule ? sub(esc(p.rule)) : "") +
+      (p.drv ? sub(p.drv.map(d => "← " + esc(d.src) + (d.rows.length ? ": " + d.rows.map(r => esc(r[0]) + " (" + esc(r[1]) + ") → " + esc(r[2])).join("; ") : "")).join("<br>")) : "") + "</div>"; }).join("");
+}
+/* what the lectura's forms say of the unit as a whole: how the word is read where it stands, and a note (`M.faces()` says when it stands) */
+function unitHTML(c) { const u = M.unitOf(c); return u ? [u.w, u.n].filter(Boolean).map(x => '<p class="fnline">' + esc(x) + "</p>").join("") : ""; }
+/* what ◇ means, said once, under the deck's meter, whenever the deck holds a marked form in a language of its sides; found again
+   only when the deck or the sides change */
+let legendOf = null, legendIs = false;
+function legendHTML() {
+  const key = sides.front.concat("~", sides.back).join(" ");
+  if (legendOf === null || legendOf[0] !== cards || legendOf[1] !== key) { legendOf = [cards, key]; legendIs = M.marked(cards, sides.front.concat(sides.back)); }
+  return legendIs ? '<p class="legend"><span class="mk" aria-hidden="true">◇</span>' + esc(t("unchecked")) + "</p>" : "";
+}
+/* the mark says what it means where it stands: a touch, a click or its key shows the sentence beside it; the same again, or anything else, takes it away */
+function markTip(mk) {
+  const was = document.querySelector(".mktip"), own = was && was.previousElementSibling === mk;
+  if (was) was.remove();
+  if (!mk || own) return;
+  const d = document.createElement("div"), face = $("face");
+  d.className = "mktip"; d.setAttribute("role", "tooltip"); d.textContent = t("unchecked");
+  mk.insertAdjacentElement("afterend", d);
+  const r = mk.getBoundingClientRect(), f = face.getBoundingClientRect();
+  d.style.top = (r.bottom - f.top + 2) + "px"; d.style.left = Math.max(0, Math.min(r.left - f.left, f.width - d.offsetWidth)) + "px";
+}
+/* the Avestan letters beside the others: the font the trainer carries draws its letters small on its em, so it is set at the size at which
+   they stand, on average, as tall as the lower-case letters of the card's own font — both measured here, in this browser */
+function fitAvestan() {
+  if (!M.F.font || !document.fonts || !document.fonts.load) return;
+  const probe = document.createElement("span"); probe.className = "av"; document.body.appendChild(probe);
+  const fam = getComputedStyle(probe).fontFamily, own = getComputedStyle(document.body).fontFamily; probe.remove();
+  const av = Array.from({ length: 0x36 }, (_, i) => String.fromCodePoint(0x10B00 + i)), lower = "abcdefghijklmnopqrstuvwxyz".split("");
+  document.fonts.load("100px " + fam, av.join("")).then(() => {
+    const cx = document.createElement("canvas").getContext("2d");
+    const tall = (font, xs) => { cx.font = "100px " + font; return xs.map(x => { const m = cx.measureText(x); return m.actualBoundingBoxAscent + m.actualBoundingBoxDescent; }); };
+    document.documentElement.style.setProperty("--av", M.letterScale(tall(fam, av), tall(own, lower)).toFixed(3));
+  }).catch(() => {});
+}
+function atomLines(c) {   // the function in a line, with the realisation kind and status; then the stretch
+  const g = c.concept, bits = ['<p class="fnline"><b>' + t("function") + ":</b> " + esc(g[1]) + (g[4] ? ' <span class="k">· ' + esc(kindName(g[4])) + "</span>" : "") + " " + statusHTML("certified") + "</p>"];
+  bits.push('<p class="fnline"><b>' + t("see_stretch") + ":</b> " + (c.sa >= 0 ? esc(DATA.sentences[c.si].slice(c.sa, c.sb)) : t("no_stretch")) + "</p>");
+  return bits.join("");
+}
+function stretchAtomsHTML(c) {
+  return '<p class="fnline"><b>' + t("atoms_in") + "</b></p><ul class=\"atoms\">" + c.atoms.map(x =>
+    "<li><b>" + esc(x.form) + "</b> — " + esc(x.concept[1]) + (enOf(x.concept) ? ' <span class="k">EN ' + esc(enOf(x.concept)) + "</span>" : "") +
+    (x.concept[4] ? ' <span class="k">· ' + esc(kindName(x.concept[4])) + "</span>" : "") + " " + statusHTML("certified") + "</li>").join("") + "</ul>";
+}
+function recurHTML(c) {
+  const vez = (n) => n + " " + (n === 1 ? t("once") : t("times"));
+  if (c.kind === "atom") return '<div class="recur">' + vez(c.count) + " " + t("in_sel") + "; " + c.total + " " + t("loci") + " " + t("in_corpus") + "</div>";
+  if (c.kind === "stretch") return '<div class="recur">' + vez(c.count) + " " + t("in_sel") + "</div>";
+  const d = M.dispersion(c.w), total = (M.byForm[c.w] || []).reduce((n, e) => n + e.n, 0);
+  return '<div class="recur">' + vez(c.count) + " " + (deckSource === "index" ? t("in_marked") : t("in_sel")) + "; " +
+         vez(total) + " " + t("in_") + " " + d.texts + " " + (d.texts === 1 ? t("text1") : t("textN")) + " " + t("by") + " " + d.authors + " " +
+         (d.authors === 1 ? t("author1") : t("authorN")) + ' · <span class="go" data-occ="' + esc(c.w) + '">' + t("other_occ") + "</span></div>";
+}
+function locatorHTML(c) {
+  const st = progress[c.w], bits = [];
+  if (c.si >= 0) bits.push('<span class="go" data-goto="' + DATA.sentText[c.si] + "/" + DATA.sentPara[c.si] + '">' + DATA.sentText[c.si] + " · § " + DATA.sentPara[c.si] + "</span>");
+  if (c.kind === "atom") bits.push('<span class="mark">' + t("set_atoms") + "</span>", "<span>" + esc(c.concept[2] || "") + "</span>", statusHTML("certified"));
+  else if (c.kind === "stretch") bits.push('<span class="mark">' + t("set_stretches") + "</span>", "<span>" + c.atoms.length + " " + t("set_atoms") + "</span>", statusHTML("certified"));
+  else bits.push("<span>×" + c.e.n + "</span>", '<span class="mark">' + (c.e.d ? t("defined") : t("glossed")) + "</span>");
+  if (st && st.reps) bits.push("<span>" + t("rep") + " " + st.reps + "</span>");
+  return bits.join("<span>‖</span>");
+}
+/* a part of a face, drawn: `M.faces()` says which parts a face holds */
+const PARTS = {
+  headword: (c) => '<h2 class="headword" lang="es">' + esc(M.formIn(c, "es")) + "</h2>",
+  forms: (c, p) => sideHTML(c, p.langs, p.big),
+  lemma: (c) => '<div class="prompt">' + t("of") + ' <span lang="es">' + esc(c.e.lem) + "</span></div>",
+  instruction: (c, p) => '<p class="prompt">' + t(p.of === "atom" ? "cloze_atom" : p.of === "stretch" ? "cloze_stretch" : "cloze_prompt") + "</p>",
+  sentence: (c, p) => ctxHTML(c, p.gap),
+  unit: (c) => unitHTML(c),
+  function: (c) => atomLines(c),
+  atoms: (c) => stretchAtomsHTML(c),
+  definition: (c) => '<p class="def">' + esc(c.e.d) + "</p>",
+  recurrence: (c) => recurHTML(c),
+};
+let footWas = null;
+/* the card: its first line, the face that is up, its foot. The card stands in the page (`#card`); what is written here is what changes */
+function drawCard() {
+  const card = $("card"), head = $("cardhead"), face = $("face"), btn = $("turn");
+  const foot = docked() ? $("dockfoot") : $("foot"), other = docked() ? $("foot") : $("dockfoot");     // one foot: the card's, or the dock's on a narrow screen
+  drawBar();
+  $("offer").innerHTML = (deckSource === "index" && cards.length && roundGraded >= cards.length)
+    ? '<p class="hint nextunit">' + t("deck_done") + (unit < unitsTotal ? ' <button class="btn" id="nextunit">' + t("next_unit") + "</button>" : "") + "</p>" : "";
+  card.classList.toggle("turns", !!current); head.hidden = !current; foot.hidden = !current; other.hidden = true;
+  if (other.firstChild) { other.textContent = ""; footWas = null; }
+  if (!current) {
+    delete card.dataset.face; face.removeAttribute("aria-label"); $("under").innerHTML = "";
+    face.innerHTML = '<div class="empty"><p>' + t(deckSource === "index" ? "empty_unit" : "empty_sel") + "</p></div>"; return;
+  }
+  const c = current, up = revealed ? "back" : "front";
+  $("where").innerHTML = locatorHTML(c);
+  btn.textContent = t(revealed ? "front" : "back");                          // the button is named for the face it brings
+  card.dataset.face = up; face.setAttribute("aria-label", t(up));            // and the face that is up says which it is
+  face.innerHTML = M.faces(c, sides, dir)[up].map(p => PARTS[p.part](c, p)).join("");
+  const f = seen                                                             // until the back has been shown, «Ver respuesta»; from then on the grades, on both faces
+    ? '<div class="grade">' + [["g0", 0, "1"], ["g1", 1, "2"], ["g2", 2, "3"], ["g3", 3, "4"]]
+        .map(([l, g, k]) => '<button data-grade="' + g + '">' + t(l) + "<kbd>" + k + "</kbd></button>").join("") + "</div>"
+    : '<button class="reveal" id="rev">' + t("reveal") + ' <kbd style="opacity:.7">' + t("space") + "</kbd></button>";
+  if (f !== footWas) {                                                       // a control of the foot that held the keyboard and is gone hands it to the turn
+    const held = foot.contains(document.activeElement);
+    foot.innerHTML = footWas = f; if (held) btn.focus();
+  }
+  $("under").innerHTML = meterHTML() + legendHTML();
+}
+function meterHTML() {
+  const kn = cards.filter(c => M.known(progress, c.w)).length, seen = cards.filter(c => progress[c.w]).length;
+  const pct = cards.length ? Math.round(kn / cards.length * 100) : 0;
+  return '<div class="meter"><span>' + t("m_seen") + " <b>" + seen + "</b></span><span>" + t("m_known") + " <b>" + kn + "</b></span><span>" +
+         t("m_deck") + " <b>" + pct + "%</b></span><span>" + t("m_left") + " <b>" + queue.length + '</b></span></div><div class="track"><i style="width:' + pct + '%"></i></div>';
+}
+
+/* ---------- the reading side: text ---------- */
+function wordHTML(tid, s, si) {
+  const bt = M.byText[tid] ? M.byText[tid].tx : {};
+  let out = "", last = 0;
+  for (const [w, a, b] of M.tokens(s)) {
+    const e = bt[w];
+    out += esc(s.slice(last, a));
+    if (M.glossed(e)) {   // every glossed form can be hovered; function words are marked only when «gramaticales» is on
+      const k = M.known(progress, w), mark = !e.fn || includeFn;
+      out += '<span class="w' + (mark ? (k ? (markKnown ? " k" : "") : " u") : "") + '" data-w="' + esc(w) + '" data-si="' + si + '" data-o="' + a + '">' + esc(s.slice(a, b)) + "</span>";
+    } else out += esc(s.slice(a, b));
+    last = b;
+  }
+  return out + esc(s.slice(last));
+}
+function drawText() {
+  const tx = M.textById[textId], paras = M.parasOf(textId);
+  /* the hint: the facts of the text, then how a selection is made — which, on a narrow screen or under a finger, stands until something is chosen */
+  $("texthint").innerHTML = esc(t("texthint", { author: tx.author, date: tx.date, n: paras.length })) + '<span class="how">' + esc(t("texthint_how") + t("texthint2")) + "</span>";
+  document.body.classList.toggle("has-sel", selection.length > 0);
+  $("reader").innerHTML = paras.map(P =>
+    '<p class="para' + (selHas(textId, P.n) ? " sel" : "") + '" data-n="' + P.n + '"><span class="pn">' + P.n + "</span>" +
+    P.sents.map(si => wordHTML(textId, DATA.sentences[si], si)).join(" ") + "</p>").join("");
+  const all = allSelected(); $("selall").setAttribute("aria-pressed", String(all)); $("selall").textContent = t(all ? "sel_none" : "sel_all");
+}
+function markCurrent() {
+  document.querySelectorAll(".w.cur").forEach(x => x.classList.remove("cur"));
+  if (!current || view !== "text") return;
+  let els;
+  if (current.kind) {   // an atom or a stretch lights its own span in its own sentence, by offsets
+    els = [...document.querySelectorAll('.w[data-si="' + current.si + '"]')].filter(x => +x.dataset.o >= current.a && +x.dataset.o < current.b);
+  } else els = document.querySelectorAll('.w[data-w="' + CSS.escape(current.w) + '"]');
+  els.forEach(x => x.classList.add("cur"));
+  const p = current.si >= 0 && DATA.sentText[current.si] === textId ? DATA.sentPara[current.si] : null;
+  const target = p ? document.querySelector('.para[data-n="' + p + '"]') : els[0];
+  if (target && target.scrollIntoView) target.scrollIntoView({ block: "nearest" });
+}
+function refreshMarks() {
+  document.querySelectorAll(".w").forEach(x => {
+    const e = M.byText[textId] && M.byText[textId].tx[x.dataset.w], mark = e && (!e.fn || includeFn), k = M.known(progress, x.dataset.w);
+    x.classList.toggle("u", !!mark && !k); x.classList.toggle("k", !!mark && k && markKnown);
+  });
+}
+
+/* ---------- the reading side: index ---------- */
+function drawIndex() {
+  const rows = M.index([...lects].sort(), src, sort, query);
+  const units = Math.max(1, Math.ceil(rows.length / 100)); unitsTotal = units;
+  if (unit > units) unit = units; if (unit < 1) unit = 1;
+  $("unit").max = String(units); $("unit").value = String(unit);
+  $("unitlabel").textContent = t("unit_of", { n: unit, N: units, a: (unit - 1) * 100 + 1, b: Math.min(unit * 100, rows.length) });
+  $("unitprev").disabled = unit <= 1; $("unitnext").disabled = unit >= units;
+  $("texthint").textContent = t("idxhint", { n: rows.length.toLocaleString(lang), t: lects.size, s: lects.size === 1 ? "" : "s" });
+  const page = rows.slice((unit - 1) * 100, unit * 100);
+  let occ = "";
+  if (occForm) {
+    const es = (M.byForm[occForm] || []).filter(e => lects.has(e.t));
+    occ = '<div class="occ"><p><b>' + esc(occForm) + "</b> · " + es.length + " " + (es.length === 1 ? t("text1") : t("textN")) + "</p>" +
+      es.flatMap(e => e.ctx.slice(0, 2).map(([si, a, b]) => { const s = DATA.sentences[si];
+        return "<p>" + esc(s.slice(0, a)) + "<b>" + esc(s.slice(a, b)) + "</b>" + esc(s.slice(b)) +
+          '<span class="ref">' + e.t + " · " + (DATA.sentPara[si] ? "§ " + DATA.sentPara[si] : t("aparato")) + "</span></p>"; })).join("") + "</div>";
+  }
+  $("reader").innerHTML = '<p class="hint"><button class="btn" id="studyunit">' + t("study_unit") + "</button></p>" + occ +
+    "<table><thead><tr><th>" + t("h_word") + "</th><th>" + t("h_n") + "</th><th>" + t("h_disp") + "</th><th>" + t("h_gloss") + "</th></tr></thead><tbody>" +
+    page.map(r => '<tr class="' + (M.glossed(r.e) ? "" : "und") + (M.known(progress, r.w) ? " k" : "") + '"><td class="w" data-occ="' + esc(r.w) + '">' + esc(r.w) +
+      '</td><td class="n">' + r.n + '</td><td class="n">' + r.texts + " · " + r.authors + '</td><td class="d">' +
+      esc(r.e.en || "") + (r.e.en && r.e.d ? " · " : "") + esc(r.e.d || "") + (M.glossed(r.e) ? "" : t("no_gloss")) + "</td></tr>").join("") +
+    "</tbody></table>";
+}
+function drawLects() {
+  $("lects").innerHTML = M.TEXTS.map(tx => '<label class="chk"><input type="checkbox" data-lect="' + tx.id + '"' +
+    (lects.has(tx.id) ? " checked" : "") + "> " + tx.id + " " + esc(tx.title) + madeMark(tx.id) + "</label>").join("");
+  drawLectLine();
+}
+/* the line the list of texts is folded behind: how many of the texts are chosen */
+function drawLectLine() { $("lectline").textContent = t("lects_line", { n: lects.size, N: M.TEXTS.length }); }
+
+/* ---------- render ---------- */
+function render() {
+  const isText = view === "text";
+  document.querySelectorAll("[data-view]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === view)));
+  $("selbar").hidden = !isText; $("idxbar").hidden = isText; $("lectset").hidden = isText;
+  if (isText) drawText(); else { drawLects(); drawIndex(); }
+  $("textrights").innerHTML = (isText ? [M.textById[textId]] : M.TEXTS.filter(tx => lects.has(tx.id)))
+    .map(x => t("text_of") + esc(x.author) + (x.authorDates ? " (" + x.authorDates + ")" : "") + t("pd")).join(" ");
+  drawCard(); markCurrent();
+}
+function setSelection(sel, from) {
+  selection = sel; deckSource = "selection"; answered = false; current = null; roundGraded = 0;
+  refill(); next(); if (view === "text") drawText(); markCurrent();
+  if (from !== "hash") Store.pref("lastsel", M.hashFor(selection));
+}
+function savedOptions() {
+  let saved = {}; try { saved = JSON.parse(Store.pref("saved") || "{}"); } catch (e) {}
+  $("saved").innerHTML = '<option value="">' + t("saved_ph") + "</option>" + Object.keys(saved).sort().map(k =>
+    '<option value="' + esc(saved[k]) + '">' + esc(k) + "</option>").join("") + (Object.keys(saved).length ? '<option value="__del">' + t("saved_del") + "</option>" : "");
+  return saved;
+}
+function openText(tid, p) {
+  if (view !== "text" || tid !== textId) { view = "text"; textId = tid; $("text").value = tid; render(); }
+  const el = p ? document.querySelector('.para[data-n="' + p + '"]') : null;
+  if (el && el.scrollIntoView) el.scrollIntoView({ block: "center" });
+}
+
+/* ---------- the builder: two rows of chips (front / back), one per language; a chip is disabled when it would empty a side ---------- */
+function drawSides() {
+  const row = (side) => '<span class="row faces"><span>' + t(side) + "</span>" + M.LANGS.map(L => {
+    const on = sides[side].includes(L), only = on && sides[side].length === 1;
+    return '<button class="chip" data-side="' + side + '" data-lang="' + L + '" aria-pressed="' + on + '"' + (only ? " disabled" : "") + ">" + L.toUpperCase() + "</button>"; }).join("") + "</span>";
+  const shown = sides.front.concat(sides.back);
+  const scripts = shown.some(L => L === "sa" || L === "ae") ? '<span class="row"><span>SA · AE</span>' + ["both", "script", "translit"].map(m =>
+    '<button class="chip" data-script="' + m + '" aria-pressed="' + (scriptMode === m) + '">' + t("sc_" + m) + "</button>").join("") + "</span>" : "";
+  $("sides").innerHTML = row("front") + row("back") + scripts + '<span>' + t("grade_note") + "</span>";
+  document.querySelectorAll("[data-set]").forEach(b => b.setAttribute("aria-pressed", String(!!sets[b.dataset.set])));
+}
+$("sides").addEventListener("click", ev => {
+  const b = ev.target.closest(".chip"); if (!b || b.disabled) return;
+  if (b.dataset.script) { scriptMode = b.dataset.script; Store.pref("script", scriptMode); drawSides(); drawCard(); return; }
+  setSide(b.dataset.side, b.dataset.lang);
+});
+function setSide(side, L) {
+  const cur = sides[side].slice(), nxt = cur.includes(L) ? cur.filter(x => x !== L) : M.LANGS.filter(x => cur.includes(x) || x === L);
+  if (!nxt.length) return;
+  sides = Object.assign({}, sides, { [side]: nxt }); sidesFromHash = false; Store.pref("sides", JSON.stringify(sides));
+  drawSides(); if (side === "front") { current = null; refill(); next(); } else drawCard();   // the front decides which cards the deck has
+}
+/* the languages of the face that is up, in one row: under the card, in the dock, on a narrow screen; over the card under a finger on a wide one;
+   not at all on a wide screen under a pointer, where both rows stand among the deck's choices. A chip lit is a language on that face, and the
+   face shows it at once; the other face's row comes with the turn — so the row also says which face is up */
+function drawBar() {
+  const top = $("facebartop"), dock = $("facebar"), use = docked() ? dock : finger.matches ? top : null, side = revealed ? "back" : "front";
+  for (const b of [top, dock]) if (b !== use) { b.hidden = true; b.innerHTML = ""; }
+  if (!use) return;
+  const at = use.contains(document.activeElement) ? document.activeElement : null, key = at && (at.id ? "#" + at.id : '[data-flang="' + at.dataset.flang + '"]');
+  const open = $("deckset").open;
+  use.hidden = false;
+  use.innerHTML = '<span class="row"><span class="cap">' + t(side) + '</span><span class="chips">' + M.LANGS.map(L => {
+      const on = sides[side].includes(L), only = on && sides[side].length === 1;
+      return '<button class="chip" type="button" data-fside="' + side + '" data-flang="' + L + '" aria-pressed="' + on + '"' + (only ? " disabled" : "") + ">" + L.toUpperCase() + "</button>"; }).join("") +
+    (docked() ? '<button class="btn gear" type="button" id="deckgear" aria-controls="deckmenu" aria-expanded="' + open + '" aria-pressed="' + open + '" aria-label="' + esc(t("deck_settings")) + '">⚙\uFE0E</button>' : "") + "</span></span>";
+  if (key) { const n = use.querySelector(key); if (n && !n.disabled) n.focus(); }          // a chip or the control that held the keyboard keeps it
+}
+document.querySelectorAll("[data-set]").forEach(b => b.addEventListener("click", () => {
+  const k = b.dataset.set, nxt = Object.assign({}, sets, { [k]: !sets[k] });
+  if (!nxt.words && !nxt.atoms && !nxt.stretches) return;
+  sets = nxt; Store.pref("sets", JSON.stringify(sets)); drawSides();
+  if (deckSource === "selection") { current = null; refill(); next(); }
+}));
+
+/* ---------- events: deck ---------- */
+document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => {
+  orderMode = b.dataset.order; Store.pref("order", orderMode); drawChoices(); current = null; refill(); next();
+}));
+document.querySelectorAll("[data-dir]").forEach(b => b.addEventListener("click", () => {
+  dir = b.dataset.dir; Store.pref("dir", dir); drawChoices(); fresh(); drawCard();
+}));
+$("fn").addEventListener("change", e => { includeFn = e.target.checked; Store.pref("fn", includeFn ? "1" : "0"); current = null; refill(); next(); refreshMarks(); });
+$("deckpane").addEventListener("click", ev => {
+  const mk = ev.target.closest("[data-mk]");
+  if (mk || ev.target.closest(".mktip")) { if (mk) markTip(mk); ev.stopPropagation(); return; }   // the mark, and the sentence it shows, are not the card's turn
+  if (ev.target.closest("#rev") || ev.target.closest("#turn")) { turn(); return; }
+  if (ev.target.closest("#nextunit")) { setUnit(unit + 1); return; }
+  const g = ev.target.closest("[data-grade]");
+  if (g) { if (current && seen) graded(+g.dataset.grade); return; }
+  const go = ev.target.closest("[data-goto]");
+  if (go) { const [tid, p] = go.dataset.goto.split("/"); openText(tid, p); return; }
+  const oc = ev.target.closest("[data-occ]");
+  if (oc) { occForm = oc.dataset.occ; view = "index"; render(); return; }
+  /* a click or a touch on the card turns it, where it is not a link or a control and no text is being selected */
+  if (ev.target.closest("#card") && !ev.target.closest("button,a,summary") && !String(getSelection()).length) turn();
+});
+document.addEventListener("keydown", ev => {
+  if (ev.target.tagName === "INPUT" || ev.target.tagName === "SELECT") return;
+  if (ev.code === "Space") {                       // the space bar turns the card, both ways; on a control of the card it is that control's own key
+    if (ev.target.closest && ev.target.closest("#stage button, #dock button, #handle")) return;
+    ev.preventDefault(); if (!ev.repeat) turn();
+  }
+  else if (seen && "1234".includes(ev.key) && current) graded(+ev.key - 1);   // the keys act where the buttons stand
+});
+$("handle").addEventListener("click", () => setDeck(!$("deckpane").classList.contains("open")));
+for (const id of ["facebar", "facebartop"]) $(id).addEventListener("click", ev => {
+  const b = ev.target.closest("[data-fside]"); if (b && !b.disabled) setSide(b.dataset.fside, b.dataset.flang);
+});
+/* the panel of the deck's choices: a touch on its control opens it and closes it; a touch anywhere outside it closes it and does nothing else */
+document.addEventListener("click", ev => {
+  if (!docked()) return;
+  if (ev.target.closest("#deckgear")) { setMenu(!$("deckset").open); ev.stopPropagation(); return; }
+  if ($("deckset").open && !ev.target.closest("#deckmenu, #tour")) { setMenu(false); ev.stopPropagation(); ev.preventDefault(); }      // the tour's own buttons are the tour's
+}, true);
+document.addEventListener("keydown", ev => { if (ev.key === "Escape" && docked() && $("deckset").open) { setMenu(false); const g = $("deckgear"); if (g) g.focus(); } });
+narrow.addEventListener("change", place); roomy.addEventListener("change", place); finger.addEventListener("change", place);
+
+/* ---------- events: the reading side ---------- */
+document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => { view = b.dataset.view; render(); }));
+$("text").addEventListener("change", e => { textId = e.target.value; view = "text"; lastClicked = null; render(); });
+$("reader").addEventListener("click", ev => {
+  const w = ev.target.closest(".w");
+  if (w) { showTip(w, true); ev.stopPropagation(); return; }
+  const p = ev.target.closest(".para");
+  if (p) {
+    const n = +p.dataset.n;
+    let sel = selection.slice();
+    if (ev.shiftKey && lastClicked !== null) {
+      const lo = Math.min(lastClicked, n), hi = Math.max(lastClicked, n);
+      for (let i = lo; i <= hi; i++) if (!selHas(textId, i)) sel.push([textId, i]);
+    } else if (selHas(textId, n)) sel = sel.filter(([tid, m]) => !(tid === textId && m === n));
+    else sel.push([textId, n]);
+    lastClicked = n; setSelection(sel); return;
+  }
+  const oc = ev.target.closest("[data-occ]");
+  if (oc) { occForm = occForm === oc.dataset.occ ? null : oc.dataset.occ; drawIndex(); return; }
+  if (ev.target.closest("#studyunit")) { deckSource = "index"; answered = false; current = null; roundGraded = 0; refill(); next(); setDeck(true); }
+});
+$("more").addEventListener("click", () => setMore(!$("selbar").classList.contains("open")));
+$("seltools").addEventListener("keydown", ev => { if (ev.key === "Escape" && $("selbar").classList.contains("open")) { setMore(false); $("more").focus(); } });
+$("selall").addEventListener("click", () => {   // a toggle: all of this text, or none of it
+  lastClicked = null;
+  const rest = selection.filter(([tid]) => tid !== textId);
+  setSelection(allSelected() ? rest : rest.concat(M.parasOf(textId).map(P => [textId, P.n])));
+});
+$("save").addEventListener("click", () => {
+  if (!selection.length) return;
+  const name = prompt(t("name_sel")); if (!name) return;
+  const saved = savedOptions(); saved[name.trim()] = M.hashFor(selection); Store.pref("saved", JSON.stringify(saved)); savedOptions();
+});
+$("saved").addEventListener("change", e => {
+  const v = e.target.value; e.target.value = "";
+  if (v === "__del") {
+    const saved = savedOptions(); const name = prompt(t("which_del") + "\n" + Object.keys(saved).join("\n"));
+    if (name && saved[name.trim()]) { delete saved[name.trim()]; Store.pref("saved", JSON.stringify(saved)); } savedOptions(); return;
+  }
+  if (v) { const sel = M.parseSelection(v); if (sel.length) { textId = sel[0][0]; $("text").value = textId; view = "text"; setSelection(sel); render(); } }
+});
+$("link").addEventListener("click", () => {
+  const url = location.href.replace(/#.*$/, "") + (selection.length ? M.hashFor(selection, sides) : "#" + (M.sidesSeg(sides) ? M.sidesSeg(sides) + "/" : "") + textId);
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(() => alert(t("link_copied") + "\n" + url), () => prompt(t("link"), url));
+  else prompt(t("link"), url);
+});
+$("markknown").addEventListener("change", e => { markKnown = e.target.checked; Store.pref("markknown", markKnown ? "1" : "0"); refreshMarks(); });
+["sort", "unit", "q"].forEach(id => $(id).addEventListener(id === "q" ? "input" : "change", e => {
+  if (id === "sort") sort = e.target.value; else if (id === "unit") unit = Math.max(1, Math.min(unitsTotal, +e.target.value || 1)); else query = e.target.value.trim();
+  if (id === "unit") roundGraded = 0;
+  if (deckSource === "index") { current = null; refill(); next(); }
+  drawIndex();
+}));
+["src-text", "src-ed"].forEach(id => $(id).addEventListener("change", e => {
+  const k = id === "src-text" ? "tx" : "ed"; src[k] = e.target.checked;
+  if (!src.tx && !src.ed) { src[k] = true; e.target.checked = true; return; }
+  if (deckSource === "index") { current = null; refill(); next(); } drawIndex();
+}));
+function setUnit(n) { unit = Math.max(1, Math.min(unitsTotal, n)); roundGraded = 0; if (deckSource === "index") { current = null; refill(); next(); } if (view === "index") drawIndex(); }
+$("unitprev").addEventListener("click", () => setUnit(unit - 1));
+$("unitnext").addEventListener("click", () => setUnit(unit + 1));
+$("selalltexts").addEventListener("click", () => {   // the trainer finding (1): whole-corpus study in one click
+  lastClicked = null; setSelection([].concat(...M.TEXTS.map(tx => M.parasOf(tx.id).map(P => [tx.id, P.n]))));
+});
+$("lects").addEventListener("change", e => {
+  const id = e.target.dataset.lect; if (!id) return;
+  if (e.target.checked) lects.add(id); else lects.delete(id);
+  if (!lects.size) { lects.add(id); e.target.checked = true; return; }
+  drawLectLine();
+  if (deckSource === "index") { current = null; refill(); next(); } drawIndex();
+});
+
+/* ---------- hover glosses: the gloss only; the card is a second action ---------- */
+let tip = null;
+function hideTip() { if (tip) { tip.remove(); tip = null; } }
+function showTip(el, byClick) {
+  const w = el.dataset.w, e = M.byText[textId] && M.byText[textId].tx[w]; if (!e) return;
+  if (byClick && tip && tip.dataset.w === w) { toCard(w); hideTip(); return; }
+  if (tip && tip.dataset.w === w) return;
+  hideTip();
+  tip = document.createElement("div"); tip.className = "tip"; tip.dataset.w = w;
+  let fnl = "";   // a function word shows its resolved sense, never the form string's gloss alone; or «under review», never the guess
+  if (e.fn && el.dataset.si !== undefined) {
+    fnl = M.lociAt(+el.dataset.si, +el.dataset.o).map(L => '<span class="fnl">' + (L.status === "certified"
+      ? esc(L.concept[1]) + (enOf(L.concept) ? " · EN " + esc(enOf(L.concept)) : "") + " " + statusHTML("certified")
+      : statusHTML("review")) + "</span>").join("");
+  }
+  tip.innerHTML = '<span class="t">' + esc(w) + (progress[w] && progress[w].reps ? " · " + t("rep") + " " + progress[w].reps : "") + "</span>" +
+    esc(e.en || "") + (e.d ? '<p class="def">' + esc(e.d) + "</p>" : "") + fnl + '<span class="go">' + t("tip_go") + "</span>";
+  document.body.appendChild(tip);
+  const r = el.getBoundingClientRect();
+  tip.style.left = Math.max(6, Math.min(window.innerWidth - tip.offsetWidth - 6, r.left + window.scrollX)) + "px";
+  tip.style.top = (r.bottom + window.scrollY + 4) + "px";
+}
+function toCard(w) {
+  const i = cards.findIndex(c => !c.kind && c.w === w);
+  if (i >= 0) current = cards[i];
+  else { const e = M.byText[textId].tx[w], c = (e.ctx && e.ctx[0]) || null;
+         current = { w, e, si: c ? c[0] : -1, a: c ? c[1] : 0, b: c ? c[2] : 0, count: 0 }; }
+  fresh(); drawCard(); markCurrent(); setDeck(true);
+}
+$("reader").addEventListener("mouseover", ev => { const w = ev.target.closest(".w"); if (w) showTip(w, false); });
+$("reader").addEventListener("mouseleave", hideTip);
+document.addEventListener("click", ev => { if (!ev.target.closest(".tip") && !ev.target.closest(".w")) hideTip(); if (!ev.target.closest("[data-mk]")) markTip(null); });
+document.addEventListener("keydown", ev => { if (ev.key === "Escape") markTip(null); });
+
+/* ---------- switches, notices, progress in and out ---------- */
+$("sideswitch").addEventListener("click", () => { $("panes").classList.toggle("text-left"); Store.pref("side", $("panes").classList.contains("text-left") ? "left" : "right"); });
+document.querySelectorAll("#langseg button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+if (Store.pref("side") === "left") $("panes").classList.add("text-left");
+if (Store.pref("markknown") === "1") { markKnown = true; $("markknown").checked = true; }
+if (!Store.pref("note1")) $("note1").hidden = false;
+$("note1x").addEventListener("click", () => { $("note1").hidden = true; Store.pref("note1", "1"); });
+(function fontCheck() {
+  const need = [];
+  for (const script in FONTS) {
+    try { const c = document.createElement("canvas").getContext("2d"); c.font = "32px serif";
+      if (Math.abs(c.measureText(FONTS[script].probe).width - c.measureText("\uFFFF").width) < 0.5) need.push(FONTS[script].font); } catch (e) {}
+  }
+  if (need.length) { $("fontnote").hidden = false; $("fontnote").textContent = t("fonts") + need.join(", ") + "."; }
+})();
+$("export").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(progress)], { type: "application/json" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "lexico-progreso.json"; a.click();
+});
+$("import").addEventListener("click", () => $("file").click());
+$("file").addEventListener("change", ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { try { progress = M.migrate(JSON.parse(r.result)); Store.write(progress); current = null; refill(); next(); render(); }
+                     catch (e) { alert(t("bad_file")); } };
+  r.readAsText(f);
+});
+$("reset").addEventListener("click", () => {
+  if (!confirm(t("confirm_reset"))) return;
+  progress = {}; Store.write(progress); current = null; refill(); next(); render();
+});
+
+/* ---------- start: the hash is an entrance, not state ---------- */
+const madeMark = (tid) => M.madeLangs(tid).length ? " · " + M.madeLangs(tid).join(" ").toUpperCase() : "";   // a lectura whose forms are made names their languages
+$("text").innerHTML = M.TEXTS.map(tx => '<option value="' + tx.id + '">' + tx.id + " · " + esc(tx.title) + " · " + tx.year + madeMark(tx.id) + "</option>").join("");
+function enter() {
+  const h = location.hash, L = M.splitLang(h);
+  lang = L.lang || Store.pref("lang") || "es"; if (!STRINGS[lang]) lang = "es"; Store.pref("lang", lang); applyLang();
+  const S = M.splitSides(L.rest);   // a sides segment in the entrance applies to this visit; absent = the stored preference, else the default
+  if (S.sides) { sides = S.sides; sidesFromHash = true; }
+  else if (sidesFromHash) { sidesFromHash = false; try { sides = M.normSides(JSON.parse(Store.pref("sides") || "null")) || M.DEFAULT_SIDES; } catch (e) { sides = M.DEFAULT_SIDES; } }
+  drawSides();
+  $("rights").textContent = Store.persistent() ? "" : t("no_store");
+  const sel = M.parseSelection(h), p = M.parseHash(h);
+  if (sel.length && !(p && p.text)) { textId = sel[0][0]; view = "text"; $("text").value = textId; setSelection(sel, "hash"); render(); return; }
+  if (p && p.view === "index") { view = "index"; if (p.unit) unit = Math.max(1, p.unit); render(); if (p.unit) { deckSource = "index"; answered = false; current = null; roundGraded = 0; refill(); next(); drawIndex(); } return; }
+  if (p && p.text && M.textById[p.text]) {
+    textId = p.text; view = "text"; $("text").value = textId;
+    if (p.para) setSelection([[textId, p.para]], "hash"); else refill();
+    render(); if (p.para) openText(textId, p.para); return;
+  }
+  const last = Store.pref("lastsel"), ls = last ? M.parseSelection(last) : [];
+  if (ls.length) textId = ls[0][0];
+  $("text").value = textId;
+  if (ls.length) setSelection(ls, "hash"); else refill();
+  render();
+}
+/* the tour opens what it points at (D17). `at(key)`: the text or the sheet of the cards; the deck's choices — ⚙'s panel on a narrow screen, the fold
+   elsewhere —; and what the screen has of the step: where the panes do not stand side by side there is no «⇄ panel», and the step points at the row
+   of the languages beside the card. `keep()` notes what stood open when the tour began, and `back()` leaves it so when the tour ends */
+const TourStage = (() => {
+  let was = null;
+  const keep = () => { was = { deck: $("deckpane").classList.contains("open"), set: $("deckset").open }; };
+  const at = (key) => {
+    const choices = key === "set_words" || key === "o_review", row = key === "side" && docked();
+    if (docked()) { setDeck(choices || row); if (choices || row) setMenu(choices); }
+    else if (choices) $("deckset").open = true;
+    return row ? $("facebar") : document.querySelector('[data-t="' + key + '"]');
+  };
+  const back = () => { if (!was) return; if (docked()) { setDeck(was.deck); setMenu(was.deck && was.set); } else $("deckset").open = was.set; was = null; };
+  return { keep, at, back };
+})();
+/* TOUR-BEGIN */
+// 7.4b (decision 89; the compiler chose T1, 2026-11-08): a stepwise, dismissable tour. Each step is keyed to a real
+// data-t control; «?» in the masthead re-opens it; Close, Done or Escape stores the preference vl-tour=1. It opens by
+// itself only on a first visit that is not a deep link. What a step points at is asked of the page (`TourStage`), which opens
+// it first and leaves things as they stood when the tour ends. Tested by work/test_trainer_tour.js; guarded by trainer_check.py.
+const Tour = (() => {
+  const STEPS = [["v_text", "s1"], ["set_words", "s2"], ["side", "s3"], ["o_review", "s4"], ["export", "s5"]];
+  const stage = typeof TourStage === "undefined" ? null : TourStage;       // the page's own: what stands open, and what the screen has of a step
+  let i = 0, open = false;
+  // Open by itself only on a first visit (no preference stored) that is not a deep link: once the lang and sides
+  // segments are stripped, nothing remains — no text, no paragraph, no selection, no index unit.
+  const shouldOpen = (hash, seen) => {
+    if (seen) return false;
+    const rest = String(hash || "").replace(/^#/, "").split("/").filter(seg => seg && !/^(es|en|ja|sa|ae|el)$/.test(seg) && !/[~+]/.test(seg));
+    return rest.length === 0;
+  };
+  const el = (id) => (typeof document !== "undefined") ? document.getElementById(id) : null;
+  const unhl = () => { if (typeof document === "undefined") return; document.querySelectorAll(".tour-hl").forEach(e => e.classList.remove("tour-hl")); };
+  const show = () => {
+    const [key, s] = STEPS[i], box = el("tour"); if (!box) return;
+    el("tour-n").textContent = (i + 1) + " / " + STEPS.length;
+    el("tour-title").textContent = t("tour_" + s + "t"); el("tour-body").textContent = t("tour_" + s);
+    el("tour-prev").textContent = t("tour_prev"); el("tour-prev").disabled = i === 0;
+    el("tour-next").textContent = t(i === STEPS.length - 1 ? "tour_done" : "tour_next"); el("tour-close").textContent = t("tour_close");
+    unhl(); const target = stage ? stage.at(key) : document.querySelector('[data-t="' + key + '"]');      // what the step points at is opened first
+    if (target) { target.classList.add("tour-hl"); if (target.scrollIntoView) target.scrollIntoView({ block: "center" }); }
+    box.hidden = false;
+    /* the card stands at the screen's foot, at its right; where it would lie over what it points at, at the first other corner that is clear. Asked again once a sheet that was opening has come to rest */
+    const fit = () => { if (!open || STEPS[i][0] !== key || !box.classList) return; box.classList.remove("up", "aside");
+      if (!target || !target.getBoundingClientRect || !box.getBoundingClientRect) return;
+      const over = () => { const a = target.getBoundingClientRect(), b = box.getBoundingClientRect(); return a.bottom > b.top && a.top < b.bottom && a.right > b.left && a.left < b.right; };
+      for (const corner of [[], ["up"], ["aside"], ["up", "aside"]]) { box.classList.remove("up", "aside"); if (corner.length) box.classList.add(...corner); if (!over()) return; }
+      box.classList.remove("up", "aside"); };       // no corner is clear: the card stands where it stood
+    fit(); if (typeof setTimeout === "function") setTimeout(fit, 260);
+  };
+  const start = () => { if (!open && stage) stage.keep(); i = 0; open = true; show(); };
+  const close = () => { const wasOpen = open; open = false; unhl(); const box = el("tour"); if (box) box.hidden = true; Store.pref("tour", "1"); if (wasOpen && stage) stage.back(); };
+  const next = () => { if (i >= STEPS.length - 1) { close(); return; } i++; show(); };
+  const prev = () => { if (i > 0) { i--; show(); } };
+  const bind = () => {
+    const b = el("tourbtn"); if (b) b.addEventListener("click", start);
+    if (el("tour-next")) { el("tour-next").addEventListener("click", next); el("tour-prev").addEventListener("click", prev); el("tour-close").addEventListener("click", close); }
+    if (typeof document !== "undefined") document.addEventListener("keydown", (e) => { if (open && e.key === "Escape") close(); });
+  };
+  return { shouldOpen, start, close, next, prev, bind, step: () => i, isOpen: () => open, steps: STEPS.map(s => s[0]) };
+})();
+/* TOUR-END */
+window.addEventListener("hashchange", enter);
+savedOptions();
+drawChoices();
+enter();
+place();
+fitAvestan();
+Tour.bind(); if (Tour.shouldOpen(location.hash, Store.pref("tour"))) Tour.start();   // 7.4b
+})();
+</script>
+</body>
+</html>

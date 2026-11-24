@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>複製と改変 · Lecturas de los libertadores</title>
+<style>
+:root { color-scheme: light dark; --fg: #222; --bg: #fdfcf8; --mute: #666; --line: #ddd; --link: #1a4d8f; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e0; --bg: #1c1b19; --mute: #9a978f; --line: #3a3835; --link: #8ab4f8; --code: #2a2926; } }
+body { font-family: Georgia, 'Times New Roman', serif; color: var(--fg); background: var(--bg); max-width: 44em; margin: 2em auto; padding: 0 1em; line-height: 1.5; }
+h1 { font-weight: normal; margin-bottom: .2em; }
+h2 { font-size: 1.05em; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute); margin: 2.2em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .2em; }
+a { color: var(--link); } li { margin: .3em 0; }
+code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); }
+code { padding: 0 .25em; } pre { padding: .5em .7em; white-space: pre-wrap; overflow-wrap: anywhere; }
+dl { margin: .4em 0; } dt { margin-top: .5em; } dd { margin: 0 0 0 1.2em; color: var(--mute); }
+.lang { text-align: right; font-size: .9em; margin: 0; } .lang a { margin-left: .8em; }
+footer { color: var(--mute); font-size: .9em; margin-top: 2.5em; border-top: 1px solid var(--line); padding-top: .8em; }
+.nav { font-size: .9em; margin: 0 0 1em; } .nav a, .nav span { display: inline-block; padding: .35em 0; } .nav [aria-current] { font-weight: bold; }
+.nav-foot { margin: 1.5em 0 0; } footer .nav-foot { margin: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1em; margin: 0 0 1em; } .top .nav { margin: 0; }
+</style>
+</head>
+<body>
+<div class="top"><nav class="nav" aria-label="ナビゲーション"><a href="index.ja.html">トップページ</a> · <a href="vocab/flashcards.html#ja">Léxico</a> · <a href="como-usar.ja.html">使い方</a></nav><p class="lang"><a href="copiar-y-cambiar.html" lang="es" hreflang="es">Español</a><a href="copiar-y-cambiar.en.html" lang="en" hreflang="en">English</a></p></div>
+
+<h1>複製と改変</h1>
+
+<h2>フォルダ</h2>
+<p>作品の全体がこのフォルダである：15 の読解用校訂版とそのソース、語彙トレーナーとそのデータ、それらを規定する文書、
+それらを生成し検査するプログラム。<a href="README.md"><code>README.md</code></a> がファイルを列挙する（英語）。著者の本文は
+パブリックドメイン、加えたものはすべて CC0（<a href="LICENSE"><code>LICENSE</code></a>）：フォルダは無条件で複製し、
+ホスティングし、改変できる。</p>
+<p>現在作成中のものと、今後予定しているもの：<a href="proximos-cambios.ja.html">今後の予定</a>。</p>
+
+<h2>入手の仕方</h2>
+<p>サイトからは、ファイルごとに：フォルダ <code>lecturas/</code>。丸ごとなら、ミラーのリポジトリ
+<code>https://github.com/vocabulario-libre/vocabulario-libre.github.io</code> から：一つのアーカイブとして、</p>
+<pre>https://github.com/vocabulario-libre/vocabulario-libre.github.io/archive/refs/heads/main.zip</pre>
+<p>またはクローンで、</p>
+<pre>git clone -c core.autocrlf=false https://github.com/vocabulario-libre/vocabulario-libre.github.io</pre>
+<p>どちらの場合も、フォルダはその中の <code>lecturas/</code> である。<code>-c core.autocrlf=false</code> はファイルを公開された
+ままに保つ。これがないと、Windows の git は既定で改行を書き換え、検査はファイルを変更されたものとして示す。フォルダを
+検証するには：その中で <code>sha256sum -c MANIFEST.sha256</code>、または <code>python check_folder.py</code>。</p>
+
+<h2>変え方</h2>
+<p>校訂版の <code>.md</code> ファイルがそのソースであり、PDF と EPUB はそこから生成する。トレーナーは、校訂版と、各校訂版の
+訳語と定義のファイル <code>vocab/NN/</code> から生成する。コマンドは <code>README.md</code> にある。Python 3.9 以降、
+<code>reportlab</code>、<code>pyphen</code> が要る。変更のあとは：再構築し、検査する。</p>
+<p>校訂版の一語を直すには（ここでは校訂版 12）：</p>
+<ol>
+<li>そのソース <code>12-maximas-para-mi-hija-lectura.md</code> を編集する。</li>
+<li>そのファイルを再構築する：<code>python build_pdf.py 12</code>、続いて <code>python build_epub.py 12</code>。</li>
+<li><code>python check_folder.py</code> を実行する。<code>FOLDER CHECK PASS</code> で終わる。</li>
+</ol>
+<p>ある語の英語の訳語を変えるには：</p>
+<ol>
+<li>その校訂版の訳語ファイル <code>vocab/12/glosses.json</code> を編集する。</li>
+<li>トレーナーを再構築する：<code>vocab/</code> の中で <code>python extract_vocab.py</code>、続いて
+<code>python build_app.py</code>。</li>
+<li>トレーナーのカードを載せるトップページを再構築する：フォルダに戻って <code>python build_index.py</code>。</li>
+<li>上と同じく <code>python check_folder.py</code> を実行する。</li>
+</ol>
+<p>フォルダは丸ごと言語モデルに渡せる：展開したアーカイブ、またはクローンと、検査で終わる指示を一つ。指示の例を三つ：</p>
+<ul>
+<li>「校訂版 12 の出典についての注記で、この語をこの語に置き換えてください。その校訂版の PDF と EPUB を再構築してください。
+check_folder.py を実行し、最後の行を示してください。」</li>
+<li>「vocab/12/glosses.json で、この語の訳語をこれに変えてください。トレーナーを再構築し、続いてトップページを再構築してください。check_folder.py を
+実行し、最後の行を示してください。」</li>
+<li>「check_folder.py を実行してください。配布時からこのフォルダで変わったものと、再構築が要るものを列挙してください。」</li>
+</ul>
+
+<h2>検査されること</h2>
+<p><code>check_folder.py</code> は各ファイルを <a href="MANIFEST.sha256"><code>MANIFEST.sha256</code></a> と照合し、配布時から
+変わったものを示す。フォルダ内のプログラムが生成するすべてのファイル ― 校訂版と文書の PDF と EPUB、トレーナー、トップページ、
+これらのページ ― を生成し直し、ソースに対して古くなったものを示す。手引きとフォントは目録との照合だけで検査する。語数と正書法の検査を実行する。<code>anon.py</code> を実行する。これは、人の名前やアドレス、あるいはファイルを作った機械の痕跡 ― パス、ユーザー名、タイムゾーン ― を含むファイルを示す。最後の行は <code>FOLDER CHECK PASS</code>、または
+<code>FOLDER CHECK FAIL</code> と失敗した項目である。</p>
+<p>基準の残りは検査しない。<code>compliance.py</code>、<code>drift.py</code>、<code>release.py</code> は校訂版を
+<a href="POLICY-scholarship-and-compliance.pdf">方針</a>に照らして検査する。校訂版を作るのに使った作業ファイルが要り、それはこのフォルダにない。
+新しい校訂版や校訂注の変更は、ここでは方針に照らして検査されない。<code>MANIFEST.sha256</code> と
+<a href="PROVENANCE.md"><code>PROVENANCE.md</code></a> は配布物を記述するものであり、変更した複製を記述するものではない。</p>
+<footer>
+<nav class="nav nav-foot" aria-label="ナビゲーション"><a href="index.ja.html">トップページ</a> · <a href="vocab/flashcards.html#ja">Léxico</a> · <a href="como-usar.ja.html">使い方</a></nav>
+</footer>
+</body>
+</html>

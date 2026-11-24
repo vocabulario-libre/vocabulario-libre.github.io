@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo usar · Lecturas de los libertadores</title>
+<style>
+:root { color-scheme: light dark; --fg: #222; --bg: #fdfcf8; --mute: #666; --line: #ddd; --link: #1a4d8f; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e0; --bg: #1c1b19; --mute: #9a978f; --line: #3a3835; --link: #8ab4f8; --code: #2a2926; } }
+body { font-family: Georgia, 'Times New Roman', serif; color: var(--fg); background: var(--bg); max-width: 44em; margin: 2em auto; padding: 0 1em; line-height: 1.5; }
+h1 { font-weight: normal; margin-bottom: .2em; }
+h2 { font-size: 1.05em; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute); margin: 2.2em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .2em; }
+a { color: var(--link); } li { margin: .3em 0; }
+code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); }
+code { padding: 0 .25em; } pre { padding: .5em .7em; white-space: pre-wrap; overflow-wrap: anywhere; }
+dl { margin: .4em 0; } dt { margin-top: .5em; } dd { margin: 0 0 0 1.2em; color: var(--mute); }
+.lang { text-align: right; font-size: .9em; margin: 0; } .lang a { margin-left: .8em; }
+footer { color: var(--mute); font-size: .9em; margin-top: 2.5em; border-top: 1px solid var(--line); padding-top: .8em; }
+.nav { font-size: .9em; margin: 0 0 1em; } .nav a, .nav span { display: inline-block; padding: .35em 0; } .nav [aria-current] { font-weight: bold; }
+.nav-foot { margin: 1.5em 0 0; } footer .nav-foot { margin: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1em; margin: 0 0 1em; } .top .nav { margin: 0; }
+</style>
+</head>
+<body>
+<div class="top"><nav class="nav" aria-label="Navegación"><a href="index.html">Página principal</a> · <a href="vocab/flashcards.html">Léxico</a> · <span aria-current="page">Cómo usar</span></nav><p class="lang"><a href="como-usar.en.html" lang="en" hreflang="en">English</a><a href="como-usar.ja.html" lang="ja" hreflang="ja">日本語</a></p></div>
+
+<h1>Cómo usar</h1>
+
+<h2>Qué hay</h2>
+<p>Quince textos de Bolívar, San Martín y O’Higgins, 1812–1843, cada uno en una edición de lectura: el texto establecido y
+su aparato. Un entrenador de vocabulario, Léxico, que lleva los quince textos dentro. Los documentos que permiten
+comprobarlo todo: procedencia, política, método, manifiesto. El texto es de dominio público; lo demás, CC0. La colección
+crece por corpus; hoy, uno, en español.</p>
+
+<h2>Leer</h2>
+<p>La página principal lista los quince textos en orden cronológico, con autor y fecha. Cada entrada abre el texto en su
+edición. El aparato registra, caso por caso, lo que la edición cambió respecto del testimonio. El registro de procedencia
+(<a href="PROVENANCE.md"><code>PROVENANCE.md</code></a>) nombra el testimonio de cada texto y sus derechos.</p>
+
+<h2>Estudiar</h2>
+<p><a href="vocab/flashcards.html">Léxico</a> abre en la vista «Texto». Clic en un párrafo: sus palabras forman las
+fichas. Mayúsculas-clic: un tramo de párrafos. «Todo el texto»: el texto entero. Clic en una palabra: su equivalencia en
+inglés, escrita para ese pasaje. La vista «Índice» ordena todas las formas por frecuencia, en unidades de cien;
+«Estudiar esta unidad» forma el mazo.</p>
+<p>Tres juegos de fichas: «palabras» (cada forma con la frase en que aparece y su equivalencia), «átomos» (las palabras
+gramaticales: partícula, desinencia, rasgo, orden, ∅) y «tramos» (el átomo en el trecho de frase donde actúa). Sólo lo
+certificado forma fichas; lo demás dice «en revisión».</p>
+<p>Dos modos: «Reconocer» (se ve la palabra; se recuerda el sentido) y «Producir» (la frase con un hueco; se completa).
+En pantalla ancha, «⇄ panel» pasa el texto al otro lado de las fichas; junto a la ficha se eligen los idiomas de cada cara, «anverso» y «reverso». Tres órdenes: «Orden del texto», «Barajadas», «Por repasar». La barra espaciadora
+gira la ficha, y también un clic o un toque sobre ella; al repetirlo vuelve el anverso. Otra vez · Difícil · Bien · Fácil fija el próximo repaso.</p>
+<p>Las fichas de una lectura cuyas formas están hechas —la lista de lecturas la marca con sus lenguas— llevan además la
+palabra en japonés, ruso, alemán, sánscrito y avéstico: la forma, su lectura debajo y la forma de diccionario. El signo ◇
+marca una forma escrita para este proyecto que todavía no ha revisado ninguna persona que lea la lengua: puede contener
+errores. En las demás lecturas esas lenguas muestran «—».</p>
+<p>El progreso queda en este navegador y en ningún otro sitio. «Guardar progreso» lo escribe en un archivo; «Cargar
+progreso» lo lee; «Empezar de nuevo» lo borra. «Guardar selección» conserva un grupo de párrafos; «Enlace a esta
+selección» produce una dirección que lo abre en cualquier aparato.</p>
+
+<h2>Comprobar</h2>
+<p><a href="MANIFEST.sha256"><code>MANIFEST.sha256</code></a> lista cada archivo con su huella;
+<code>sha256sum -c MANIFEST.sha256</code> comprueba la distribución entera. <code>PROVENANCE.md</code> nombra testimonios y
+derechos. La <a href="POLICY-scholarship-and-compliance.pdf">política</a> fija las reglas; el método, cómo se aplicaron.
+<a href="copiar-y-cambiar.html">Copiar y cambiar</a> dice cómo se cambia la carpeta y cómo se comprueba el cambio.</p>
+
+<h2>Términos</h2>
+<dl>
+<dt>edición</dt><dd>el texto establecido a partir de un testimonio, con su aparato</dd>
+<dt>aparato</dt><dd>la lista de lo que la edición cambió respecto del testimonio, caso por caso</dd>
+<dt>testimonio</dt><dd>la impresión o el manuscrito del que procede el texto</dd>
+<dt>átomo</dt><dd>una palabra gramatical o una marca gramatical: partícula, desinencia, rasgo, orden, ∅</dd>
+<dt>tramo</dt><dd>el trecho de frase en que un átomo actúa</dd>
+<dt>certificado</dt><dd>un lugar cuyo sentido quedó comprobado; sólo éstos forman fichas</dd>
+</dl>
+<footer>
+<nav class="nav nav-foot" aria-label="Navegación"><a href="index.html">Página principal</a> · <a href="vocab/flashcards.html">Léxico</a> · <span aria-current="page">Cómo usar</span></nav>
+</footer>
+</body>
+</html>

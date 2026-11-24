@@ -1,0 +1,5101 @@
+{
+ "schema": "vocabulario-forms/2",
+ "lectura": "12",
+ "languages": [
+  "ja",
+  "ru",
+  "de",
+  "sa",
+  "ae"
+ ],
+ "written": {
+  "ja": "form: as written, kanji and kana; reading: hiragana",
+  "ru": "form: Cyrillic; reading: the same with the stress marked",
+  "de": "form: Latin; a noun with its article",
+  "sa": "form: Devanagari, made from the reading; reading: IAST",
+  "ae": "form: Hoffmann's transliteration, derived from `source` by the table of correspondences; script: its letters",
+  "said": "where a case, a feature or an order realises a grammatical concept, and no word: the English name of what realises it"
+ },
+ "words": {
+  "humanizar": {
+   "gloss": "to humanise, to make gentle and compassionate",
+   "concept": "L:to-humanise",
+   "lemma": "humanizar",
+   "ja": {
+    "form": "人間らしくする",
+    "reading": "にんげんらしくする",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "очеловечивать",
+    "reading": "очелове́чивать",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "vermenschlichen",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "मानुषीकर्तुम्",
+    "reading": "mānuṣīkartum",
+    "tier": 3,
+    "grade": "B",
+    "dict": "मानुषीकरोति",
+    "dict_reading": "mānuṣīkaroti"
+   },
+   "ae": {
+    "form": "mānušīkaṣ̌um",
+    "script": "𐬨𐬁𐬥𐬎𐬱𐬍𐬐𐬀𐬴𐬎𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "mānuṣīkartum",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "mānuṣīkartum",
+      "outcomes": [
+       "mānušīkaṣ̌um",
+       "mānušīkartum"
+      ],
+      "rows": [
+       [
+        "rt",
+        "§ 217",
+        "mānuṣīkaṣ̌um"
+       ],
+       [
+        "ṣ",
+        "§§ 106–107, 154–166",
+        "mānušīkaṣ̌um"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "mānušīkaṣ̌um"
+       ]
+      ]
+     }
+    ],
+    "dict": "mānušīkaraoti",
+    "dict_source": "mānuṣīkaroti",
+    "dict_outcomes": [
+     "mānušīkaraoti"
+    ]
+   },
+   "note": "sa: made with kṛ, «to make human», as the language makes such verbs"
+  },
+  "carácter": {
+   "gloss": "character",
+   "concept": "L:character",
+   "lemma": "carácter",
+   "ja": {
+    "form": "性格",
+    "reading": "せいかく",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "характер",
+    "reading": "хара́ктер",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "der Charakter",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "शीलम्",
+    "reading": "śīlam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "शील",
+    "dict_reading": "śīla",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "sīrəm",
+    "script": "𐬯𐬍𐬭𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "śīlam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "śīlam",
+      "outcomes": [
+       "sīrəm"
+      ],
+      "rows": [
+       [
+        "ss",
+        "§ 212",
+        "sīlam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "sīləm"
+       ],
+       [
+        "l",
+        "§ 100",
+        "sīrəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "sīrəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "sīra",
+    "dict_source": "śīla",
+    "dict_outcomes": [
+     "sīra"
+    ]
+   }
+  },
+  "hacerlo": {
+   "gloss": "to make it (the character)",
+   "concept": "L:to-make-it",
+   "lemma": "hacer",
+   "ja": {
+    "form": "それを…にする",
+    "reading": "それを…にする",
+    "tier": 1,
+    "grade": "B",
+    "dict": "する",
+    "dict_reading": "する"
+   },
+   "ru": {
+    "form": "делать его",
+    "reading": "де́лать его́",
+    "tier": 1,
+    "grade": "B",
+    "dict": "делать",
+    "dict_reading": "де́лать"
+   },
+   "de": {
+    "form": "ihn machen",
+    "tier": 1,
+    "grade": "B",
+    "dict": "machen"
+   },
+   "sa": {
+    "form": "तत् कर्तुम्",
+    "reading": "tat kartum",
+    "tier": 1,
+    "grade": "B",
+    "dict": "करोति",
+    "dict_reading": "karoti",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "tat kaṣ̌um",
+    "script": "𐬙𐬀𐬙 𐬐𐬀𐬴𐬎𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "tat kartum",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "tat",
+      "outcomes": [
+       "tat"
+      ],
+      "rows": [
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "tat"
+       ]
+      ]
+     },
+     {
+      "source": "kartum",
+      "outcomes": [
+       "kaṣ̌um",
+       "kartum"
+      ],
+      "rows": [
+       [
+        "rt",
+        "§ 217",
+        "kaṣ̌um"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "kaṣ̌um"
+       ]
+      ]
+     }
+    ],
+    "dict": "karaoti",
+    "dict_source": "karoti",
+    "dict_outcomes": [
+     "karaoti"
+    ]
+   }
+  },
+  "sensible": {
+   "gloss": "capable of feeling; compassionate (of a character)",
+   "concept": "L:capable-of-feeling",
+   "lemma": "sensible",
+   "ja": {
+    "form": "感じやすい",
+    "reading": "かんじやすい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "чувствительный",
+    "reading": "чувстви́тельный",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "empfindsam",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "सहृदयः",
+    "reading": "sahṛdayaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "सहृदय",
+    "dict_reading": "sahṛdaya",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "hazərədaiiō",
+    "script": "𐬵𐬀𐬰𐬆𐬭𐬆𐬛𐬀𐬌𐬌𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "sahṛdayas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "sahṛdayas",
+      "outcomes": [
+       "hazərədaiiō",
+       "hajərədaiiō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "sahṛdayō"
+       ],
+       [
+        "s",
+        "§ 209",
+        "hahṛdayō"
+       ],
+       [
+        "h",
+        "§ 208",
+        "hazṛdayō"
+       ],
+       [
+        "ṛ",
+        "§ 197",
+        "hazərədayō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "hazərədayō"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "hazərədaiiō"
+       ]
+      ]
+     }
+    ],
+    "dict": "hazərədaiia",
+    "dict_source": "sahṛdaya",
+    "dict_outcomes": [
+     "hazərədaiia",
+     "hajərədaiia"
+    ]
+   }
+  },
+  "insectos": {
+   "gloss": "insects",
+   "concept": "L:insects",
+   "lemma": "insecto",
+   "ja": {
+    "form": "昆虫",
+    "reading": "こんちゅう",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "насекомые",
+    "reading": "насеко́мые",
+    "tier": 1,
+    "grade": "B",
+    "dict": "насекомое",
+    "dict_reading": "насеко́мое"
+   },
+   "de": {
+    "form": "die Insekten",
+    "tier": 1,
+    "grade": "B",
+    "dict": "das Insekt"
+   },
+   "sa": {
+    "form": "कृमयः",
+    "reading": "kṛmayaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "कृमि",
+    "dict_reading": "kṛmi",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "kərəmaiiō",
+    "script": "𐬐𐬆𐬭𐬆𐬨𐬀𐬌𐬌𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "kṛmayas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "kṛmayas",
+      "outcomes": [
+       "kərəmaiiō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "kṛmayō"
+       ],
+       [
+        "ṛ",
+        "§ 197",
+        "kərəmayō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "kərəmayō"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "kərəmaiiō"
+       ]
+      ]
+     }
+    ],
+    "dict": "kərəmi",
+    "dict_source": "kṛmi",
+    "dict_outcomes": [
+     "kərəmi"
+    ]
+   },
+   "note": "sa: kṛmi, a worm, an insect"
+  },
+  "perjudican": {
+   "gloss": "(they) harm",
+   "concept": "L:harm",
+   "lemma": "perjudicar",
+   "ja": {
+    "form": "害する",
+    "reading": "がいする",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "вредят",
+    "reading": "вредя́т",
+    "tier": 1,
+    "grade": "B",
+    "dict": "вредить",
+    "dict_reading": "вреди́ть"
+   },
+   "de": {
+    "form": "schaden",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "हिंसन्ति",
+    "reading": "hiṃsanti",
+    "tier": 1,
+    "grade": "B",
+    "dict": "हिनस्ति",
+    "dict_reading": "hinasti",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "zihaṇti",
+    "script": "𐬰𐬌𐬵𐬀𐬧𐬙𐬌",
+    "tier": "3r",
+    "grade": "C",
+    "source": "hiṃsanti",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "hiṃsanti",
+      "outcomes": [
+       "zihaṇti",
+       "jihaṇti"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "hiṃhanti"
+       ],
+       [
+        "h",
+        "§ 208",
+        "ziṃhanti"
+       ],
+       [
+        "am",
+        "§ 201",
+        "zihanti"
+       ],
+       [
+        "n.C",
+        "§§ 101, 103",
+        "zihaṇti"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "zihaṇti"
+       ]
+      ]
+     }
+    ],
+    "dict": "zinasti",
+    "dict_source": "hinasti",
+    "dict_outcomes": [
+     "zinasti",
+     "jinasti"
+    ]
+   }
+  },
+  "stern": {
+   "gloss": "Stern (as printed): Laurence Sterne, the English novelist",
+   "concept": "L:stern-laurence-sterne",
+   "lemma": "Stern",
+   "ja": {
+    "form": "スターン",
+    "reading": "すたーん",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "Стерн",
+    "reading": "Стерн",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "Sterne",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "स्तेर्न्",
+    "reading": "stern",
+    "tier": 4,
+    "grade": "C",
+    "source": "Stern"
+   },
+   "ae": {
+    "absent": "a name: the Avestan primer has no table for loans"
+   },
+   "note": "a name; the printing has «Stern» for Sterne"
+  },
+  "dicho": {
+   "gloss": "said",
+   "concept": "L:said",
+   "lemma": "decir",
+   "ja": {
+    "form": "言った",
+    "reading": "いった",
+    "tier": 1,
+    "grade": "B",
+    "dict": "言う",
+    "dict_reading": "いう"
+   },
+   "ru": {
+    "form": "сказал",
+    "reading": "сказа́л",
+    "tier": 1,
+    "grade": "B",
+    "dict": "сказать",
+    "dict_reading": "сказа́ть"
+   },
+   "de": {
+    "form": "gesagt",
+    "tier": 1,
+    "grade": "B",
+    "dict": "sagen"
+   },
+   "sa": {
+    "form": "उक्तवान्",
+    "reading": "uktavān",
+    "tier": 1,
+    "grade": "B",
+    "dict": "वक्ति",
+    "dict_reading": "vakti",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "uxtauuān",
+    "script": "𐬎𐬑𐬙𐬀𐬎𐬎𐬁𐬥",
+    "tier": "3r",
+    "grade": "C",
+    "source": "uktavān",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "uktavān",
+      "outcomes": [
+       "uxtauuān"
+      ],
+      "rows": [
+       [
+        "k.C",
+        "§ 204",
+        "uxtavān"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "uxtavān"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "uxtauuān"
+       ]
+      ]
+     }
+    ],
+    "dict": "vaxti",
+    "dict_source": "vakti",
+    "dict_outcomes": [
+     "vaxti"
+    ]
+   }
+  },
+  "mosca": {
+   "gloss": "fly (the insect)",
+   "concept": "L:fly",
+   "lemma": "mosca",
+   "ja": {
+    "form": "ハエ",
+    "reading": "はえ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "муха",
+    "reading": "му́ха",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Fliege",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "मक्षिका",
+    "reading": "makṣikā",
+    "tier": 1,
+    "grade": "B",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "maxšikā",
+    "script": "𐬨𐬀𐬑𐬱𐬌𐬐𐬁",
+    "tier": "3r",
+    "grade": "C",
+    "source": "makṣikā",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "makṣikā",
+      "outcomes": [
+       "maxšikā",
+       "mašikā"
+      ],
+      "rows": [
+       [
+        "ks",
+        "§ 218",
+        "maxšikā"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "maxšikā"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "abriéndole": {
+   "gloss": "opening for it (the window)",
+   "concept": "L:opening-for-it",
+   "lemma": "abrir",
+   "ja": {
+    "form": "開けてやって",
+    "reading": "あけてやって",
+    "tier": 1,
+    "grade": "B",
+    "dict": "開ける",
+    "dict_reading": "あける"
+   },
+   "ru": {
+    "form": "открывая ей",
+    "reading": "открыва́я ей",
+    "tier": 1,
+    "grade": "B",
+    "dict": "открывать",
+    "dict_reading": "открыва́ть"
+   },
+   "de": {
+    "form": "ihr öffnend",
+    "tier": 1,
+    "grade": "B",
+    "dict": "öffnen"
+   },
+   "sa": {
+    "form": "तस्यै अपावृण्वन्",
+    "reading": "tasyai apāvṛṇvan",
+    "tier": 1,
+    "grade": "B",
+    "dict": "अपावृणोति",
+    "dict_reading": "apāvṛṇoti",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "tahiiāi apāuuərənuuan",
+    "script": "𐬙𐬀𐬵𐬌𐬌𐬁𐬌 𐬀𐬞𐬁𐬎𐬎𐬆𐬭𐬆𐬥𐬎𐬎𐬀𐬥",
+    "tier": "3r",
+    "grade": "C",
+    "source": "tasyai apāvṛṇvan",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "tasyai",
+      "outcomes": [
+       "tahiiāi"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "tahyai"
+       ],
+       [
+        "ai",
+        "§§ 54–59",
+        "tahyāi"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "tahyāi"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "tahiiāi"
+       ]
+      ]
+     },
+     {
+      "source": "apāvṛṇvan",
+      "outcomes": [
+       "apāuuərənuuan"
+      ],
+      "rows": [
+       [
+        "ṛ",
+        "§ 197",
+        "apāvərəṇvan"
+       ],
+       [
+        "ṇ",
+        "§ 102",
+        "apāvərənvan"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "apāvərənvan"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "apāuuərənuuan"
+       ]
+      ]
+     }
+    ],
+    "dict": "apāuuərənaoti",
+    "dict_source": "apāvṛṇoti",
+    "dict_outcomes": [
+     "apāuuərənaoti"
+    ]
+   },
+   "note": "the fly is feminine in Russian, German and Sanskrit"
+  },
+  "ventana": {
+   "gloss": "window",
+   "concept": "L:window",
+   "lemma": "ventana",
+   "ja": {
+    "form": "窓",
+    "reading": "まど",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "окно",
+    "reading": "окно́",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "das Fenster",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "वातायनम्",
+    "reading": "vātāyanam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "वातायन",
+    "dict_reading": "vātāyana",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "vātāiianəm",
+    "script": "𐬬𐬁𐬙𐬁𐬌𐬌𐬀𐬥𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "vātāyanam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "vātāyanam",
+      "outcomes": [
+       "vātāiianəm"
+      ],
+      "rows": [
+       [
+        "am#",
+        "§ 197",
+        "vātāyanəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "vātāyanəm"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "vātāiianəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "vātāiiana",
+    "dict_source": "vātāyana",
+    "dict_outcomes": [
+     "vātāiiana"
+    ]
+   }
+  },
+  "saliese": {
+   "gloss": "(so that) it might go out",
+   "concept": "L:it-might-go-out",
+   "lemma": "salir",
+   "ja": {
+    "form": "出るように",
+    "reading": "でるように",
+    "tier": 1,
+    "grade": "B",
+    "dict": "出る",
+    "dict_reading": "でる"
+   },
+   "ru": {
+    "form": "вышла бы",
+    "reading": "вы́шла бы",
+    "tier": 1,
+    "grade": "B",
+    "dict": "выйти",
+    "dict_reading": "вы́йти"
+   },
+   "de": {
+    "form": "hinausginge",
+    "tier": 1,
+    "grade": "B",
+    "dict": "hinausgehen"
+   },
+   "sa": {
+    "form": "निर्गच्छेत्",
+    "reading": "nirgacchet",
+    "tier": 1,
+    "grade": "B",
+    "dict": "निर्गच्छति",
+    "dict_reading": "nirgacchati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "nirgacsaēt",
+    "script": "𐬥𐬌𐬭𐬔𐬀𐬗𐬯𐬀𐬉𐬙",
+    "tier": "3r",
+    "grade": "C",
+    "source": "nirgacchet",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "nirgacchet",
+      "outcomes": [
+       "nirgacsaēt"
+      ],
+      "rows": [
+       [
+        "ch",
+        "§ 214",
+        "nirgacset"
+       ],
+       [
+        "e",
+        "§ 202",
+        "nirgacsaēt"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "nirgacsaēt"
+       ]
+      ]
+     }
+    ],
+    "dict": "nirgacsati",
+    "dict_source": "nirgacchati",
+    "dict_outcomes": [
+     "nirgacsati"
+    ]
+   }
+  },
+  "anda": {
+   "gloss": "go, off you go (to the fly)",
+   "concept": "L:go",
+   "lemma": "andar",
+   "ja": {
+    "form": "行け",
+    "reading": "いけ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "行く",
+    "dict_reading": "いく"
+   },
+   "ru": {
+    "form": "иди",
+    "reading": "иди́",
+    "tier": 1,
+    "grade": "B",
+    "dict": "идти",
+    "dict_reading": "идти́"
+   },
+   "de": {
+    "form": "geh",
+    "tier": 1,
+    "grade": "B",
+    "dict": "gehen"
+   },
+   "sa": {
+    "form": "गच्छ",
+    "reading": "gaccha",
+    "tier": 1,
+    "grade": "B",
+    "dict": "गच्छति",
+    "dict_reading": "gacchati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "gacsa",
+    "script": "𐬔𐬀𐬗𐬯𐬀",
+    "tier": "3r",
+    "grade": "C",
+    "source": "gaccha",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "gaccha",
+      "outcomes": [
+       "gacsa"
+      ],
+      "rows": [
+       [
+        "ch",
+        "§ 214",
+        "gacsa"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "gacsa"
+       ]
+      ]
+     }
+    ],
+    "dict": "gacsati",
+    "dict_source": "gacchati",
+    "dict_outcomes": [
+     "gacsati"
+    ]
+   }
+  },
+  "pobre": {
+   "gloss": "poor",
+   "concept": "L:poor",
+   "lemma": "pobre",
+   "ja": {
+    "form": "可哀想な",
+    "reading": "かわいそうな",
+    "tier": 1,
+    "grade": "B",
+    "dict": "可哀想",
+    "dict_reading": "かわいそう"
+   },
+   "ru": {
+    "form": "бедный",
+    "reading": "бе́дный",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "arm",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "वराकः",
+    "reading": "varākaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "वराक",
+    "dict_reading": "varāka",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "varākō",
+    "script": "𐬬𐬀𐬭𐬁𐬐𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "varākas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "varākas",
+      "outcomes": [
+       "varākō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "varākō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "varākō"
+       ]
+      ]
+     }
+    ],
+    "dict": "varāka",
+    "dict_source": "varāka",
+    "dict_outcomes": [
+     "varāka"
+    ]
+   }
+  },
+  "animal": {
+   "gloss": "animal",
+   "concept": "L:animal",
+   "lemma": "animal",
+   "ja": {
+    "form": "動物",
+    "reading": "どうぶつ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "животное",
+    "reading": "живо́тное",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "das Tier",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "जन्तुः",
+    "reading": "jantuḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "जन्तु",
+    "dict_reading": "jantu",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "jaṇtuh",
+    "script": "𐬘𐬀𐬧𐬙𐬎𐬵",
+    "tier": "3r",
+    "grade": "C",
+    "source": "jantus",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "jantus",
+      "outcomes": [
+       "jaṇtuh",
+       "zaṇtuh"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "jantuh"
+       ],
+       [
+        "j",
+        "§ 207",
+        "jantuh"
+       ],
+       [
+        "n.C",
+        "§§ 101, 103",
+        "jaṇtuh"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "jaṇtuh"
+       ]
+      ]
+     }
+    ],
+    "dict": "jaṇtu",
+    "dict_source": "jantu",
+    "dict_outcomes": [
+     "jaṇtu",
+     "zaṇtu"
+    ]
+   }
+  },
+  "mundo": {
+   "gloss": "world",
+   "concept": "L:world",
+   "lemma": "mundo",
+   "ja": {
+    "form": "世界",
+    "reading": "せかい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "мир",
+    "reading": "мир",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Welt",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "लोकः",
+    "reading": "lokaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "लोक",
+    "dict_reading": "loka",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "raokō",
+    "script": "𐬭𐬀𐬊𐬐𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "lokas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "lokas",
+      "outcomes": [
+       "raokō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "lokō"
+       ],
+       [
+        "o",
+        "§ 202",
+        "laokō"
+       ],
+       [
+        "l",
+        "§ 100",
+        "raokō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "raokō"
+       ]
+      ]
+     }
+    ],
+    "dict": "raoka",
+    "dict_source": "loka",
+    "dict_outcomes": [
+     "raoka"
+    ]
+   }
+  },
+  "demasiado": {
+   "gloss": "too, too much",
+   "concept": "L:too",
+   "lemma": "demasiado",
+   "ja": {
+    "form": "あまりに",
+    "reading": "あまりに",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "слишком",
+    "reading": "сли́шком",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "zu",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "अतिमात्रम्",
+    "reading": "atimātram",
+    "tier": 1,
+    "grade": "B",
+    "dict": "अतिमात्र",
+    "dict_reading": "atimātra",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "atimāϑrəm",
+    "script": "𐬀𐬙𐬌𐬨𐬁𐬚𐬭𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "atimātram",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "atimātram",
+      "outcomes": [
+       "atimāϑrəm"
+      ],
+      "rows": [
+       [
+        "t.C",
+        "§ 204",
+        "atimāϑram"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "atimāϑrəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "atimāϑrəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "atimāϑra",
+    "dict_source": "atimātra",
+    "dict_outcomes": [
+     "atimāϑra"
+    ]
+   }
+  },
+  "grande": {
+   "gloss": "big, wide (of the world); great",
+   "concept": "L:big",
+   "lemma": "grande",
+   "ja": {
+    "form": "大きい",
+    "reading": "おおきい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "большой",
+    "reading": "большо́й",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "groß",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "महान्",
+    "reading": "mahān",
+    "tier": 1,
+    "grade": "B",
+    "dict": "महत्",
+    "dict_reading": "mahat",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "mazān",
+    "script": "𐬨𐬀𐬰𐬁𐬥",
+    "tier": "3r",
+    "grade": "C",
+    "source": "mahān",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "mahān",
+      "outcomes": [
+       "mazān",
+       "majān"
+      ],
+      "rows": [
+       [
+        "h",
+        "§ 208",
+        "mazān"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "mazān"
+       ]
+      ]
+     }
+    ],
+    "dict": "mazat",
+    "dict_source": "mahat",
+    "dict_outcomes": [
+     "mazat",
+     "majat"
+    ]
+   }
+  },
+  "dos": {
+   "gloss": "two",
+   "concept": "L:two",
+   "lemma": "dos",
+   "ja": {
+    "form": "二人",
+    "reading": "ふたり",
+    "tier": 1,
+    "grade": "C"
+   },
+   "ru": {
+    "form": "два",
+    "reading": "два",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "zwei",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "द्वौ",
+    "reading": "dvau",
+    "tier": 1,
+    "grade": "B",
+    "dict": "द्वि",
+    "dict_reading": "dvi",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "duuāu",
+    "script": "𐬛𐬎𐬎𐬁𐬎",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dvau",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dvau",
+      "outcomes": [
+       "duuāu"
+      ],
+      "rows": [
+       [
+        "au",
+        "§§ 54–59",
+        "dvāu"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "dvāu"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "duuāu"
+       ]
+      ]
+     }
+    ],
+    "dict": "duui",
+    "dict_source": "dvi",
+    "dict_outcomes": [
+     "duui"
+    ]
+   },
+   "note": "ja: the two of us"
+  },
+  "inspirarla": {
+   "gloss": "to instil in her, to inspire her with (today usually \"inspirarle\")",
+   "concept": "L:to-instil-in-her",
+   "lemma": "inspirar",
+   "ja": {
+    "form": "彼女に吹き込む",
+    "reading": "かのじょにふきこむ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "吹き込む",
+    "dict_reading": "ふきこむ"
+   },
+   "ru": {
+    "form": "внушать ей",
+    "reading": "внуша́ть ей",
+    "tier": 1,
+    "grade": "B",
+    "dict": "внушать",
+    "dict_reading": "внуша́ть"
+   },
+   "de": {
+    "form": "ihr einflößen",
+    "tier": 1,
+    "grade": "B",
+    "dict": "einflößen"
+   },
+   "sa": {
+    "form": "तस्याम् उत्पादयितुम्",
+    "reading": "tasyām utpādayitum",
+    "tier": 1,
+    "grade": "B",
+    "dict": "उत्पादयति",
+    "dict_reading": "utpādayati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "tahiiām uϑpādaiiitum",
+    "script": "𐬙𐬀𐬵𐬌𐬌𐬁𐬨 𐬎𐬚𐬞𐬁𐬛𐬀𐬌𐬌𐬌𐬙𐬎𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "tasyām utpādayitum",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "tasyām",
+      "outcomes": [
+       "tahiiām"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "tahyām"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "tahyām"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "tahiiām"
+       ]
+      ]
+     },
+     {
+      "source": "utpādayitum",
+      "outcomes": [
+       "uϑpādaiiitum"
+      ],
+      "rows": [
+       [
+        "t.C",
+        "§ 204",
+        "uϑpādayitum"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "uϑpādayitum"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "uϑpādaiiitum"
+       ]
+      ]
+     }
+    ],
+    "dict": "uϑpādaiiati",
+    "dict_source": "utpādayati",
+    "dict_outcomes": [
+     "uϑpādaiiati"
+    ]
+   }
+  },
+  "amor": {
+   "gloss": "love",
+   "concept": "L:love",
+   "lemma": "amor",
+   "ja": {
+    "form": "愛",
+    "reading": "あい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "любовь",
+    "reading": "любо́вь",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Liebe",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "प्रीतिः",
+    "reading": "prītiḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "प्रीति",
+    "dict_reading": "prīti",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "frītih",
+    "script": "𐬟𐬭𐬍𐬙𐬌𐬵",
+    "tier": "3r",
+    "grade": "C",
+    "source": "prītis",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "prītis",
+      "outcomes": [
+       "frītih"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "prītih"
+       ],
+       [
+        "p.C",
+        "§ 204",
+        "frītih"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "frītih"
+       ]
+      ]
+     }
+    ],
+    "dict": "frīti",
+    "dict_source": "prīti",
+    "dict_outcomes": [
+     "frīti"
+    ]
+   }
+  },
+  "verdad": {
+   "gloss": "truth",
+   "concept": "L:truth",
+   "lemma": "verdad",
+   "ja": {
+    "form": "真実",
+    "reading": "しんじつ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "правда",
+    "reading": "пра́вда",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Wahrheit",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "सत्यम्",
+    "reading": "satyam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "सत्य",
+    "dict_reading": "satya",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "haϑiiəm",
+    "script": "𐬵𐬀𐬚𐬌𐬌𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "satyam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "satyam",
+      "outcomes": [
+       "haϑiiəm"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "hatyam"
+       ],
+       [
+        "t.C",
+        "§ 204",
+        "haϑyam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "haϑyəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "haϑyəm"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "haϑiiəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "haϑiia",
+    "dict_source": "satya",
+    "dict_outcomes": [
+     "haϑiia"
+    ]
+   }
+  },
+  "odio": {
+   "gloss": "hatred",
+   "concept": "L:hatred",
+   "lemma": "odio",
+   "ja": {
+    "form": "憎しみ",
+    "reading": "にくしみ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "ненависть",
+    "reading": "не́нависть",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "der Hass",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "द्वेषः",
+    "reading": "dveṣaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "द्वेष",
+    "dict_reading": "dveṣa",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "duuaēšō",
+    "script": "𐬛𐬎𐬎𐬀𐬉𐬱𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dveṣas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dveṣas",
+      "outcomes": [
+       "duuaēšō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "dveṣō"
+       ],
+       [
+        "e",
+        "§ 202",
+        "dvaēṣō"
+       ],
+       [
+        "ṣ",
+        "§§ 106–107, 154–166",
+        "dvaēšō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "dvaēšō"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "duuaēšō"
+       ]
+      ]
+     }
+    ],
+    "dict": "duuaēša",
+    "dict_source": "dveṣa",
+    "dict_outcomes": [
+     "duuaēša"
+    ]
+   }
+  },
+  "mentira": {
+   "gloss": "lie, falsehood",
+   "concept": "L:lie",
+   "lemma": "mentira",
+   "ja": {
+    "form": "嘘",
+    "reading": "うそ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "ложь",
+    "reading": "ложь",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Lüge",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "अनृतम्",
+    "reading": "anṛtam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "अनृत",
+    "dict_reading": "anṛta",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "anərətəm",
+    "script": "𐬀𐬥𐬆𐬭𐬆𐬙𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "anṛtam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "anṛtam",
+      "outcomes": [
+       "anərətəm"
+      ],
+      "rows": [
+       [
+        "ṛ",
+        "§ 197",
+        "anərətam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "anərətəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "anərətəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "anərəta",
+    "dict_source": "anṛta",
+    "dict_outcomes": [
+     "anərəta"
+    ]
+   }
+  },
+  "gran": {
+   "gloss": "great",
+   "concept": "L:great",
+   "lemma": "grande",
+   "ja": {
+    "form": "大きな",
+    "reading": "おおきな",
+    "tier": 1,
+    "grade": "C"
+   },
+   "ru": {
+    "form": "большой",
+    "reading": "большо́й",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "groß",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "महान्",
+    "reading": "mahān",
+    "tier": 1,
+    "grade": "B",
+    "dict": "महत्",
+    "dict_reading": "mahat",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "mazān",
+    "script": "𐬨𐬀𐬰𐬁𐬥",
+    "tier": "3r",
+    "grade": "C",
+    "source": "mahān",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "mahān",
+      "outcomes": [
+       "mazān",
+       "majān"
+      ],
+      "rows": [
+       [
+        "h",
+        "§ 208",
+        "mazān"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "mazān"
+       ]
+      ]
+     }
+    ],
+    "dict": "mazat",
+    "dict_source": "mahat",
+    "dict_outcomes": [
+     "mazat",
+     "majat"
+    ]
+   }
+  },
+  "confianza": {
+   "gloss": "trust",
+   "concept": "L:trust",
+   "lemma": "confianza",
+   "ja": {
+    "form": "信頼",
+    "reading": "しんらい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "доверие",
+    "reading": "дове́рие",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "das Vertrauen",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "विश्वासः",
+    "reading": "viśvāsaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "विश्वास",
+    "dict_reading": "viśvāsa",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "vispāhō",
+    "script": "𐬬𐬌𐬯𐬞𐬁𐬵𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "viśvāsas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "viśvāsas",
+      "outcomes": [
+       "vispāhō"
+      ],
+      "rows": [
+       [
+        "sv",
+        "§ 213",
+        "vispāsas"
+       ],
+       [
+        "as#",
+        "§ 210, § 199",
+        "vispāsō"
+       ],
+       [
+        "s",
+        "§ 209",
+        "vispāhō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "vispāhō"
+       ]
+      ]
+     }
+    ],
+    "dict": "vispāha",
+    "dict_source": "viśvāsa",
+    "dict_outcomes": [
+     "vispāha"
+    ]
+   }
+  },
+  "amistad": {
+   "gloss": "friendship",
+   "concept": "L:friendship",
+   "lemma": "amistad",
+   "ja": {
+    "form": "友情",
+    "reading": "ゆうじょう",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "дружба",
+    "reading": "дру́жба",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Freundschaft",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "मैत्री",
+    "reading": "maitrī",
+    "tier": 1,
+    "grade": "B",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "māiϑrī",
+    "script": "𐬨𐬁𐬌𐬚𐬭𐬍",
+    "tier": "3r",
+    "grade": "C",
+    "source": "maitrī",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "maitrī",
+      "outcomes": [
+       "māiϑrī"
+      ],
+      "rows": [
+       [
+        "t.C",
+        "§ 204",
+        "maiϑrī"
+       ],
+       [
+        "ai",
+        "§§ 54–59",
+        "māiϑrī"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "māiϑrī"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "uniendo": {
+   "gloss": "joining, combining (with)",
+   "concept": "L:joining",
+   "lemma": "unir",
+   "ja": {
+    "form": "結び付けて",
+    "reading": "むすびつけて",
+    "tier": 1,
+    "grade": "B",
+    "dict": "結び付ける",
+    "dict_reading": "むすびつける"
+   },
+   "ru": {
+    "form": "соединяя",
+    "reading": "соединя́я",
+    "tier": 1,
+    "grade": "B",
+    "dict": "соединять",
+    "dict_reading": "соединя́ть"
+   },
+   "de": {
+    "form": "verbindend",
+    "tier": 1,
+    "grade": "B",
+    "dict": "verbinden"
+   },
+   "sa": {
+    "form": "संयोजयन्",
+    "reading": "saṃyojayan",
+    "tier": 1,
+    "grade": "B",
+    "dict": "संयोजयति",
+    "dict_reading": "saṃyojayati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "hąiiaojaiian",
+    "script": "𐬵𐬄𐬌𐬌𐬀𐬊𐬘𐬀𐬌𐬌𐬀𐬥",
+    "tier": "3r",
+    "grade": "C",
+    "source": "saṃyojayan",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "saṃyojayan",
+      "outcomes": [
+       "hąiiaojaiian",
+       "hąiiaozaiian"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "haṃyojayan"
+       ],
+       [
+        "j",
+        "§ 207",
+        "haṃyojayan"
+       ],
+       [
+        "o",
+        "§ 202",
+        "haṃyaojayan"
+       ],
+       [
+        "am",
+        "§ 201",
+        "hąyaojayan"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "hąyaojayan"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "hąiiaojaiian"
+       ]
+      ]
+     }
+    ],
+    "dict": "hąiiaojaiiati",
+    "dict_source": "saṃyojayati",
+    "dict_outcomes": [
+     "hąiiaojaiiati",
+     "hąiiaozaiiati"
+    ]
+   }
+  },
+  "respeto": {
+   "gloss": "respect",
+   "concept": "L:respect",
+   "lemma": "respeto",
+   "ja": {
+    "form": "尊敬",
+    "reading": "そんけい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "уважение",
+    "reading": "уваже́ние",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "der Respekt",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "आदरः",
+    "reading": "ādaraḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "आदर",
+    "dict_reading": "ādara",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "ādarō",
+    "script": "𐬁𐬛𐬀𐬭𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "ādaras",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "ādaras",
+      "outcomes": [
+       "ādarō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "ādarō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "ādarō"
+       ]
+      ]
+     }
+    ],
+    "dict": "ādara",
+    "dict_source": "ādara",
+    "dict_outcomes": [
+     "ādara"
+    ]
+   }
+  },
+  "estimular": {
+   "gloss": "to encourage, to stimulate",
+   "concept": "L:to-encourage",
+   "lemma": "estimular",
+   "ja": {
+    "form": "促す",
+    "reading": "うながす",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "поощрять",
+    "reading": "поощря́ть",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "fördern",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "प्रोत्साहयितुम्",
+    "reading": "protsāhayitum",
+    "tier": 1,
+    "grade": "B",
+    "dict": "प्रोत्साहयति",
+    "dict_reading": "protsāhayati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "fraoϑhāzaiiitum",
+    "script": "𐬟𐬭𐬀𐬊𐬚𐬵𐬁𐬰𐬀𐬌𐬌𐬌𐬙𐬎𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "protsāhayitum",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "protsāhayitum",
+      "outcomes": [
+       "fraoϑhāzaiiitum",
+       "fraoϑhājaiiitum"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "prothāhayitum"
+       ],
+       [
+        "h",
+        "§ 208",
+        "prothāzayitum"
+       ],
+       [
+        "t.C",
+        "§ 204",
+        "proϑhāzayitum"
+       ],
+       [
+        "p.C",
+        "§ 204",
+        "froϑhāzayitum"
+       ],
+       [
+        "o",
+        "§ 202",
+        "fraoϑhāzayitum"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "fraoϑhāzayitum"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "fraoϑhāzaiiitum"
+       ]
+      ]
+     }
+    ],
+    "dict": "fraoϑhāzaiiati",
+    "dict_source": "protsāhayati",
+    "dict_outcomes": [
+     "fraoϑhāzaiiati",
+     "fraoϑhājaiiati"
+    ]
+   }
+  },
+  "mercedes": {
+   "gloss": "Mercedes",
+   "concept": "L:mercedes",
+   "lemma": "Mercedes",
+   "ja": {
+    "form": "メルセデス",
+    "reading": "めるせです",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "Мерседес",
+    "reading": "Мерсе́дес",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "Mercedes",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "मेर्सेदेः",
+    "reading": "mersedeḥ",
+    "tier": 4,
+    "grade": "C",
+    "source": "Mercedes"
+   },
+   "ae": {
+    "absent": "a name: the Avestan primer has no table for loans"
+   },
+   "note": "a name"
+  },
+  "caridad": {
+   "gloss": "charity",
+   "concept": "L:charity",
+   "lemma": "caridad",
+   "ja": {
+    "form": "慈善",
+    "reading": "じぜん",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "милосердие",
+    "reading": "милосе́рдие",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Nächstenliebe",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "दया",
+    "reading": "dayā",
+    "tier": 1,
+    "grade": "B",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "daiiā",
+    "script": "𐬛𐬀𐬌𐬌𐬁",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dayā",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dayā",
+      "outcomes": [
+       "daiiā"
+      ],
+      "rows": [
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "dayā"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "daiiā"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "pobres": {
+   "gloss": "the poor; poor people",
+   "concept": "L:the-poor",
+   "lemma": "pobre",
+   "ja": {
+    "form": "貧しい人々",
+    "reading": "まずしいひとびと",
+    "tier": 1,
+    "grade": "B",
+    "dict": "貧しい",
+    "dict_reading": "まずしい"
+   },
+   "ru": {
+    "form": "бедные",
+    "reading": "бе́дные",
+    "tier": 1,
+    "grade": "B",
+    "dict": "бедный",
+    "dict_reading": "бе́дный"
+   },
+   "de": {
+    "form": "die Armen",
+    "tier": 1,
+    "grade": "B",
+    "dict": "arm"
+   },
+   "sa": {
+    "form": "दरिद्राः",
+    "reading": "daridrāḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "दरिद्र",
+    "dict_reading": "daridra",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "daridrā̊",
+    "script": "𐬛𐬀𐬭𐬌𐬛𐬭𐬃",
+    "tier": "3r",
+    "grade": "C",
+    "source": "daridrās",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "daridrās",
+      "outcomes": [
+       "daridrā̊"
+      ],
+      "rows": [
+       [
+        "aas#",
+        "§ 211, § 200",
+        "daridrā̊"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "daridrā̊"
+       ]
+      ]
+     }
+    ],
+    "dict": "daridra",
+    "dict_source": "daridra",
+    "dict_outcomes": [
+     "daridra"
+    ]
+   }
+  },
+  "propiedad": {
+   "gloss": "property",
+   "concept": "L:property",
+   "lemma": "propiedad",
+   "ja": {
+    "form": "財産",
+    "reading": "ざいさん",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "собственность",
+    "reading": "со́бственность",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "das Eigentum",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "धनम्",
+    "reading": "dhanam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "धन",
+    "dict_reading": "dhana",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "danəm",
+    "script": "𐬛𐬀𐬥𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dhanam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dhanam",
+      "outcomes": [
+       "danəm"
+      ],
+      "rows": [
+       [
+        "dh",
+        "§ 205",
+        "danam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "danəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "danəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "dana",
+    "dict_source": "dhana",
+    "dict_outcomes": [
+     "dana"
+    ]
+   }
+  },
+  "ajena": {
+   "gloss": "someone else's (fem.)",
+   "concept": "L:someone-else-s",
+   "lemma": "ajeno",
+   "ja": {
+    "form": "他人の",
+    "reading": "たにんの",
+    "tier": 1,
+    "grade": "B",
+    "dict": "他人",
+    "dict_reading": "たにん"
+   },
+   "ru": {
+    "form": "чужая",
+    "reading": "чужа́я",
+    "tier": 1,
+    "grade": "B",
+    "dict": "чужой",
+    "dict_reading": "чужо́й"
+   },
+   "de": {
+    "form": "fremd",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "परकीया",
+    "reading": "parakīyā",
+    "tier": 1,
+    "grade": "B",
+    "dict": "परकीय",
+    "dict_reading": "parakīya",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "parakīiiā",
+    "script": "𐬞𐬀𐬭𐬀𐬐𐬍𐬌𐬌𐬁",
+    "tier": "3r",
+    "grade": "C",
+    "source": "parakīyā",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "parakīyā",
+      "outcomes": [
+       "parakīiiā"
+      ],
+      "rows": [
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "parakīyā"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "parakīiiā"
+       ]
+      ]
+     }
+    ],
+    "dict": "parakīiia",
+    "dict_source": "parakīya",
+    "dict_outcomes": [
+     "parakīiia"
+    ]
+   }
+  },
+  "acostumbrarla": {
+   "gloss": "to get her used to",
+   "concept": "L:to-get-her-used-to",
+   "lemma": "acostumbrar",
+   "ja": {
+    "form": "彼女を慣らす",
+    "reading": "かのじょをならす",
+    "tier": 1,
+    "grade": "B",
+    "dict": "慣らす",
+    "dict_reading": "ならす"
+   },
+   "ru": {
+    "form": "приучать её",
+    "reading": "приуча́ть её",
+    "tier": 1,
+    "grade": "B",
+    "dict": "приучать",
+    "dict_reading": "приуча́ть"
+   },
+   "de": {
+    "form": "sie gewöhnen",
+    "tier": 1,
+    "grade": "B",
+    "dict": "gewöhnen"
+   },
+   "sa": {
+    "form": "ताम् अभ्यासयितुम्",
+    "reading": "tām abhyāsayitum",
+    "tier": 3,
+    "grade": "B",
+    "dict": "अभ्यासयति",
+    "dict_reading": "abhyāsayati"
+   },
+   "ae": {
+    "form": "tām abiiāhaiiitum",
+    "script": "𐬙𐬁𐬨 𐬀𐬠𐬌𐬌𐬁𐬵𐬀𐬌𐬌𐬌𐬙𐬎𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "tām abhyāsayitum",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "tām",
+      "outcomes": [
+       "tām"
+      ],
+      "rows": [
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "tām"
+       ]
+      ]
+     },
+     {
+      "source": "abhyāsayitum",
+      "outcomes": [
+       "abiiāhaiiitum"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "abhyāhayitum"
+       ],
+       [
+        "bh",
+        "§ 205",
+        "abyāhayitum"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "abyāhayitum"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "abiiāhaiiitum"
+       ]
+      ]
+     }
+    ],
+    "dict": "abiiāhaiiati",
+    "dict_source": "abhyāsayati",
+    "dict_outcomes": [
+     "abiiāhaiiati"
+    ]
+   },
+   "note": "sa: the causative of abhyasyati, «to practise», made by the rule of causatives"
+  },
+  "guardar": {
+   "gloss": "to keep (a secret)",
+   "concept": "L:to-keep",
+   "lemma": "guardar",
+   "ja": {
+    "form": "守る",
+    "reading": "まもる",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "хранить",
+    "reading": "храни́ть",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "bewahren",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "रक्षितुम्",
+    "reading": "rakṣitum",
+    "tier": 1,
+    "grade": "B",
+    "dict": "रक्षति",
+    "dict_reading": "rakṣati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "raxšitum",
+    "script": "𐬭𐬀𐬑𐬱𐬌𐬙𐬎𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "rakṣitum",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "rakṣitum",
+      "outcomes": [
+       "raxšitum",
+       "rašitum"
+      ],
+      "rows": [
+       [
+        "ks",
+        "§ 218",
+        "raxšitum"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "raxšitum"
+       ]
+      ]
+     }
+    ],
+    "dict": "raxšati",
+    "dict_source": "rakṣati",
+    "dict_outcomes": [
+     "raxšati",
+     "rašati"
+    ]
+   }
+  },
+  "secreto": {
+   "gloss": "secret",
+   "concept": "L:secret",
+   "lemma": "secreto",
+   "ja": {
+    "form": "秘密",
+    "reading": "ひみつ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "секрет",
+    "reading": "секре́т",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "das Geheimnis",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "रहस्यम्",
+    "reading": "rahasyam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "रहस्य",
+    "dict_reading": "rahasya",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "razahiiəm",
+    "script": "𐬭𐬀𐬰𐬀𐬵𐬌𐬌𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "rahasyam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "rahasyam",
+      "outcomes": [
+       "razahiiəm",
+       "rajahiiəm"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "rahahyam"
+       ],
+       [
+        "h",
+        "§ 208",
+        "razahyam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "razahyəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "razahyəm"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "razahiiəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "razahiia",
+    "dict_source": "rahasya",
+    "dict_outcomes": [
+     "razahiia",
+     "rajahiia"
+    ]
+   }
+  },
+  "sentimientos": {
+   "gloss": "sentiments",
+   "concept": "L:sentiments",
+   "lemma": "sentimiento",
+   "ja": {
+    "form": "感情",
+    "reading": "かんじょう",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "чувства",
+    "reading": "чу́вства",
+    "tier": 1,
+    "grade": "B",
+    "dict": "чувство",
+    "dict_reading": "чу́вство"
+   },
+   "de": {
+    "form": "die Gefühle",
+    "tier": 1,
+    "grade": "B",
+    "dict": "das Gefühl"
+   },
+   "sa": {
+    "form": "भावाः",
+    "reading": "bhāvāḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "भाव",
+    "dict_reading": "bhāva",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "bāuuā̊",
+    "script": "𐬠𐬁𐬎𐬎𐬃",
+    "tier": "3r",
+    "grade": "C",
+    "source": "bhāvās",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "bhāvās",
+      "outcomes": [
+       "bāuuā̊"
+      ],
+      "rows": [
+       [
+        "aas#",
+        "§ 211, § 200",
+        "bhāvā̊"
+       ],
+       [
+        "bh",
+        "§ 205",
+        "bāvā̊"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "bāvā̊"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "bāuuā̊"
+       ]
+      ]
+     }
+    ],
+    "dict": "bāuua",
+    "dict_source": "bhāva",
+    "dict_outcomes": [
+     "bāuua"
+    ]
+   }
+  },
+  "indulgencia": {
+   "gloss": "indulgence, leniency",
+   "concept": "L:indulgence",
+   "lemma": "indulgencia",
+   "ja": {
+    "form": "寛容",
+    "reading": "かんよう",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "снисходительность",
+    "reading": "снисходи́тельность",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Nachsicht",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "क्षमा",
+    "reading": "kṣamā",
+    "tier": 1,
+    "grade": "B",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "xšamā",
+    "script": "𐬑𐬱𐬀𐬨𐬁",
+    "tier": "3r",
+    "grade": "C",
+    "source": "kṣamā",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "kṣamā",
+      "outcomes": [
+       "xšamā",
+       "šamā"
+      ],
+      "rows": [
+       [
+        "ks",
+        "§ 218",
+        "xšamā"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "xšamā"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "hacia": {
+   "gloss": "towards",
+   "concept": "L:towards",
+   "lemma": "hacia",
+   "ja": {
+    "form": "に対して",
+    "reading": "にたいして",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "к",
+    "reading": "к",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "gegenüber",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "प्रति",
+    "reading": "prati",
+    "tier": 1,
+    "grade": "B",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "frati",
+    "script": "𐬟𐬭𐬀𐬙𐬌",
+    "tier": "3r",
+    "grade": "C",
+    "source": "prati",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "prati",
+      "outcomes": [
+       "frati"
+      ],
+      "rows": [
+       [
+        "p.C",
+        "§ 204",
+        "frati"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "frati"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "todas": {
+   "gloss": "all (fem. pl.)",
+   "concept": "L:all",
+   "lemma": "todo",
+   "ja": {
+    "form": "すべての",
+    "reading": "すべての",
+    "tier": 1,
+    "grade": "B",
+    "dict": "すべて",
+    "dict_reading": "すべて"
+   },
+   "ru": {
+    "form": "все",
+    "reading": "все",
+    "tier": 1,
+    "grade": "B",
+    "dict": "весь",
+    "dict_reading": "весь"
+   },
+   "de": {
+    "form": "alle",
+    "tier": 1,
+    "grade": "B",
+    "dict": "all"
+   },
+   "sa": {
+    "form": "सर्वाः",
+    "reading": "sarvāḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "सर्व",
+    "dict_reading": "sarva",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "vispā̊",
+    "script": "𐬬𐬌𐬯𐬞𐬃",
+    "tier": "3r",
+    "grade": "C",
+    "source": "viśvās",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "viśvās",
+      "outcomes": [
+       "vispā̊"
+      ],
+      "rows": [
+       [
+        "sv",
+        "§ 213",
+        "vispās"
+       ],
+       [
+        "aas#",
+        "§ 211, § 200",
+        "vispā̊"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "vispā̊"
+       ]
+      ]
+     }
+    ],
+    "dict": "vispa",
+    "dict_source": "viśva",
+    "dict_outcomes": [
+     "vispa"
+    ]
+   }
+  },
+  "religiones": {
+   "gloss": "religions",
+   "concept": "L:religions",
+   "lemma": "religión",
+   "ja": {
+    "form": "宗教",
+    "reading": "しゅうきょう",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "религии",
+    "reading": "рели́гии",
+    "tier": 1,
+    "grade": "B",
+    "dict": "религия",
+    "dict_reading": "рели́гия"
+   },
+   "de": {
+    "form": "die Religionen",
+    "tier": 1,
+    "grade": "B",
+    "dict": "die Religion"
+   },
+   "sa": {
+    "form": "धर्माः",
+    "reading": "dharmāḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "धर्म",
+    "dict_reading": "dharma",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "darmā̊",
+    "script": "𐬛𐬀𐬭𐬨𐬃",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dharmās",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dharmās",
+      "outcomes": [
+       "darmā̊"
+      ],
+      "rows": [
+       [
+        "aas#",
+        "§ 211, § 200",
+        "dharmā̊"
+       ],
+       [
+        "dh",
+        "§ 205",
+        "darmā̊"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "darmā̊"
+       ]
+      ]
+     }
+    ],
+    "dict": "darma",
+    "dict_source": "dharma",
+    "dict_outcomes": [
+     "darma"
+    ]
+   },
+   "note": "sa: dharma, in its later sense of a religion"
+  },
+  "dulzura": {
+   "gloss": "gentleness (in treatment)",
+   "concept": "L:gentleness",
+   "lemma": "dulzura",
+   "ja": {
+    "form": "優しさ",
+    "reading": "やさしさ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "мягкость",
+    "reading": "мя́гкость",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Milde",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "मार्दवम्",
+    "reading": "mārdavam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "मार्दव",
+    "dict_reading": "mārdava",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "mārdauuəm",
+    "script": "𐬨𐬁𐬭𐬛𐬀𐬎𐬎𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "mārdavam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "mārdavam",
+      "outcomes": [
+       "mārdauuəm"
+      ],
+      "rows": [
+       [
+        "am#",
+        "§ 197",
+        "mārdavəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "mārdavəm"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "mārdauuəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "mārdauua",
+    "dict_source": "mārdava",
+    "dict_outcomes": [
+     "mārdauua"
+    ]
+   }
+  },
+  "criados": {
+   "gloss": "servants",
+   "concept": "L:servants",
+   "lemma": "criado",
+   "ja": {
+    "form": "召使い",
+    "reading": "めしつかい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "слуги",
+    "reading": "слу́ги",
+    "tier": 1,
+    "grade": "B",
+    "dict": "слуга",
+    "dict_reading": "слуга́"
+   },
+   "de": {
+    "form": "die Diener",
+    "tier": 1,
+    "grade": "B",
+    "dict": "der Diener"
+   },
+   "sa": {
+    "form": "भृत्याः",
+    "reading": "bhṛtyāḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "भृत्य",
+    "dict_reading": "bhṛtya",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "bərəϑiiā̊",
+    "script": "𐬠𐬆𐬭𐬆𐬚𐬌𐬌𐬃",
+    "tier": "3r",
+    "grade": "C",
+    "source": "bhṛtyās",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "bhṛtyās",
+      "outcomes": [
+       "bərəϑiiā̊"
+      ],
+      "rows": [
+       [
+        "aas#",
+        "§ 211, § 200",
+        "bhṛtyā̊"
+       ],
+       [
+        "bh",
+        "§ 205",
+        "bṛtyā̊"
+       ],
+       [
+        "t.C",
+        "§ 204",
+        "bṛϑyā̊"
+       ],
+       [
+        "ṛ",
+        "§ 197",
+        "bərəϑyā̊"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "bərəϑyā̊"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "bərəϑiiā̊"
+       ]
+      ]
+     }
+    ],
+    "dict": "bərəϑiia",
+    "dict_source": "bhṛtya",
+    "dict_outcomes": [
+     "bərəϑiia"
+    ]
+   }
+  },
+  "viejos": {
+   "gloss": "old people",
+   "concept": "L:old-people",
+   "lemma": "viejo",
+   "ja": {
+    "form": "老人たち",
+    "reading": "ろうじんたち",
+    "tier": 1,
+    "grade": "B",
+    "dict": "老人",
+    "dict_reading": "ろうじん"
+   },
+   "ru": {
+    "form": "старики",
+    "reading": "старики́",
+    "tier": 1,
+    "grade": "B",
+    "dict": "старик",
+    "dict_reading": "стари́к"
+   },
+   "de": {
+    "form": "die Alten",
+    "tier": 1,
+    "grade": "B",
+    "dict": "alt"
+   },
+   "sa": {
+    "form": "वृद्धाः",
+    "reading": "vṛddhāḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "वृद्ध",
+    "dict_reading": "vṛddha",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "vərəddā̊",
+    "script": "𐬬𐬆𐬭𐬆𐬛𐬛𐬃",
+    "tier": "3r",
+    "grade": "C",
+    "source": "vṛddhās",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "vṛddhās",
+      "outcomes": [
+       "vərəddā̊"
+      ],
+      "rows": [
+       [
+        "aas#",
+        "§ 211, § 200",
+        "vṛddhā̊"
+       ],
+       [
+        "dh",
+        "§ 205",
+        "vṛddā̊"
+       ],
+       [
+        "ṛ",
+        "§ 197",
+        "vərəddā̊"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "vərəddā̊"
+       ]
+      ]
+     }
+    ],
+    "dict": "vərədda",
+    "dict_source": "vṛddha",
+    "dict_outcomes": [
+     "vərədda"
+    ]
+   }
+  },
+  "hable": {
+   "gloss": "(that) she speak",
+   "concept": "L:she-speak",
+   "lemma": "hablar",
+   "ja": {
+    "form": "話すように",
+    "reading": "はなすように",
+    "tier": 1,
+    "grade": "B",
+    "dict": "話す",
+    "dict_reading": "はなす"
+   },
+   "ru": {
+    "form": "говорила бы",
+    "reading": "говори́ла бы",
+    "tier": 1,
+    "grade": "B",
+    "dict": "говорить",
+    "dict_reading": "говори́ть"
+   },
+   "de": {
+    "form": "spreche",
+    "tier": 1,
+    "grade": "B",
+    "dict": "sprechen"
+   },
+   "sa": {
+    "form": "वदेत्",
+    "reading": "vadet",
+    "tier": 1,
+    "grade": "B",
+    "dict": "वदति",
+    "dict_reading": "vadati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "vadaēt",
+    "script": "𐬬𐬀𐬛𐬀𐬉𐬙",
+    "tier": "3r",
+    "grade": "C",
+    "source": "vadet",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "vadet",
+      "outcomes": [
+       "vadaēt"
+      ],
+      "rows": [
+       [
+        "e",
+        "§ 202",
+        "vadaēt"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "vadaēt"
+       ]
+      ]
+     }
+    ],
+    "dict": "vadati",
+    "dict_source": "vadati",
+    "dict_outcomes": [
+     "vadati"
+    ]
+   }
+  },
+  "poco": {
+   "gloss": "little",
+   "concept": "L:little",
+   "lemma": "poco",
+   "ja": {
+    "form": "少し",
+    "reading": "すこし",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "мало",
+    "reading": "ма́ло",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "wenig",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "अल्पम्",
+    "reading": "alpam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "अल्प",
+    "dict_reading": "alpa",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "arpəm",
+    "script": "𐬀𐬭𐬞𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "alpam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "alpam",
+      "outcomes": [
+       "arpəm"
+      ],
+      "rows": [
+       [
+        "am#",
+        "§ 197",
+        "alpəm"
+       ],
+       [
+        "l",
+        "§ 100",
+        "arpəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "arpəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "arpa",
+    "dict_source": "alpa",
+    "dict_outcomes": [
+     "arpa"
+    ]
+   }
+  },
+  "preciso": {
+   "gloss": "what is necessary; \"lo preciso\" just what is needed",
+   "concept": "L:what-is-necessary",
+   "lemma": "preciso",
+   "ja": {
+    "form": "必要な",
+    "reading": "ひつような",
+    "tier": 1,
+    "grade": "B",
+    "dict": "必要",
+    "dict_reading": "ひつよう"
+   },
+   "ru": {
+    "form": "необходимое",
+    "reading": "необходи́мое",
+    "tier": 1,
+    "grade": "B",
+    "dict": "необходимый",
+    "dict_reading": "необходи́мый"
+   },
+   "de": {
+    "form": "das Nötige",
+    "tier": 1,
+    "grade": "B",
+    "dict": "nötig"
+   },
+   "sa": {
+    "form": "आवश्यकम्",
+    "reading": "āvaśyakam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "आवश्यक",
+    "dict_reading": "āvaśyaka",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "āuuasiiakəm",
+    "script": "𐬁𐬎𐬎𐬀𐬯𐬌𐬌𐬀𐬐𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "āvaśyakam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "āvaśyakam",
+      "outcomes": [
+       "āuuasiiakəm"
+      ],
+      "rows": [
+       [
+        "ss",
+        "§ 212",
+        "āvasyakam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "āvasyakəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "āvasyakəm"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "āuuasiiakəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "āuuasiiaka",
+    "dict_source": "āvaśyaka",
+    "dict_outcomes": [
+     "āuuasiiaka"
+    ]
+   }
+  },
+  "estar": {
+   "gloss": "to be (located)",
+   "concept": "L:to-be",
+   "lemma": "estar",
+   "ja": {
+    "form": "いる",
+    "reading": "いる",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "быть",
+    "reading": "быть",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "sein",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "स्थातुम्",
+    "reading": "sthātum",
+    "tier": 1,
+    "grade": "B",
+    "dict": "तिष्ठति",
+    "dict_reading": "tiṣṭhati",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "stātum",
+    "script": "𐬯𐬙𐬁𐬙𐬎𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "sthātum",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "sthātum",
+      "outcomes": [
+       "stātum"
+      ],
+      "rows": [
+       [
+        "s.st",
+        "§ 109",
+        "sthātum"
+       ],
+       [
+        "asp.s",
+        "§ 78",
+        "stātum"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "stātum"
+       ]
+      ]
+     }
+    ],
+    "dict": "tištati",
+    "dict_source": "tiṣṭhati",
+    "dict_outcomes": [
+     "tištati"
+    ]
+   }
+  },
+  "formal": {
+   "gloss": "well-behaved, composed (at table)",
+   "concept": "L:well-behaved",
+   "lemma": "formal",
+   "ja": {
+    "form": "行儀のよい",
+    "reading": "ぎょうぎのよい",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "благовоспитанный",
+    "reading": "благовоспи́танный",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "gesittet",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "विनीतः",
+    "reading": "vinītaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "विनीत",
+    "dict_reading": "vinīta",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "vinītō",
+    "script": "𐬬𐬌𐬥𐬍𐬙𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "vinītas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "vinītas",
+      "outcomes": [
+       "vinītō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "vinītō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "vinītō"
+       ]
+      ]
+     }
+    ],
+    "dict": "vinīta",
+    "dict_source": "vinīta",
+    "dict_outcomes": [
+     "vinīta"
+    ]
+   }
+  },
+  "mesa": {
+   "gloss": "table",
+   "concept": "L:table",
+   "lemma": "mesa",
+   "ja": {
+    "form": "食卓",
+    "reading": "しょくたく",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "стол",
+    "reading": "стол",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "der Tisch",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "फलकम्",
+    "reading": "phalakam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "फलक",
+    "dict_reading": "phalaka",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "farakəm",
+    "script": "𐬟𐬀𐬭𐬀𐬐𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "phalakam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "phalakam",
+      "outcomes": [
+       "farakəm"
+      ],
+      "rows": [
+       [
+        "ph",
+        "§ 204",
+        "falakam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "falakəm"
+       ],
+       [
+        "l",
+        "§ 100",
+        "farakəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "farakəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "faraka",
+    "dict_source": "phalaka",
+    "dict_outcomes": [
+     "faraka"
+    ]
+   },
+   "note": "sa: phalaka, a board, a slab; a table in later use"
+  },
+  "aseo": {
+   "gloss": "cleanliness, personal tidiness",
+   "concept": "L:cleanliness",
+   "lemma": "aseo",
+   "ja": {
+    "form": "清潔",
+    "reading": "せいけつ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "чистоплотность",
+    "reading": "чистопло́тность",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Reinlichkeit",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "शौचम्",
+    "reading": "śaucam",
+    "tier": 1,
+    "grade": "B",
+    "dict": "शौच",
+    "dict_reading": "śauca",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "sāucəm",
+    "script": "𐬯𐬁𐬎𐬗𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "śaucam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "śaucam",
+      "outcomes": [
+       "sāucəm"
+      ],
+      "rows": [
+       [
+        "ss",
+        "§ 212",
+        "saucam"
+       ],
+       [
+        "au",
+        "§§ 54–59",
+        "sāucam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "sāucəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "sāucəm"
+       ]
+      ]
+     }
+    ],
+    "dict": "sāuca",
+    "dict_source": "śauca",
+    "dict_outcomes": [
+     "sāuca"
+    ]
+   }
+  },
+  "desprecio": {
+   "gloss": "disdain, contempt (for luxury)",
+   "concept": "L:disdain",
+   "lemma": "desprecio",
+   "ja": {
+    "form": "軽蔑",
+    "reading": "けいべつ",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "презрение",
+    "reading": "презре́ние",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Verachtung",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "अवज्ञा",
+    "reading": "avajñā",
+    "tier": 1,
+    "grade": "B",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "auuajṇā",
+    "script": "𐬀𐬎𐬎𐬀𐬘𐬧𐬁",
+    "tier": "3r",
+    "grade": "C",
+    "source": "avajñā",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "avajñā",
+      "outcomes": [
+       "auuajṇā",
+       "auuazṇā"
+      ],
+      "rows": [
+       [
+        "j",
+        "§ 207",
+        "avajñā"
+       ],
+       [
+        "ñ",
+        "§ 103",
+        "avajṇā"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "avajṇā"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "auuajṇā"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "lujo": {
+   "gloss": "luxury",
+   "concept": "L:luxury",
+   "lemma": "lujo",
+   "ja": {
+    "form": "贅沢",
+    "reading": "ぜいたく",
+    "tier": 1,
+    "grade": "B"
+   },
+   "ru": {
+    "form": "роскошь",
+    "reading": "ро́скошь",
+    "tier": 1,
+    "grade": "B"
+   },
+   "de": {
+    "form": "der Luxus",
+    "tier": 1,
+    "grade": "B"
+   },
+   "sa": {
+    "form": "विलासः",
+    "reading": "vilāsaḥ",
+    "tier": 1,
+    "grade": "B",
+    "dict": "विलास",
+    "dict_reading": "vilāsa",
+    "cited": "",
+    "uncited": "not yet sought in a dictionary"
+   },
+   "ae": {
+    "form": "virāhō",
+    "script": "𐬬𐬌𐬭𐬁𐬵𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "vilāsas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "vilāsas",
+      "outcomes": [
+       "virāhō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "vilāsō"
+       ],
+       [
+        "s",
+        "§ 209",
+        "vilāhō"
+       ],
+       [
+        "l",
+        "§ 100",
+        "virāhō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "virāhō"
+       ]
+      ]
+     }
+    ],
+    "dict": "virāha",
+    "dict_source": "vilāsa",
+    "dict_outcomes": [
+     "virāha"
+    ]
+   },
+   "note": "sa: vilāsa, play, pleasure; luxury in later use"
+  }
+ },
+ "atoms": {
+  "G:el-article": {
+   "sense": "el: article",
+   "ja": {
+    "realisation": "∅",
+    "rule": "Japanese has no article.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "∅",
+    "rule": "Russian has no article.",
+    "grade": "C"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "der · die · das",
+    "rule": "The definite article, by the gender and the case of the German noun.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "∅",
+    "rule": "Sanskrit has no article.",
+    "grade": "C"
+   },
+   "ae": {
+    "realisation": "∅",
+    "rule": "Avestan has no article.",
+    "grade": "C"
+   }
+  },
+  "G:y-conjunction-one-sense": {
+   "sense": "y: conjunction, one sense",
+   "ja": {
+    "realisation": "particle",
+    "form": "と",
+    "rule": "Between nouns; between clauses the verb's ‑て form.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "word",
+    "form": "и",
+    "rule": "Between the words or clauses it joins.",
+    "grade": "C",
+    "reading": "и"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "und",
+    "rule": "Between the words or clauses it joins.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "word",
+    "form": "च",
+    "rule": "After the word it adds.",
+    "grade": "C",
+    "reading": "ca"
+   },
+   "ae": {
+    "realisation": "word",
+    "rule": "After the word it adds.",
+    "form": "ca",
+    "script": "𐬗𐬀",
+    "tier": "3r",
+    "grade": "C",
+    "source": "ca",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "ca",
+      "outcomes": [
+       "ca"
+      ],
+      "rows": [
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "ca"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "G:no-invariant": {
+   "sense": "no: invariant",
+   "ja": {
+    "realisation": "ending",
+    "form": "ない",
+    "rule": "The verb's negative form.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "word",
+    "form": "не",
+    "rule": "Before the verb.",
+    "grade": "C",
+    "reading": "не"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "nicht",
+    "rule": "After the verb, or before what it denies.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "word",
+    "form": "न",
+    "rule": "Before the verb.",
+    "grade": "C",
+    "reading": "na"
+   },
+   "ae": {
+    "realisation": "word",
+    "rule": "Before the verb.",
+    "form": "na",
+    "script": "𐬥𐬀",
+    "tier": "3r",
+    "grade": "C",
+    "source": "na",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "na",
+      "outcomes": [
+       "na"
+      ],
+      "rows": [
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "na"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "G:in-para-que-so-that-purpose": {
+   "sense": "in «para que»: so that (purpose)",
+   "ja": {
+    "realisation": "ending",
+    "form": "ように",
+    "rule": "After the verb's plain form.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "word",
+    "form": "чтобы",
+    "rule": "With the past form of the verb.",
+    "grade": "C",
+    "reading": "что́бы"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "damit",
+    "rule": "Opens the clause of purpose; the verb goes last.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "word",
+    "form": "यथा",
+    "rule": "With the optative.",
+    "grade": "C",
+    "reading": "yathā"
+   },
+   "ae": {
+    "realisation": "word",
+    "rule": "With the optative.",
+    "form": "yaϑā",
+    "script": "𐬫𐬀𐬚𐬁",
+    "tier": "3r",
+    "grade": "C",
+    "source": "yathā",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "yathā",
+      "outcomes": [
+       "yaϑā"
+      ],
+      "rows": [
+       [
+        "th",
+        "§ 204",
+        "yaϑā"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "yaϑā"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "G:pero-conjunction-one-sense": {
+   "sense": "pero: conjunction, one sense",
+   "ja": {
+    "realisation": "word",
+    "form": "しかし",
+    "rule": "Opens the clause it sets against the one before.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "word",
+    "form": "но",
+    "rule": "Opens the clause it sets against the one before.",
+    "grade": "C",
+    "reading": "но"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "aber",
+    "rule": "Opens the clause it sets against the one before.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "word",
+    "form": "किन्तु",
+    "rule": "Opens the clause it sets against the one before.",
+    "grade": "C",
+    "reading": "kintu"
+   },
+   "ae": {
+    "realisation": "word",
+    "rule": "Opens the clause it sets against the one before.",
+    "form": "kiṇtu",
+    "script": "𐬐𐬌𐬧𐬙𐬎",
+    "tier": "3r",
+    "grade": "C",
+    "source": "kintu",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "kintu",
+      "outcomes": [
+       "kiṇtu"
+      ],
+      "rows": [
+       [
+        "n.C",
+        "§§ 101, 103",
+        "kiṇtu"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "kiṇtu"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "G:en-in-verb-complement": {
+   "sense": "en: in (verb complement)",
+   "ja": {
+    "realisation": "particle",
+    "form": "に",
+    "rule": "After the noun.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "word",
+    "form": "в",
+    "rule": "With the prepositional case.",
+    "grade": "C",
+    "reading": "в"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "in",
+    "rule": "With the dative.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "ending",
+    "said": "the locative",
+    "rule": "The locative case of the noun.",
+    "grade": "C"
+   },
+   "ae": {
+    "realisation": "ending",
+    "said": "the locative",
+    "rule": "The locative case of the noun.",
+    "grade": "C"
+   }
+  },
+  "G:la-article": {
+   "sense": "la: article",
+   "ja": {
+    "realisation": "∅",
+    "rule": "Japanese has no article.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "∅",
+    "rule": "Russian has no article.",
+    "grade": "C"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "der · die · das",
+    "rule": "The definite article, by the gender and the case of the German noun.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "∅",
+    "rule": "Sanskrit has no article.",
+    "grade": "C"
+   },
+   "ae": {
+    "realisation": "∅",
+    "rule": "Avestan has no article.",
+    "grade": "C"
+   }
+  },
+  "G:con-one-sense": {
+   "sense": "con: one sense",
+   "where": "read as it stands in lectura 12: with, toward",
+   "ja": {
+    "realisation": "particle",
+    "form": "と",
+    "rule": "After the noun: together with. Toward a person, に対して.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "word",
+    "form": "с",
+    "rule": "With the instrumental.",
+    "grade": "C",
+    "reading": "с"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "mit",
+    "rule": "With the dative.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "word",
+    "form": "सह",
+    "rule": "After a noun in the instrumental; the instrumental alone says it too.",
+    "grade": "C",
+    "reading": "saha"
+   },
+   "ae": {
+    "realisation": "word",
+    "rule": "With the instrumental. Derived from sadha, the Vedic form of saha that stands in compounds.",
+    "form": "hada",
+    "script": "𐬵𐬀𐬛𐬀",
+    "tier": "3r",
+    "grade": "C",
+    "source": "sadha",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "sadha",
+      "outcomes": [
+       "hada"
+      ],
+      "rows": [
+       [
+        "s",
+        "§ 209",
+        "hadha"
+       ],
+       [
+        "dh",
+        "§ 205",
+        "hada"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "hada"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "G:los-article": {
+   "sense": "los: article",
+   "ja": {
+    "realisation": "∅",
+    "rule": "Japanese has no article.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "∅",
+    "rule": "Russian has no article.",
+    "grade": "C"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "die",
+    "rule": "The definite article of the plural.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "∅",
+    "rule": "Sanskrit has no article.",
+    "grade": "C"
+   },
+   "ae": {
+    "realisation": "∅",
+    "rule": "Avestan has no article.",
+    "grade": "C"
+   }
+  },
+  "G:sobre-one-sense": {
+   "sense": "sobre: one sense",
+   "where": "read as it stands in lectura 12, the fifth maxim: regarding. The concept holds every use of sobre as one sense; its other uses are read where they stand.",
+   "ja": {
+    "realisation": "particle",
+    "form": "に対する",
+    "rule": "After the noun: toward, regarding.",
+    "grade": "C"
+   },
+   "ru": {
+    "realisation": "word",
+    "form": "к",
+    "rule": "With the dative: regard toward.",
+    "grade": "C",
+    "reading": "к"
+   },
+   "de": {
+    "realisation": "word",
+    "form": "vor",
+    "rule": "With the dative, after Respekt.",
+    "grade": "C"
+   },
+   "sa": {
+    "realisation": "word",
+    "form": "प्रति",
+    "rule": "After a noun in the accusative.",
+    "grade": "C",
+    "reading": "prati"
+   },
+   "ae": {
+    "realisation": "word",
+    "rule": "After a noun in the accusative.",
+    "form": "frati",
+    "script": "𐬟𐬭𐬀𐬙𐬌",
+    "tier": "3r",
+    "grade": "C",
+    "source": "prati",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "prati",
+      "outcomes": [
+       "frati"
+      ],
+      "rows": [
+       [
+        "p.C",
+        "§ 204",
+        "frati"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "frati"
+       ]
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "stretches": [
+  {
+   "s": 3473,
+   "run": "el carácter",
+   "en": {
+    "form": "the character",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "性格",
+    "reading": "せいかく",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "характер",
+    "reading": "хара́ктер",
+    "grade": "B"
+   },
+   "de": {
+    "form": "den Charakter",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "शीलम्",
+    "reading": "śīlam",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "sīrəm",
+    "script": "𐬯𐬍𐬭𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "śīlam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "śīlam",
+      "outcomes": [
+       "sīrəm"
+      ],
+      "rows": [
+       [
+        "ss",
+        "§ 212",
+        "sīlam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "sīləm"
+       ],
+       [
+        "l",
+        "§ 100",
+        "sīrəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "sīrəm"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3474,
+   "run": "el mundo",
+   "en": {
+    "form": "the world",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "世界",
+    "reading": "せかい",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "мир",
+    "reading": "мир",
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Welt",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "लोकः",
+    "reading": "lokaḥ",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "raokō",
+    "script": "𐬭𐬀𐬊𐬐𐬋",
+    "tier": "3r",
+    "grade": "C",
+    "source": "lokas",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "lokas",
+      "outcomes": [
+       "raokō"
+      ],
+      "rows": [
+       [
+        "as#",
+        "§ 210, § 199",
+        "lokō"
+       ],
+       [
+        "o",
+        "§ 202",
+        "laokō"
+       ],
+       [
+        "l",
+        "§ 100",
+        "raokō"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "raokō"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3474,
+   "run": "para que",
+   "en": {
+    "form": "so that",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "ように",
+    "reading": "ように",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "чтобы",
+    "reading": "что́бы",
+    "grade": "B"
+   },
+   "de": {
+    "form": "damit",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "यथा",
+    "reading": "yathā",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "yaϑā",
+    "script": "𐬫𐬀𐬚𐬁",
+    "tier": "3r",
+    "grade": "C",
+    "source": "yathā",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "yathā",
+      "outcomes": [
+       "yaϑā"
+      ],
+      "rows": [
+       [
+        "th",
+        "§ 204",
+        "yaϑā"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "yaϑā"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3476,
+   "run": "el respeto",
+   "en": {
+    "form": "respect",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "尊敬",
+    "reading": "そんけい",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "уважение",
+    "reading": "уваже́ние",
+    "grade": "B"
+   },
+   "de": {
+    "form": "den Respekt",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "आदरम्",
+    "reading": "ādaram",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "ādarəm",
+    "script": "𐬁𐬛𐬀𐬭𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "ādaram",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "ādaram",
+      "outcomes": [
+       "ādarəm"
+      ],
+      "rows": [
+       [
+        "am#",
+        "§ 197",
+        "ādarəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "ādarəm"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3477,
+   "run": "con los pobres",
+   "en": {
+    "form": "toward the poor",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "貧しい人々に対する",
+    "reading": "まずしいひとびとにたいする",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "к бедным",
+    "reading": "к бе́дным",
+    "grade": "B"
+   },
+   "de": {
+    "form": "gegenüber den Armen",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "दरिद्रेषु",
+    "reading": "daridreṣu",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "daridraēšu",
+    "script": "𐬛𐬀𐬭𐬌𐬛𐬭𐬀𐬉𐬱𐬎",
+    "tier": "3r",
+    "grade": "C",
+    "source": "daridreṣu",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "daridreṣu",
+      "outcomes": [
+       "daridraēšu"
+      ],
+      "rows": [
+       [
+        "e",
+        "§ 202",
+        "daridraēṣu"
+       ],
+       [
+        "ṣ",
+        "§§ 106–107, 154–166",
+        "daridraēšu"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "daridraēšu"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3477,
+   "run": "en Mercedes",
+   "en": {
+    "form": "in Mercedes",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "メルセデスの中に",
+    "reading": "めるせですのなかに",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "в Мерседес",
+    "reading": "в Мерсе́дес",
+    "grade": "B"
+   },
+   "de": {
+    "form": "in Mercedes",
+    "grade": "B"
+   },
+   "sa": {
+    "absent": "a loan's case forms are not made: the loan table gives the name alone"
+   },
+   "ae": {
+    "absent": "a name: the Avestan primer has no table for loans"
+   }
+  },
+  {
+   "s": 3477,
+   "run": "la caridad",
+   "en": {
+    "form": "charity",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "慈善",
+    "reading": "じぜん",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "милосердие",
+    "reading": "милосе́рдие",
+    "grade": "B"
+   },
+   "de": {
+    "form": "die Nächstenliebe",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "दयाम्",
+    "reading": "dayām",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "daiiām",
+    "script": "𐬛𐬀𐬌𐬌𐬁𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dayām",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dayām",
+      "outcomes": [
+       "daiiām"
+      ],
+      "rows": [
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "dayām"
+       ],
+       [
+        "yv",
+        "W5 § 1 and the table's note 2",
+        "daiiām"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3477,
+   "run": "los pobres",
+   "en": {
+    "form": "the poor",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "貧しい人々",
+    "reading": "まずしいひとびと",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "бедным",
+    "reading": "бе́дным",
+    "grade": "B"
+   },
+   "de": {
+    "form": "den Armen",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "दरिद्रेषु",
+    "reading": "daridreṣu",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "daridraēšu",
+    "script": "𐬛𐬀𐬭𐬌𐬛𐬭𐬀𐬉𐬱𐬎",
+    "tier": "3r",
+    "grade": "C",
+    "source": "daridreṣu",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "daridreṣu",
+      "outcomes": [
+       "daridraēšu"
+      ],
+      "rows": [
+       [
+        "e",
+        "§ 202",
+        "daridraēṣu"
+       ],
+       [
+        "ṣ",
+        "§§ 106–107, 154–166",
+        "daridraēšu"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "daridraēšu"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3478,
+   "run": "la propiedad",
+   "en": {
+    "form": "property",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "財産",
+    "reading": "ざいさん",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "собственности",
+    "reading": "со́бственности",
+    "grade": "B"
+   },
+   "de": {
+    "form": "dem Eigentum",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "धनम्",
+    "reading": "dhanam",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "danəm",
+    "script": "𐬛𐬀𐬥𐬆𐬨",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dhanam",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dhanam",
+      "outcomes": [
+       "danəm"
+      ],
+      "rows": [
+       [
+        "dh",
+        "§ 205",
+        "danam"
+       ],
+       [
+        "am#",
+        "§ 197",
+        "danəm"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "danəm"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "s": 3478,
+   "run": "sobre la propiedad",
+   "en": {
+    "form": "for property",
+    "grade": "A"
+   },
+   "ja": {
+    "form": "財産に対する",
+    "reading": "ざいさんにたいする",
+    "grade": "B"
+   },
+   "ru": {
+    "form": "к собственности",
+    "reading": "к со́бственности",
+    "grade": "B"
+   },
+   "de": {
+    "form": "vor dem Eigentum",
+    "grade": "B"
+   },
+   "sa": {
+    "form": "धनं प्रति",
+    "reading": "dhanaṃ prati",
+    "grade": "B"
+   },
+   "ae": {
+    "form": "daną frati",
+    "script": "𐬛𐬀𐬥𐬄 𐬟𐬭𐬀𐬙𐬌",
+    "tier": "3r",
+    "grade": "C",
+    "source": "dhanaṃ prati",
+    "reckoned_by": "the table of correspondences of the Avestan primer",
+    "words": [
+     {
+      "source": "dhanaṃ",
+      "outcomes": [
+       "daną"
+      ],
+      "rows": [
+       [
+        "dh",
+        "§ 205",
+        "danaṃ"
+       ],
+       [
+        "am",
+        "§ 201",
+        "daną"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "daną"
+       ]
+      ]
+     },
+     {
+      "source": "prati",
+      "outcomes": [
+       "frati"
+      ],
+      "rows": [
+       [
+        "p.C",
+        "§ 204",
+        "frati"
+       ],
+       [
+        "=",
+        "§ 15, §§ 16–22 (vowels); § 76 (k, t, p); §§ 82–88 (g, d, b); §§ 91–93 (y, v); § 100 (r); §§ 101–105 (n, m)",
+        "frati"
+       ]
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

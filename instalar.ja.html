@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>インストール · Vocabulario Libre</title>
+<style>
+:root { color-scheme: light dark; --fg: #1a1a1a; --bg: #fdfcf9; --mute: #5a5a5a; --rule: #d9d6cf; --link: #1f4d7a; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e1; --bg: #15171a; --mute: #a4a39e; --rule: #33363b; --link: #8ab4e0; --code: #22252a; } }
+html { font-family: Georgia, "Times New Roman", "Noto Serif", serif; font-size: 18px; line-height: 1.5; }
+body { margin: 0 auto; max-width: 44rem; padding: 2rem 1.25rem 4rem; color: var(--fg); background: var(--bg); }
+.masthead { font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 1.2rem; }
+h1 { font-size: 1.9rem; font-weight: normal; margin: 0 0 .25rem; }
+h2 { font-size: 1.05rem; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute);
+     margin: 2.4rem 0 .6rem; border-bottom: 1px solid var(--rule); padding-bottom: .2rem; }
+p { margin: .6rem 0; }
+a { color: var(--link); text-decoration: none; } a:hover, a:focus { text-decoration: underline; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); padding: 0 .25em; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+td { padding: .4rem .4rem .4rem 0; vertical-align: top; border-bottom: 1px solid var(--rule); }
+td.n { color: var(--mute); width: 2.2rem; } td.l { white-space: nowrap; text-align: right; }
+td.l a { margin-left: .7rem; }
+ul { margin: .4rem 0 .4rem 1.2rem; padding: 0; } li { margin: .25rem 0; }
+dl { margin: .4rem 0; } dt { margin-top: .5rem; } dd { margin: 0 0 0 1.2rem; color: var(--mute); font-size: .92rem; }
+.mute { color: var(--mute); font-size: .9rem; }
+h3.corpus { font-size: 1.3rem; font-weight: normal; margin: 1rem 0 .2rem; }   /* B3: a corpus entry under «Los textos» */
+.lang { text-align: right; font-size: .9rem; margin: 0; }
+footer { margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; font-size: .9rem; color: var(--mute); }
+footer a { margin-right: .8rem; }
+/* a narrow screen (U.2, D19): a row of the table is a block — the number, the title and its line, then the links, which wrap — so that no table holds the page wider
+   than the screen. The number stands in the row's margin, as wide as its column was, and everything else of the row begins at one edge */
+@media (max-width: 40rem) { table, tbody, tr, td { display: block; } tr { padding: .5rem 0 .5rem 2.2rem; border-bottom: 1px solid var(--rule); }
+  td { border: 0; padding: 0; } td.n { float: left; width: 2.2rem; margin-left: -2.2rem; }
+  td.l { display: flex; flex-wrap: wrap; gap: .1rem 1rem; padding-top: .2rem; white-space: normal; text-align: left; }
+  td.l a { margin: 0; padding: .35rem 0; } td.l a:first-child { font-weight: bold; } }
+.nav { font-size: .9em; margin: 0 0 1em; } .nav a, .nav span { display: inline-block; padding: .35em 0; } .nav [aria-current] { font-weight: bold; }
+.nav-foot { margin: 1.5em 0 0; } footer .nav-foot { margin: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1em; margin: 0 0 1em; } .top .nav { margin: 0; }
+ol, ul { padding-left: 1.4rem; } li { margin: .55rem 0; } .jump a, .lang a { display: inline-block; padding: .35em 0; }
+.sign { width: 1.25em; height: 1.25em; vertical-align: -.25em; margin-left: .2em; }
+</style>
+</head>
+<body>
+<div class="top"><nav class="nav" aria-label="ナビゲーション"><a href="index.ja.html">トップページ</a> · <a href="lecturas/vocab/flashcards.html#ja">Léxico</a> · <a href="lecturas/como-usar.ja.html">使い方</a></nav><p class="lang"><a href="instalar.html" lang="es" hreflang="es">Español</a> · <a href="instalar.en.html" lang="en" hreflang="en">English</a></p></div>
+<h1>インストール</h1>
+<p>このサイトはアプリとしてインストールできる。ホーム画面にアイコンができ、ネットワークなしで開く。インストールは必須ではない。ブラウザでも同じように読み、学習できる。メニューの名称は端末のもので、版によって少し異なる。</p>
+<p class="jump"><a href="#iphone">iPhone と iPad</a> · <a href="#android">Android</a> · <a href="#computer">パソコン</a></p>
+<h2 id="iphone">iPhone と iPad</h2>
+<ol>
+<li>Safari（コンパスのアイコンのブラウザ）でサイトを開いてください。ほかのアプリ（メッセージ、メール、SNS）の中のリンクから開いた場合、ページはそのアプリ自身の画面にあり、そこからはインストールできません。「Safari で開く」または「ブラウザで開く」を探すか、アドレスをコピーして Safari に貼り付けてください。</li>
+<li>「共有」<svg class="sign" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 15V3M8 7l4-4 4 4M8 10H6v10h12V10h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>をタップしてください。上向きの矢印が付いた四角の印です。iPhone では下のバー、iPad では上にあります。見当たらないときは、先に「···」をタップしてください。</li>
+<li>一覧を上へスクロールし、「ホーム画面に追加」をタップしてください。一覧にないときは、末尾の「アクションを編集…」から追加してください。</li>
+<li>右上の「追加」をタップしてください。</li>
+<li>ホーム画面にアイコンができます。一度ネットワークのある状態で開いてください。15 MB を保存します。以後はネットワークなしで開きます。</li>
+</ol>
+<p>インストールしたアプリは、Safari とは別に進捗を保存します。移すには、トレーナー下部で、Safari で「進捗を保存」、アプリで「進捗を読み込む」を使ってください。</p>
+<h2 id="android">Android</h2>
+<ol>
+<li>Chrome でサイトを開いてください。</li>
+<li>右上の「⋮」をタップしてください。</li>
+<li>「ホーム画面に追加」（版によっては「アプリをインストール」）をタップし、続いて「インストール」をタップしてください。</li>
+<li>ホーム画面またはアプリ一覧にアイコンができます。一度ネットワークのある状態で開いてください。15 MB を保存します。以後はネットワークなしで開きます。</li>
+</ol>
+<h2 id="computer">パソコン</h2>
+<ul>
+<li>Chrome または Edge：アドレスバー右端のインストールの印（矢印の付いた画面）をクリックするか、メニューの「Vocabulario Libre をインストール…」を選び、続いて「インストール」をクリックしてください。</li>
+<li>Mac の Safari：「ファイル」メニューの「Dock に追加…」。</li>
+<li>パソコンの Firefox ではインストールできない。サイトはページとして使える。</li>
+</ul>
+<h2>インストールできないとき</h2>
+<ul>
+<li>プライベートウィンドウやシークレットウィンドウからはインストールできません。通常のウィンドウでサイトを開いてください。</li>
+<li>ほかのアプリの画面からはインストールできません。端末のブラウザでサイトを開いてください。</li>
+<li>インストールしない場合：ブラウザのブックマークまたはお気に入りにページを登録してください。同じように読み、学習できます。ネットワークがないと開きません。</li>
+</ul>
+<p>削除は他のアプリと同じ。進捗を残すには、先に「進捗を保存」を使う。</p>
+<footer>
+<nav class="nav nav-foot" aria-label="ナビゲーション"><a href="index.ja.html">トップページ</a> · <a href="lecturas/vocab/flashcards.html#ja">Léxico</a> · <a href="lecturas/como-usar.ja.html">使い方</a></nav>
+</footer>
+</body>
+</html>

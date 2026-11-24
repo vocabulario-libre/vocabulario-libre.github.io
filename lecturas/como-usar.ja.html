@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使い方 · Lecturas de los libertadores</title>
+<style>
+:root { color-scheme: light dark; --fg: #222; --bg: #fdfcf8; --mute: #666; --line: #ddd; --link: #1a4d8f; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e0; --bg: #1c1b19; --mute: #9a978f; --line: #3a3835; --link: #8ab4f8; --code: #2a2926; } }
+body { font-family: Georgia, 'Times New Roman', serif; color: var(--fg); background: var(--bg); max-width: 44em; margin: 2em auto; padding: 0 1em; line-height: 1.5; }
+h1 { font-weight: normal; margin-bottom: .2em; }
+h2 { font-size: 1.05em; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute); margin: 2.2em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .2em; }
+a { color: var(--link); } li { margin: .3em 0; }
+code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); }
+code { padding: 0 .25em; } pre { padding: .5em .7em; white-space: pre-wrap; overflow-wrap: anywhere; }
+dl { margin: .4em 0; } dt { margin-top: .5em; } dd { margin: 0 0 0 1.2em; color: var(--mute); }
+.lang { text-align: right; font-size: .9em; margin: 0; } .lang a { margin-left: .8em; }
+footer { color: var(--mute); font-size: .9em; margin-top: 2.5em; border-top: 1px solid var(--line); padding-top: .8em; }
+.nav { font-size: .9em; margin: 0 0 1em; } .nav a, .nav span { display: inline-block; padding: .35em 0; } .nav [aria-current] { font-weight: bold; }
+.nav-foot { margin: 1.5em 0 0; } footer .nav-foot { margin: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1em; margin: 0 0 1em; } .top .nav { margin: 0; }
+</style>
+</head>
+<body>
+<div class="top"><nav class="nav" aria-label="ナビゲーション"><a href="index.ja.html">トップページ</a> · <a href="vocab/flashcards.html#ja">Léxico</a> · <span aria-current="page">使い方</span></nav><p class="lang"><a href="como-usar.html" lang="es" hreflang="es">Español</a><a href="como-usar.en.html" lang="en" hreflang="en">English</a></p></div>
+
+<h1>使い方</h1>
+
+<h2>何があるか</h2>
+<p>ボリバル、サン・マルティン、オイギンスの十五の文書、1812–1843年。各文書は読むための校訂版：確定した本文とその校異。
+語彙トレーナー Léxico は十五の文書を内蔵する。すべてを検証するための文書：出所、方針、方法、マニフェスト。本文はパブリックドメイン、
+それ以外は CC0。収録は文書群ごとに増える。現在は一つ、スペイン語。</p>
+
+<h2>読む</h2>
+<p>トップページは十五の文書を年代順に、著者と年とともに並べる。各項目は校訂版の本文を開く。校異は、底本に対して校訂版が変えた箇所を
+一つずつ記録する。出所記録（<a href="PROVENANCE.md"><code>PROVENANCE.md</code></a>）は各文書の底本と権利を示す。</p>
+
+<h2>学ぶ</h2>
+<p><a href="vocab/flashcards.html#ja">Léxico</a> は「本文」表示で開く。段落をクリック：その語がカードになる。Shift＋クリック：段落の範囲。
+「全文を選択」：文書全体。語をクリック：その箇所のための英語の対応語。「索引」表示は全語形を頻度順に百語ずつ並べる。
+「このユニットを学習」がデッキを作る。</p>
+<p>三つのカード集：「語」（各語形と、その文と対応語）、「要素」（文法語：助詞、語尾、素性、語順、∅）、「区間」（要素が働く文の範囲）。
+検証済みのものだけがカードになる。それ以外は「審査中」と表示する。</p>
+<p>二つのモード：「認識」（語を見て、意味を思い出す）と「穴埋め」（空所のある文を補う）。広い画面では、「⇄ 左右」が本文をカードの反対側へ移す。カードのそばで、「表」と「裏」それぞれの言語を選ぶ。
+三つの順序：「本文順」「シャッフル」「復習待ち」。スペースキー、またはカードのクリックやタップでカードを裏返す。同じ操作で表に戻る。もう一度・難しい・できた・簡単 が次の復習を決める。</p>
+<p>語形が作成済みの講読（講読の一覧に言語名が付きます）のカードには、日本語・ロシア語・ドイツ語・サンスクリット語・
+アヴェスター語の語形も載ります。語形、その下に読み、そして見出し語です。◇ は、このプロジェクトのために書かれ、
+その言語を読める人による確認がまだ済んでいない語形に付きます。誤りを含むことがあります。それ以外の講読では、
+これらの言語は「—」と表示されます。</p>
+<p>進捗はこのブラウザにのみ残る。「進捗を保存」はファイルに書き出す。「進捗を読み込む」はそれを読む。「最初からやり直す」は消去する。
+「選択を保存」は段落の組を保持する。「この選択へのリンク」はどの端末でもそれを開くアドレスを作る。</p>
+
+<h2>確かめる</h2>
+<p><a href="MANIFEST.sha256"><code>MANIFEST.sha256</code></a> は各ファイルとそのハッシュを列挙する。
+<code>sha256sum -c MANIFEST.sha256</code> で配布物全体を検証できる。<code>PROVENANCE.md</code> は底本と権利を示す。
+<a href="POLICY-scholarship-and-compliance.pdf">方針</a>が規則を定め、方法がその適用を記す。
+<a href="copiar-y-cambiar.ja.html">複製と改変</a>は、フォルダの変え方と変更の検査の仕方を記す。</p>
+
+<h2>用語</h2>
+<dl>
+<dt>校訂版</dt><dd>底本から確定した本文と、その校異</dd>
+<dt>校異</dt><dd>底本に対して校訂版が変えた箇所の一覧、一件ずつ</dd>
+<dt>底本</dt><dd>本文の出所となる印刷物または写本</dd>
+<dt>要素</dt><dd>文法語または文法標識：助詞、語尾、素性、語順、∅</dd>
+<dt>区間</dt><dd>要素が働く文の範囲</dd>
+<dt>検証済み</dt><dd>意味が確認された箇所。カードになるのはこれだけ</dd>
+</dl>
+<footer>
+<nav class="nav nav-foot" aria-label="ナビゲーション"><a href="index.ja.html">トップページ</a> · <a href="vocab/flashcards.html#ja">Léxico</a> · <span aria-current="page">使い方</span></nav>
+</footer>
+</body>
+</html>

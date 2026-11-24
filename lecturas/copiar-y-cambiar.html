@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copiar y cambiar · Lecturas de los libertadores</title>
+<style>
+:root { color-scheme: light dark; --fg: #222; --bg: #fdfcf8; --mute: #666; --line: #ddd; --link: #1a4d8f; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e0; --bg: #1c1b19; --mute: #9a978f; --line: #3a3835; --link: #8ab4f8; --code: #2a2926; } }
+body { font-family: Georgia, 'Times New Roman', serif; color: var(--fg); background: var(--bg); max-width: 44em; margin: 2em auto; padding: 0 1em; line-height: 1.5; }
+h1 { font-weight: normal; margin-bottom: .2em; }
+h2 { font-size: 1.05em; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute); margin: 2.2em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .2em; }
+a { color: var(--link); } li { margin: .3em 0; }
+code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); }
+code { padding: 0 .25em; } pre { padding: .5em .7em; white-space: pre-wrap; overflow-wrap: anywhere; }
+dl { margin: .4em 0; } dt { margin-top: .5em; } dd { margin: 0 0 0 1.2em; color: var(--mute); }
+.lang { text-align: right; font-size: .9em; margin: 0; } .lang a { margin-left: .8em; }
+footer { color: var(--mute); font-size: .9em; margin-top: 2.5em; border-top: 1px solid var(--line); padding-top: .8em; }
+.nav { font-size: .9em; margin: 0 0 1em; } .nav a, .nav span { display: inline-block; padding: .35em 0; } .nav [aria-current] { font-weight: bold; }
+.nav-foot { margin: 1.5em 0 0; } footer .nav-foot { margin: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1em; margin: 0 0 1em; } .top .nav { margin: 0; }
+</style>
+</head>
+<body>
+<div class="top"><nav class="nav" aria-label="Navegación"><a href="index.html">Página principal</a> · <a href="vocab/flashcards.html">Léxico</a> · <a href="como-usar.html">Cómo usar</a></nav><p class="lang"><a href="copiar-y-cambiar.en.html" lang="en" hreflang="en">English</a><a href="copiar-y-cambiar.ja.html" lang="ja" hreflang="ja">日本語</a></p></div>
+
+<h1>Copiar y cambiar</h1>
+
+<h2>La carpeta</h2>
+<p>La obra entera es esta carpeta: 15 ediciones de lectura con sus fuentes, el entrenador de vocabulario con sus datos, los
+documentos que las rigen y los programas que las construyen y las comprueban. <a href="README.md"><code>README.md</code></a>
+lista los archivos (en inglés). El texto de los autores es de dominio público; todo lo añadido es CC0
+(<a href="LICENSE"><code>LICENSE</code></a>): la carpeta se copia, se aloja y se cambia sin condición.</p>
+<p>Lo que se está haciendo ahora y lo que viene después: <a href="proximos-cambios.html">Próximos cambios</a>.</p>
+
+<h2>Cómo se obtiene</h2>
+<p>Del sitio, archivo por archivo: la carpeta <code>lecturas/</code>. Entera, del repositorio de la réplica,
+<code>https://github.com/vocabulario-libre/vocabulario-libre.github.io</code>: como un solo archivo comprimido,</p>
+<pre>https://github.com/vocabulario-libre/vocabulario-libre.github.io/archive/refs/heads/main.zip</pre>
+<p>o por clonación,</p>
+<pre>git clone -c core.autocrlf=false https://github.com/vocabulario-libre/vocabulario-libre.github.io</pre>
+<p>La carpeta es <code>lecturas/</code> dentro de uno u otra. <code>-c core.autocrlf=false</code> conserva los archivos como se
+publicaron; sin ella, git en Windows reescribe por defecto los finales de línea, y la comprobación da los archivos por
+cambiados. Para verificar la carpeta: <code>sha256sum -c MANIFEST.sha256</code> dentro de ella, o
+<code>python check_folder.py</code>.</p>
+
+<h2>Cómo se cambia</h2>
+<p>El archivo <code>.md</code> de una edición es su fuente; de él se generan su PDF y su EPUB. El entrenador se genera de las
+ediciones y de los archivos de equivalencias y definiciones de cada una, <code>vocab/NN/</code>. <code>README.md</code> da las
+órdenes; piden Python 3.9 o posterior, <code>reportlab</code> y <code>pyphen</code>. Tras un cambio: reconstruir y comprobar.</p>
+<p>Para corregir una palabra en una edición —aquí, la lectura 12—:</p>
+<ol>
+<li>Editar su fuente, <code>12-maximas-para-mi-hija-lectura.md</code>.</li>
+<li>Reconstruir sus archivos: <code>python build_pdf.py 12</code> y después <code>python build_epub.py 12</code>.</li>
+<li>Ejecutar <code>python check_folder.py</code>. Termina en <code>FOLDER CHECK PASS</code>.</li>
+</ol>
+<p>Para cambiar la equivalencia en inglés de una palabra:</p>
+<ol>
+<li>Editar el archivo de equivalencias de la edición, <code>vocab/12/glosses.json</code>.</li>
+<li>Reconstruir el entrenador: en <code>vocab/</code>, <code>python extract_vocab.py</code> y después
+<code>python build_app.py</code>.</li>
+<li>Reconstruir las páginas principales, que llevan fichas del entrenador: de vuelta en la carpeta, <code>python build_index.py</code>.</li>
+<li>Ejecutar <code>python check_folder.py</code>, como arriba.</li>
+</ol>
+<p>La carpeta puede darse entera a un modelo de lenguaje: el archivo descomprimido, o el clon, y una instrucción que termine
+en la comprobación. Tres instrucciones:</p>
+<ul>
+<li>«En la lectura 12, en las notas sobre las fuentes, sustituye esta palabra por esta otra. Reconstruye el PDF y el EPUB de
+la edición. Ejecuta check_folder.py y da su última línea.»</li>
+<li>«En vocab/12/glosses.json, cambia la equivalencia de esta palabra por esta. Reconstruye el entrenador y después las páginas principales. Ejecuta
+check_folder.py y da su última línea.»</li>
+<li>«Ejecuta check_folder.py. Lista lo que ha cambiado en esta carpeta respecto de la distribución y lo que está
+atrasado.»</li>
+</ul>
+
+<h2>Qué se comprueba</h2>
+<p><code>check_folder.py</code> compara cada archivo con <a href="MANIFEST.sha256"><code>MANIFEST.sha256</code></a> y nombra lo
+que ha cambiado respecto de la distribución. Genera de nuevo cada archivo que los programas de la carpeta construyen —los PDF
+y los EPUB de las ediciones y de los documentos, el entrenador, las páginas principales y estas páginas— y nombra lo que está atrasado
+respecto de su fuente. Las cartillas y la fuente tipográfica se comprueban sólo contra el manifiesto. Ejecuta las comprobaciones de cómputo y de
+ortografía. Ejecuta <code>anon.py</code>, que nombra todo archivo que lleve el nombre o la dirección de una persona, o un rastro de la máquina en que se hizo: una ruta, un nombre de usuario, un huso horario. Su última línea es <code>FOLDER CHECK PASS</code>, o <code>FOLDER CHECK FAIL</code> y lo que falló.</p>
+<p>No comprueba el resto de la norma. <code>compliance.py</code>, <code>drift.py</code> y <code>release.py</code> comprueban
+las ediciones contra la <a href="POLICY-scholarship-and-compliance.pdf">política</a>; necesitan los archivos de trabajo con que se hicieron las ediciones,
+que no están en esta carpeta. Una edición nueva, o un cambio en un aparato, no se comprueba aquí contra la política.
+<code>MANIFEST.sha256</code> y <a href="PROVENANCE.md"><code>PROVENANCE.md</code></a> describen la distribución, no una copia
+cambiada.</p>
+<footer>
+<nav class="nav nav-foot" aria-label="Navegación"><a href="index.html">Página principal</a> · <a href="vocab/flashcards.html">Léxico</a> · <a href="como-usar.html">Cómo usar</a></nav>
+</footer>
+</body>
+</html>

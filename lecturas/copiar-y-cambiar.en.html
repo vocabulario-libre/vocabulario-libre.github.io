@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copy and change · Lecturas de los libertadores</title>
+<style>
+:root { color-scheme: light dark; --fg: #222; --bg: #fdfcf8; --mute: #666; --line: #ddd; --link: #1a4d8f; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e0; --bg: #1c1b19; --mute: #9a978f; --line: #3a3835; --link: #8ab4f8; --code: #2a2926; } }
+body { font-family: Georgia, 'Times New Roman', serif; color: var(--fg); background: var(--bg); max-width: 44em; margin: 2em auto; padding: 0 1em; line-height: 1.5; }
+h1 { font-weight: normal; margin-bottom: .2em; }
+h2 { font-size: 1.05em; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute); margin: 2.2em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .2em; }
+a { color: var(--link); } li { margin: .3em 0; }
+code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); }
+code { padding: 0 .25em; } pre { padding: .5em .7em; white-space: pre-wrap; overflow-wrap: anywhere; }
+dl { margin: .4em 0; } dt { margin-top: .5em; } dd { margin: 0 0 0 1.2em; color: var(--mute); }
+.lang { text-align: right; font-size: .9em; margin: 0; } .lang a { margin-left: .8em; }
+footer { color: var(--mute); font-size: .9em; margin-top: 2.5em; border-top: 1px solid var(--line); padding-top: .8em; }
+.nav { font-size: .9em; margin: 0 0 1em; } .nav a, .nav span { display: inline-block; padding: .35em 0; } .nav [aria-current] { font-weight: bold; }
+.nav-foot { margin: 1.5em 0 0; } footer .nav-foot { margin: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1em; margin: 0 0 1em; } .top .nav { margin: 0; }
+</style>
+</head>
+<body>
+<div class="top"><nav class="nav" aria-label="Navigation"><a href="index.en.html">Main page</a> · <a href="vocab/flashcards.html#en">Léxico</a> · <a href="como-usar.en.html">How to use</a></nav><p class="lang"><a href="copiar-y-cambiar.html" lang="es" hreflang="es">Español</a><a href="copiar-y-cambiar.ja.html" lang="ja" hreflang="ja">日本語</a></p></div>
+
+<h1>Copy and change</h1>
+
+<h2>The folder</h2>
+<p>The whole work is this folder: 15 reading editions with their sources, the vocabulary trainer with its data, the
+documents that govern them, and the programs that build and check them. <a href="README.md"><code>README.md</code></a> lists
+the files. The authors’ texts are public domain; everything added is CC0 (<a href="LICENSE"><code>LICENSE</code></a>): the
+folder is copied, hosted and changed without condition.</p>
+<p>What is being made now and what comes after: <a href="proximos-cambios.en.html">Upcoming changes</a>.</p>
+
+<h2>How it is had</h2>
+<p>From the site, file by file: the folder <code>lecturas/</code>. Whole, from the repository of the mirror,
+<code>https://github.com/vocabulario-libre/vocabulario-libre.github.io</code>: as one archive,</p>
+<pre>https://github.com/vocabulario-libre/vocabulario-libre.github.io/archive/refs/heads/main.zip</pre>
+<p>or by a clone,</p>
+<pre>git clone -c core.autocrlf=false https://github.com/vocabulario-libre/vocabulario-libre.github.io</pre>
+<p>The folder is <code>lecturas/</code> inside either. <code>-c core.autocrlf=false</code> keeps the files as published;
+without it, git on Windows rewrites line endings by default, and the check reports the files as changed. To verify the
+folder: <code>sha256sum -c MANIFEST.sha256</code> inside it, or <code>python check_folder.py</code>.</p>
+
+<h2>How it is changed</h2>
+<p>The <code>.md</code> file of an edition is its source; its PDF and its EPUB are built from it. The trainer is built from the
+editions and from the files of glosses and definitions of each, <code>vocab/NN/</code>. <code>README.md</code> gives the
+commands; they need Python 3.9 or later, <code>reportlab</code> and <code>pyphen</code>. After a change: rebuild, then check.</p>
+<p>To correct a word in an edition — here, edition 12:</p>
+<ol>
+<li>Edit its source, <code>12-maximas-para-mi-hija-lectura.md</code>.</li>
+<li>Rebuild its files: <code>python build_pdf.py 12</code>, then <code>python build_epub.py 12</code>.</li>
+<li>Run <code>python check_folder.py</code>. It ends on <code>FOLDER CHECK PASS</code>.</li>
+</ol>
+<p>To change the English equivalent of a word:</p>
+<ol>
+<li>Edit the edition’s file of equivalents, <code>vocab/12/glosses.json</code>.</li>
+<li>Rebuild the trainer: in <code>vocab/</code>, <code>python extract_vocab.py</code>, then
+<code>python build_app.py</code>.</li>
+<li>Rebuild the main pages, which carry cards from the trainer: back in the folder, <code>python build_index.py</code>.</li>
+<li>Run <code>python check_folder.py</code>, as above.</li>
+</ol>
+<p>The folder can be given whole to a language model: the archive unpacked, or the clone, and an instruction that ends at the
+check. Three instructions:</p>
+<ul>
+<li>«In edition 12, in the notes on the sources, replace this word with this one. Rebuild the edition’s PDF and EPUB. Run
+check_folder.py and give its last line.»</li>
+<li>«In vocab/12/glosses.json, change the gloss of this word to this. Rebuild the trainer, then the main pages. Run check_folder.py and give its
+last line.»</li>
+<li>«Run check_folder.py. List what has changed in this folder since the release and what is out of date.»</li>
+</ul>
+
+<h2>What is checked</h2>
+<p><code>check_folder.py</code> compares every file with <a href="MANIFEST.sha256"><code>MANIFEST.sha256</code></a> and names
+what has changed since the release. It rebuilds every file the folder’s programs build — the PDFs and EPUBs of the editions
+and the documents, the trainer, the main pages and these pages — and names each that is out of date with its source. The primers
+and the font are held to the manifest alone. It runs the checks of counts and of spelling. It runs <code>anon.py</code>, which names any file that carries a person’s name or address, or a trace of the machine it was made on: a path, a user’s name, a time zone. Its last line is <code>FOLDER CHECK PASS</code>, or <code>FOLDER CHECK FAIL</code> and what failed.</p>
+<p>It does not check the rest of the standard. <code>compliance.py</code>, <code>drift.py</code> and <code>release.py</code>
+check the editions against the <a href="POLICY-scholarship-and-compliance.pdf">policy</a>; they need the working files the editions were made from, which
+are not in this folder. A new edition, or a change to an apparatus, is not checked here against the policy. <code>MANIFEST.sha256</code> and <a href="PROVENANCE.md"><code>PROVENANCE.md</code></a> describe
+the release, not a changed copy.</p>
+<footer>
+<nav class="nav nav-foot" aria-label="Navigation"><a href="index.en.html">Main page</a> · <a href="vocab/flashcards.html#en">Léxico</a> · <a href="como-usar.en.html">How to use</a></nav>
+</footer>
+</body>
+</html>

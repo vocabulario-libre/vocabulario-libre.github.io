@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://app.vocabulario-libre.workers.dev/">
+<title>Vocabulario Libre</title>
+<id>urn:sha256:2dacbc75fd08eae51cbd906b8ec55c3d31cac9b0b338c385eae9cfd3a22a710d</id>
+<updated>2026-11-24T00:00:00Z</updated>
+<author><name>Vocabulario Libre</name></author>
+<link rel="self" href="releases.xml"/>
+<link rel="alternate" href="index.html"/>
+<entry>
+<title>Vocabulario Libre — Primera distribución · First distribution (2026-11-02)</title>
+<id>urn:sha256:release-2026-11-02</id>
+<updated>2026-11-02T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Primera distribución · First distribution</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Segunda distribución: encabezado «Texto de lectura» en las quince ediciones · Second distribution: the heading «Texto de lectura» in all fifteen editions (2026-11-03)</title>
+<id>urn:sha256:release-2026-11-03</id>
+<updated>2026-11-03T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Segunda distribución: encabezado «Texto de lectura» en las quince ediciones · Second distribution: the heading «Texto de lectura» in all fifteen editions</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Tercera distribución: entrenador v2 — el texto junto a sus palabras · Third distribution: trainer v2 — the text beside its words (2026-11-06)</title>
+<id>urn:sha256:release-2026-11-06</id>
+<updated>2026-11-06T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Tercera distribución: entrenador v2 — el texto junto a sus palabras · Third distribution: trainer v2 — the text beside its words</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Cuarta distribución: interfaz en japonés · Fourth distribution: the interface in Japanese · 第四配布：日本語インターフェース (2026-11-06)</title>
+<id>urn:sha256:release-2026-11-06</id>
+<updated>2026-11-06T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Cuarta distribución: interfaz en japonés · Fourth distribution: the interface in Japanese · 第四配布：日本語インターフェース</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Quinta distribución: la capa gramatical — átomos y tramos certificados en el entrenador · Fifth distribution: the grammar layer — certified atoms and stretches in the trainer · 第五配布：文法レイヤー ― 検証済みの要素と区間 (2026-11-08)</title>
+<id>urn:sha256:release-2026-11-08</id>
+<updated>2026-11-08T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Quinta distribución: la capa gramatical — átomos y tramos certificados en el entrenador · Fifth distribution: the grammar layer — certified atoms and stretches in the trainer · 第五配布：文法レイヤー ― 検証済みの要素と区間</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Sexta distribución: cómo usar — la guía en el sitio y el recorrido en el entrenador; el sitio habla por la colección · Sixth distribution: how to use — the guide on the site and the tour in the trainer; the hub speaks for the collection · 第六配布：使い方 ― サイトの案内とトレーナーのツアー (2026-11-08)</title>
+<id>urn:sha256:release-2026-11-08</id>
+<updated>2026-11-08T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Sexta distribución: cómo usar — la guía en el sitio y el recorrido en el entrenador; el sitio habla por la colección · Sixth distribution: how to use — the guide on the site and the tour in the trainer; the hub speaks for the collection · 第六配布：使い方 ― サイトの案内とトレーナーのツアー</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Séptima distribución: cartillas de sánscrito y de avéstico; la página «Copiar y cambiar»; la guía «Cómo usar», en la carpeta; corregido: «⇄ panel» mueve el panel del texto · Seventh distribution: the Sanskrit and Avestan primers; the page «Copy and change»; the guide «How to use», in the folder; corrected: «⇄ pane» moves the text pane · 第七配布：サンスクリットとアヴェスター語の手引き；「複製と改変」のページ；案内「使い方」をフォルダに収録；訂正：「⇄ 左右」は本文パネルを移す (2026-11-15)</title>
+<id>urn:sha256:release-2026-11-15</id>
+<updated>2026-11-15T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Séptima distribución: cartillas de sánscrito y de avéstico; la página «Copiar y cambiar»; la guía «Cómo usar», en la carpeta; corregido: «⇄ panel» mueve el panel del texto · Seventh distribution: the Sanskrit and Avestan primers; the page «Copy and change»; the guide «How to use», in the folder; corrected: «⇄ pane» moves the text pane · 第七配布：サンスクリットとアヴェスター語の手引き；「複製と改変」のページ；案内「使い方」をフォルダに収録；訂正：「⇄ 左右」は本文パネルを移す</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Octava distribución: las fichas de la lectura 12 en japonés, ruso, alemán, sánscrito y avéstico; la forma de diccionario junto a la palabra; en la cartilla de avéstico, las citas de los ejemplos leídas en la página; corregido: «a la verdad» en la segunda máxima no es la locución · Eighth distribution: the cards of lectura 12 in Japanese, Russian, German, Sanskrit and Avestan; the dictionary form beside the word; in the Avestan primer, the examples' citations read on the page; corrected: «a la verdad» in the second maxim is not the locution · 第八配布：講読12のカードに日本語・ロシア語・ドイツ語・サンスクリット語・アヴェスター語；語の横に見出し語；アヴェスター語入門の用例の出典をページで確認；訂正：第二の格言の «a la verdad» は成句ではない (2026-11-17)</title>
+<id>urn:sha256:release-2026-11-17</id>
+<updated>2026-11-17T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Octava distribución: las fichas de la lectura 12 en japonés, ruso, alemán, sánscrito y avéstico; la forma de diccionario junto a la palabra; en la cartilla de avéstico, las citas de los ejemplos leídas en la página; corregido: «a la verdad» en la segunda máxima no es la locución · Eighth distribution: the cards of lectura 12 in Japanese, Russian, German, Sanskrit and Avestan; the dictionary form beside the word; in the Avestan primer, the examples' citations read on the page; corrected: «a la verdad» in the second maxim is not the locution · 第八配布：講読12のカードに日本語・ロシア語・ドイツ語・サンスクリット語・アヴェスター語；語の横に見出し語；アヴェスター語入門の用例の出典をページで確認；訂正：第二の格言の «a la verdad» は成句ではない</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Novena distribución: el entrenador y el sitio en el teléfono — la ficha gira, una cara cada vez; los mandos de cada ficha al pie de la pantalla, o junto a la ficha con el teléfono de lado; en el sitio, ninguna página más ancha que la pantalla y «estudiar» primero; corregido: la lista de textos del índice ya no queda sobre el texto · Ninth distribution: the trainer and the site on a phone — the card turns, one face at a time; what is touched at every card at the foot of the screen, or beside the card with the phone held sideways; on the site, no page wider than the screen and «study» first; corrected: the index's list of texts no longer stays over the text · 第九配布：スマートフォンでのトレーナーとサイト ― カードは裏返り、一度に片面を表示；カードごとに触れる操作は画面下部に、横向きではカードの横に；サイトではどのページも画面幅に収まり、「学習」が先頭；訂正：索引のテキスト一覧が本文の上に残らない (2026-11-17)</title>
+<id>urn:sha256:release-2026-11-17</id>
+<updated>2026-11-17T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Novena distribución: el entrenador y el sitio en el teléfono — la ficha gira, una cara cada vez; los mandos de cada ficha al pie de la pantalla, o junto a la ficha con el teléfono de lado; en el sitio, ninguna página más ancha que la pantalla y «estudiar» primero; corregido: la lista de textos del índice ya no queda sobre el texto · Ninth distribution: the trainer and the site on a phone — the card turns, one face at a time; what is touched at every card at the foot of the screen, or beside the card with the phone held sideways; on the site, no page wider than the screen and «study» first; corrected: the index's list of texts no longer stays over the text · 第九配布：スマートフォンでのトレーナーとサイト ― カードは裏返り、一度に片面を表示；カードごとに触れる操作は画面下部に、横向きではカードの横に；サイトではどのページも画面幅に収まり、「学習」が先頭；訂正：索引のテキスト一覧が本文の上に残らない</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Décima distribución: las fichas del día al inicio de la página principal — cada día una frase de la lectura 12 y sus fichas, que giran allí mismo; «Estudiar» las abre en el entrenador; la página principal de la carpeta en español, inglés y japonés; en cada página, enlaces a la página principal, el entrenador y la guía; en el sitio, la dirección al inicio de la página, con el código que lee la cámara de un teléfono · Tenth distribution: the cards of the day at the head of the main page — each day one sentence of lectura 12 and its cards, turned in place; «Study» opens them in the trainer; the folder's main page in Spanish, English and Japanese; on every page, links to the main page, the trainer and the guide; on the site, the address at the head of the page, with the code a phone's camera reads · 第十配布：トップページの先頭に今日のカード ― 毎日、講読12の一文とそのカードを示し、その場で裏返せる；「学習」でそのカードをトレーナーで開く；フォルダのトップページをスペイン語・英語・日本語で；全ページに、トップページ・トレーナー・使い方へのリンク；サイトでは、ページの先頭にアドレスと、スマートフォンのカメラで読み取るコード (2026-11-19)</title>
+<id>urn:sha256:release-2026-11-19</id>
+<updated>2026-11-19T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Décima distribución: las fichas del día al inicio de la página principal — cada día una frase de la lectura 12 y sus fichas, que giran allí mismo; «Estudiar» las abre en el entrenador; la página principal de la carpeta en español, inglés y japonés; en cada página, enlaces a la página principal, el entrenador y la guía; en el sitio, la dirección al inicio de la página, con el código que lee la cámara de un teléfono · Tenth distribution: the cards of the day at the head of the main page — each day one sentence of lectura 12 and its cards, turned in place; «Study» opens them in the trainer; the folder's main page in Spanish, English and Japanese; on every page, links to the main page, the trainer and the guide; on the site, the address at the head of the page, with the code a phone's camera reads · 第十配布：トップページの先頭に今日のカード ― 毎日、講読12の一文とそのカードを示し、その場で裏返せる；「学習」でそのカードをトレーナーで開く；フォルダのトップページをスペイン語・英語・日本語で；全ページに、トップページ・トレーナー・使い方へのリンク；サイトでは、ページの先頭にアドレスと、スマートフォンのカメラで読み取るコード</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Undécima distribución: corregido: build_index.py se ejecuta con Python 3.9 o posterior; pedía Python 3.12 · Eleventh distribution: corrected: build_index.py runs on Python 3.9 or later; it asked for Python 3.12 · 第十一配布：訂正：build_index.py は Python 3.9 以降で動く；これまでは Python 3.12 が必要だった (2026-11-19)</title>
+<id>urn:sha256:release-2026-11-19</id>
+<updated>2026-11-19T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Undécima distribución: corregido: build_index.py se ejecuta con Python 3.9 o posterior; pedía Python 3.12 · Eleventh distribution: corrected: build_index.py runs on Python 3.9 or later; it asked for Python 3.12 · 第十一配布：訂正：build_index.py は Python 3.9 以降で動く；これまでは Python 3.12 が必要だった</summary>
+</entry>
+<entry>
+<title>Vocabulario Libre — Duodécima distribución: las fichas de la lectura 01 en japonés; la página «Próximos cambios», en la carpeta y en el sitio; en el sitio, «Instalar», paso a paso para cada aparato; en los datos, cada concepto léxico con un identificador propio · Twelfth distribution: the cards of lectura 01 in Japanese; the page «Upcoming changes», in the folder and on the site; on the site, «Install», step by step for each device; in the data, an id of its own for each lexical concept · 第十二配布：講読01のカードに日本語；「今後の予定」のページをフォルダとサイトに収録；サイトに「インストール」、端末ごとの手順；データでは、語彙概念ごとに固有の ID (2026-11-24)</title>
+<id>urn:sha256:2dacbc75fd08eae51cbd906b8ec55c3d31cac9b0b338c385eae9cfd3a22a710d</id>
+<updated>2026-11-24T00:00:00Z</updated>
+<link rel="alternate" href="lecturas/index.html"/>
+<summary>Corpus cerrado y publicado (2 de noviembre de 2026). Versiones · versions: 01 2.4 · 02 1.5 · 03 2.5 · 04 1.7 · 05 1.6 · 06 1.10 · 07 1.7 · 08 1.5 · 09 1.6 · 10 1.8 · 11 1.5 · 12 1.2 · 13 1.5 · 14 1.7 · 15 1.8.</summary>
+</entry>
+</feed>

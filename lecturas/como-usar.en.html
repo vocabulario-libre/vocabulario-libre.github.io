@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use · Lecturas de los libertadores</title>
+<style>
+:root { color-scheme: light dark; --fg: #222; --bg: #fdfcf8; --mute: #666; --line: #ddd; --link: #1a4d8f; --code: #efede8; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e6e0; --bg: #1c1b19; --mute: #9a978f; --line: #3a3835; --link: #8ab4f8; --code: #2a2926; } }
+body { font-family: Georgia, 'Times New Roman', serif; color: var(--fg); background: var(--bg); max-width: 44em; margin: 2em auto; padding: 0 1em; line-height: 1.5; }
+h1 { font-weight: normal; margin-bottom: .2em; }
+h2 { font-size: 1.05em; font-weight: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--mute); margin: 2.2em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .2em; }
+a { color: var(--link); } li { margin: .3em 0; }
+code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: var(--code); }
+code { padding: 0 .25em; } pre { padding: .5em .7em; white-space: pre-wrap; overflow-wrap: anywhere; }
+dl { margin: .4em 0; } dt { margin-top: .5em; } dd { margin: 0 0 0 1.2em; color: var(--mute); }
+.lang { text-align: right; font-size: .9em; margin: 0; } .lang a { margin-left: .8em; }
+footer { color: var(--mute); font-size: .9em; margin-top: 2.5em; border-top: 1px solid var(--line); padding-top: .8em; }
+.nav { font-size: .9em; margin: 0 0 1em; } .nav a, .nav span { display: inline-block; padding: .35em 0; } .nav [aria-current] { font-weight: bold; }
+.nav-foot { margin: 1.5em 0 0; } footer .nav-foot { margin: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1em; margin: 0 0 1em; } .top .nav { margin: 0; }
+</style>
+</head>
+<body>
+<div class="top"><nav class="nav" aria-label="Navigation"><a href="index.en.html">Main page</a> · <a href="vocab/flashcards.html#en">Léxico</a> · <span aria-current="page">How to use</span></nav><p class="lang"><a href="como-usar.html" lang="es" hreflang="es">Español</a><a href="como-usar.ja.html" lang="ja" hreflang="ja">日本語</a></p></div>
+
+<h1>How to use</h1>
+
+<h2>What is here</h2>
+<p>Fifteen texts by Bolívar, San Martín and O’Higgins, 1812–1843, each in a reading edition: the established text and its
+apparatus. A vocabulary trainer, Léxico, with the fifteen texts inside it. The documents that let all of it be checked:
+provenance, policy, method, manifest. The text is public domain; everything else is CC0. The collection grows by corpus;
+today, one, in Spanish.</p>
+
+<h2>Read</h2>
+<p>The main page lists the fifteen texts in chronological order, with author and date. Each entry opens the text in its
+edition. The apparatus records, case by case, what the edition changed against the witness. The provenance record
+(<a href="PROVENANCE.md"><code>PROVENANCE.md</code></a>) names each text’s witness and its rights.</p>
+
+<h2>Study</h2>
+<p><a href="vocab/flashcards.html#en">Léxico</a> opens in the “Text” view. Click a paragraph: its words form the cards.
+Shift-click: a stretch of paragraphs. “Whole text”: the entire text. Click a word: its English gloss, written for that
+passage. The “Index” view orders every form by frequency, in units of a hundred; “Study this unit” forms the deck.</p>
+<p>Three card sets: “words” (each form with the sentence it occurs in and its gloss), “atoms” (the grammatical words:
+particle, ending, feature, order, ∅) and “stretches” (the atom in the span of sentence where it acts). Only what is
+certified forms cards; the rest says “under review”.</p>
+<p>Two modes: “Recognise” (the word is shown; the sense is recalled) and “Produce” (the sentence with a gap; it is
+supplied). On a wide screen, “⇄ pane” moves the text to the other side of the cards; beside the card the languages of each face are chosen, “front” and “back”. Three orders: “Text order”, “Shuffled”, “To review”. The space
+bar turns the card, and so does a click or a tap on it; done again, it brings the front back. Again · Hard · Good · Easy sets the next review.</p>
+<p>The cards of a lectura whose forms are made — the list of lecturas marks it with its languages — also carry the word in
+Japanese, Russian, German, Sanskrit and Avestan: the form, its reading beneath, and the dictionary form. The mark ◇ stands
+on a form written for this project that no person who reads the language has checked yet: it may be wrong. In the other
+lecturas those languages show “—”.</p>
+<p>Progress stays in this browser and nowhere else. “Save progress” writes it to a file; “Load progress” reads it; “Start
+over” erases it. “Save selection” keeps a group of paragraphs; “Link to this selection” produces an address that opens it
+on any device.</p>
+
+<h2>Check</h2>
+<p><a href="MANIFEST.sha256"><code>MANIFEST.sha256</code></a> lists every file with its digest;
+<code>sha256sum -c MANIFEST.sha256</code> verifies the whole distribution. <code>PROVENANCE.md</code> names witnesses and
+rights. The <a href="POLICY-scholarship-and-compliance.pdf">policy</a> sets the rules; the method, how they were applied.
+<a href="copiar-y-cambiar.en.html">Copy and change</a> says how the folder is changed and how a change is checked.</p>
+
+<h2>Terms</h2>
+<dl>
+<dt>edition</dt><dd>the text established from a witness, with its apparatus</dd>
+<dt>apparatus</dt><dd>the list of what the edition changed against the witness, case by case</dd>
+<dt>witness</dt><dd>the printing or manuscript the text comes from</dd>
+<dt>atom</dt><dd>a grammatical word or a grammatical mark: particle, ending, feature, order, ∅</dd>
+<dt>stretch</dt><dd>the span of sentence in which an atom acts</dd>
+<dt>certified</dt><dd>a locus whose sense was verified; only these form cards</dd>
+</dl>
+<footer>
+<nav class="nav nav-foot" aria-label="Navigation"><a href="index.en.html">Main page</a> · <a href="vocab/flashcards.html#en">Léxico</a> · <span aria-current="page">How to use</span></nav>
+</footer>
+</body>
+</html>
